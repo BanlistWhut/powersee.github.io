@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html>
+  
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="Powersee" />
+  
+  
+  <title>小米手机免 root 去除广告以及卸载系统应用 | Powersee的博客</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="Hexo, Theme-AD" />
+  
+
+  
+  <meta name="description" content="本文需在电脑上进行。">
+
+  
+
+  
+
+  
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+  
+
+  
+
+  
+
+  <script>
+  // theme-ad's config script
+  // it can be used in every script
+  
+  window.AD_CONFIG = {
+    leancloud: {"comment":false,"count":false},
+    welcome: {"enable":false,"interval":30},
+    start_time: "2018-05-20",
+    passwords: [],
+    is_post: true,
+    lock: false,
+    author: "Powersee",
+    share: {"weibo":true,"qq":true,"wechat":true},
+    mathjax: true,
+    page_type: "",
+    root: "/"
+  };
+</script>
+
+  <script src="/vendor/sha256.min.js"></script>
+<script src="/js/auth.js"></script>
+<script src="/js/index.js"></script>
+<script src="/vendor/qrcode.min.js"></script>
+
+  
+    <link rel="icon" href="/images/favicon.ico">
+    <link rel="apple-touch-icon" href="/images/touch-icon.png">
+  
+
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="/css/index.css">
+<link rel="stylesheet" href="/styles/components/highlight/highlight.css">
+
+  
+</head>
+  <body>
+    <header class="site-header">
+  <div class="site-header-brand">
+    
+      <span class="site-header-brand-title">
+        <a href="/">Powersee</a>
+      </span>
+    
+    
+  </div>
+  <div class="site-header-right">
+    <nav class="site-header-navigation">
+      
+        <a href="/" target="_self">首页</a>
+      
+        <a href="/archives/" target="_self">归档</a>
+      
+        <a href="/tags/" target="_self">标签</a>
+      
+        <a href="/categories/" target="_self">分类</a>
+      
+        <a href="/friends/" target="_self">友链</a>
+      
+        <a href="/about/" target="_self">关于</a>
+      
+    </nav>
+    <div class="site-header-btn">
+      
+        <a href="https://www.youtube.com/powersee" target="_blank" id="site-github">
+          <i class="fa fa-github-alt"></i>
+        </a>
+      
+      <a href="javascript:void(0);" id="site-search">
+        <i class="fa fa-search"></i>
+      </a>
+      <a href="javascript:void(0);" id="site-nav-btn">
+        <i class="fa fa-ellipsis-v"></i>
+      </a>
+    </div>
+  </div>
+</header>
+<nav class="table-content" id="site-nav">
+  <div class="table-content-title">
+    <span>导航</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc">
+      
+        <li class="toc-item">
+          <a href="/" target="_self">
+            首页
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/archives/" target="_self">
+            归档
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/tags/" target="_self">
+            标签
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/categories/" target="_self">
+            分类
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/friends/" target="_self">
+            友链
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/about/" target="_self">
+            关于
+          </a>
+        </li>
+      
+    </ol>
+  </div>
+</nav>
+<div id="site-process"></div>
+    <main>
+      
+  <div class="passage">
+  <div class="passage-meta">
+    <span>
+      <i class="fa fa-calendar"></i>2019-09-18
+    </span>
+    
+    
+      <span>
+        | <i class="fa fa-unlock-alt"></i>UNLOCK
+      </span>
+    
+  </div>
+  <h1 class="passage-title">
+    小米手机免 root 去除广告以及卸载系统应用
+  </h1>
+  
+  <article class="passage-article">
+    <h2 id="手机打开-USB-调试"><a href="#手机打开-USB-调试" class="headerlink" title="手机打开 USB 调试"></a>手机打开 USB 调试</h2><p>以及 USB 调试（安全模式）</p>
+<h2 id="下载-ADB-工具"><a href="#下载-ADB-工具" class="headerlink" title="下载 ADB 工具"></a>下载 ADB 工具</h2><p><a href="http://veger.ys168.com/" target="_blank" rel="noopener">http://veger.ys168.com/</a><br>在电脑软件这个文件夹里</p>
+<p>解压后把三个文件，解压到 <code>C:\Windows\</code>里面</p>
+<h2 id="安装小米刷机工具（安装手机驱动）"><a href="#安装小米刷机工具（安装手机驱动）" class="headerlink" title="安装小米刷机工具（安装手机驱动）"></a>安装小米刷机工具（安装手机驱动）</h2><p><a href="http://bigota.d.miui.com/tools/MiFlash2018-5-28-0.zip" target="_blank" rel="noopener">http://bigota.d.miui.com/tools/MiFlash2018-5-28-0.zip</a></p>
+<h2 id="电脑打开-cmd"><a href="#电脑打开-cmd" class="headerlink" title="电脑打开 cmd"></a>电脑打开 cmd</h2><p>删除应用的 ADB 命令是：<br><figure class="highlight crmsh"><table><tr><td class="code"><pre><span class="line">adb shell pm uninstall --<span class="keyword">user</span> <span class="title">0</span> 应用包名</span><br></pre></td></tr></table></figure></p>
+<p>（MIUI 9、MIUI 10 测试删除后能正常开机使用）<br><figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line">adb shell pm uninstall --user <span class="number">0</span>  com<span class="selector-class">.miui</span><span class="selector-class">.systemAdSolution</span> （小米系统广告解决方案 必删）  </span><br><span class="line">adb shell pm uninstall --user <span class="number">0</span>  com<span class="selector-class">.miui</span><span class="selector-class">.analytics</span> （小米广告分析，必删）  </span><br><span class="line">adb shell pm uninstall --user <span class="number">0</span> com<span class="selector-class">.xiaomi</span><span class="selector-class">.gamecenter</span><span class="selector-class">.sdk</span><span class="selector-class">.service</span> （小米游戏中心服务）  </span><br><span class="line">adb shell pm uninstall --user <span class="number">0</span> com<span class="selector-class">.xiaomi</span><span class="selector-class">.gamecenter</span> （小米游戏中心）  </span><br><span class="line">adb shell pm uninstall --user <span class="number">0</span> com<span class="selector-class">.sohu</span><span class="selector-class">.inputmethod</span><span class="selector-class">.sogou</span><span class="selector-class">.xiaomi</span> （搜狗输入法）  </span><br><span class="line">adb shell pm uninstall --user <span class="number">0</span> com<span class="selector-class">.miui</span><span class="selector-class">.player</span> （小米音乐）  </span><br><span class="line">adb shell pm uninstall --user <span class="number">0</span> com<span class="selector-class">.miui</span><span class="selector-class">.video</span> （小米视频）  </span><br><span class="line">adb shell pm uninstall --user <span class="number">0</span> com<span class="selector-class">.miui</span><span class="selector-class">.notes</span> （小米便签）  </span><br><span class="line">adb shell pm uninstall --user <span class="number">0</span> com<span class="selector-class">.miui</span><span class="selector-class">.translation</span><span class="selector-class">.youdao</span> （有道翻译）  </span><br><span class="line">adb shell pm uninstall --user <span class="number">0</span> com<span class="selector-class">.miui</span><span class="selector-class">.translation</span><span class="selector-class">.kingsoft</span> （金山翻译）  </span><br><span class="line">adb shell pm uninstall --user <span class="number">0</span> com<span class="selector-class">.android</span><span class="selector-class">.email</span> （邮件）  </span><br><span class="line">adb shell pm uninstall --user <span class="number">0</span> com<span class="selector-class">.xiaomi</span><span class="selector-class">.scanner</span> （小米扫描）  </span><br><span class="line">adb shell pm uninstall --user <span class="number">0</span> com<span class="selector-class">.miui</span><span class="selector-class">.hybrid</span> （混合器）  </span><br><span class="line">adb shell pm uninstall --user <span class="number">0</span> com<span class="selector-class">.miui</span><span class="selector-class">.bugreport</span> （bug 反馈）  </span><br><span class="line">adb shell pm uninstall --user <span class="number">0</span> com<span class="selector-class">.milink</span><span class="selector-class">.service</span> （米连服务）  </span><br><span class="line">adb shell pm uninstall --user <span class="number">0</span> com<span class="selector-class">.android</span><span class="selector-class">.browser</span> （浏览器）  </span><br><span class="line">adb shell pm uninstall --user <span class="number">0</span> com<span class="selector-class">.miui</span><span class="selector-class">.gallery</span> （相册）  </span><br><span class="line">adb shell pm uninstall --user <span class="number">0</span> com<span class="selector-class">.miui</span><span class="selector-class">.yellowpage</span> （黄页）  </span><br><span class="line">adb shell pm uninstall --user <span class="number">0</span> com<span class="selector-class">.xiaomi</span><span class="selector-class">.midrop</span> （小米快传）  </span><br><span class="line">adb shell pm uninstall --user <span class="number">0</span> com<span class="selector-class">.miui</span><span class="selector-class">.virtualsim</span> （小米虚拟器）  </span><br><span class="line">adb shell pm uninstall --user <span class="number">0</span> com<span class="selector-class">.xiaomi</span><span class="selector-class">.payment</span> （小米支付）  </span><br><span class="line">adb shell pm uninstall --user <span class="number">0</span> com<span class="selector-class">.mipay</span><span class="selector-class">.wallet</span> （小米钱包）  </span><br><span class="line">adb shell pm uninstall --user <span class="number">0</span> com<span class="selector-class">.android</span><span class="selector-class">.soundrecorder</span> （录音机）  </span><br><span class="line">adb shell pm uninstall --user <span class="number">0</span> com<span class="selector-class">.miui</span><span class="selector-class">.screenrecorder</span> （屏幕录制）  </span><br><span class="line">adb shell pm uninstall --user <span class="number">0</span> com<span class="selector-class">.android</span><span class="selector-class">.wallpaper</span> （壁纸）  </span><br><span class="line">adb shell pm uninstall --user <span class="number">0</span> com<span class="selector-class">.miui</span><span class="selector-class">.voiceassist</span> （语音助手）  </span><br><span class="line">adb shell pm uninstall --user <span class="number">0</span> com<span class="selector-class">.miui</span><span class="selector-class">.fm</span> （收音机）  </span><br><span class="line">adb shell pm uninstall --user <span class="number">0</span> com<span class="selector-class">.miui</span><span class="selector-class">.touchassistant</span> （悬浮球）  </span><br><span class="line">adb shell pm uninstall --user <span class="number">0</span> com<span class="selector-class">.android</span><span class="selector-class">.cellbroadcastreceiver</span> （小米广播）  </span><br><span class="line">adb shell pm uninstall --user <span class="number">0</span> com<span class="selector-class">.xiaomi</span><span class="selector-class">.mitunes</span> （小米助手）  </span><br><span class="line">adb shell pm uninstall --user <span class="number">0</span> com<span class="selector-class">.xiaomi</span><span class="selector-class">.pass</span> （小米卡包）  </span><br><span class="line">adb shell pm uninstall --user <span class="number">0</span> com<span class="selector-class">.android</span><span class="selector-class">.thememanager</span> （个性主题管理）  </span><br><span class="line">adb shell pm uninstall --user <span class="number">0</span> com<span class="selector-class">.android</span><span class="selector-class">.wallpaper</span> （动态壁纸）  </span><br><span class="line">adb shell pm uninstall --user <span class="number">0</span> com<span class="selector-class">.android</span><span class="selector-class">.wallpaper</span><span class="selector-class">.livepicker</span> （动态壁纸获取）  </span><br><span class="line">adb shell pm uninstall --user <span class="number">0</span> com<span class="selector-class">.miui</span><span class="selector-class">.klo</span><span class="selector-class">.bugreport</span> （KLO bug 反馈）</span><br></pre></td></tr></table></figure></p>
+<p>前面两个是 MIUI 系统支撑广告及精准化推送的应用，应第一时间删除，删除后不会出现无法开机的情况。这样 MIUI 系统的广告就会少很多——没有验证是否完全屏蔽。  </p>
+<p><strong>【警告】以下系统自带应用删除后必定无法正常开机（来自网络），请避免误删：</strong>  </p>
+<figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line">com<span class="selector-class">.miui</span><span class="selector-class">.cloudservice</span> （小米云服务）  </span><br><span class="line">com<span class="selector-class">.xiaomi</span><span class="selector-class">.account</span> （小米账户）  </span><br><span class="line">com<span class="selector-class">.miui</span><span class="selector-class">.cloudbackup</span> （云备份）  </span><br><span class="line">com<span class="selector-class">.xiaomi</span><span class="selector-class">.market</span> （应用市场）</span><br></pre></td></tr></table></figure>
+  </article>
+  <aside class="table-content" id="site-toc">
+  <div class="table-content-title">
+    <i class="fa fa-arrow-right fa-lg" id="site-toc-hide-btn"></i>
+    <span>目录</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#手机打开-USB-调试"><span class="toc-text">手机打开 USB 调试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#下载-ADB-工具"><span class="toc-text">下载 ADB 工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装小米刷机工具（安装手机驱动）"><span class="toc-text">安装小米刷机工具（安装手机驱动）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#电脑打开-cmd"><span class="toc-text">电脑打开 cmd</span></a></li></ol>
+  </div>
+</aside>
+  
+    <aside class="passage-copyright">
+      <div>本文作者: powersee</div>
+      
+        <div>
+          原文链接: 
+          <a href="" target="_blank">https://powersee.GitHub.io/2019/09/MIUI-adb/</a>
+        </div>
+      
+      <div>
+        版权声明: 本博客所有文章除特别声明外, 均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议. 转载请注明出处!
+      </div>
+    </aside>
+  
+  
+</div>
+
+    </main>
+    
+    <div class="site-footer-wrapper">
+  <footer class="site-footer">
+    
+    <div class="site-footer-info">
+      <i class="fa fa-clock-o"></i> 本站已稳定运行<span id="site-time"></span>
+    </div>
+    
+    
+      <div class="site-footer-info">
+        <i class="fa fa-at"></i> Email: powersee@powersee.xyz
+      </div>
+    
+    <div class="site-footer-info">
+      <i class="fa fa-copyright"></i> 
+      2019 <a href="https://github.com/dongyuanxin/theme-ad/" target="_blank">Theme-AD</a>.
+      Created by <a href="https://godbmw.com/" target="_blank">GodBMW</a>.
+      All rights reserved.
+    </div>
+  </footer>
+</div>
+    <div id="site-layer" style="display:none;">
+  <div class="site-layer-content">
+    <div class="site-layer-header">
+      <span class="site-layer-header-title" id="site-layer-title"></span>
+      <i class="fa fa-close" id="site-layer-close"></i>
+    </div>
+    <div class="site-layer-body" id="site-layer-container">
+      <div class="site-layer-input" id="site-layer-search" style="display: none;">
+        <div class="site-layer-input-choose">
+          <a href="javascript:void(0);" title="Change Search Engine">Google</a>
+        </div>
+        <input type="text">
+        <i class="fa fa-search"></i>
+      </div>
+      
+      <div id="site-layer-welcome" style="display:none;"></div>
+    </div>
+  </div>
+</div>
+    
+
+<div class="bottom-bar">
+  <div class="bottom-bar-left">
+    <a href="/2019/10/nano-zsh/" data-enable="true">
+      <i class="fa fa-arrow-left"></i>
+    </a>
+    <a href="/2019/09/docker-aria2/" data-enable="true">
+      <i class="fa fa-arrow-right"></i>
+    </a>
+  </div>
+  <div class="bottom-bar-right">
+    <a href="javascript:void(0);" data-enable="true" id="site-toc-show-btn">
+      <i class="fa fa-bars"></i>
+    </a>
+    
+    <a href="javascript:void(0);" id="site-toggle-share-btn">
+      <i class="fa fa-share-alt"></i>
+    </a>
+    
+    <a href="javascript:void(0);" id="back-top-btn">
+      <i class="fa fa-chevron-up"></i>
+    </a>
+  </div>
+</div>
+    <div id="share-btn">
+  
+  
+  
+    <a id="share-btn-weibo" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-weibo"></i>
+    </a>
+  
+  
+    <a id="share-btn-qq" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-qq"></i>
+    </a>
+  
+  
+    <a id="share-btn-wechat" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-wechat"></i>
+    </a>
+  
+</div>
+    
+
+
+
+
+
+    
+  </body>
+</html>
