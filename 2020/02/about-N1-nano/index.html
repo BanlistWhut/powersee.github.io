@@ -175,6 +175,9 @@
 <figure class="highlight haml"><table><tr><td class="code"><pre><span class="line">IMAGE_NAME=80x86/qbittorrent:4.2.1-arm64</span><br><span class="line">#WEB_PORT=$(nvram get app.qb.listen_port)</span><br><span class="line">#这里我原本的默认下载路径是 /media/one/qb 你应该改成自己的</span><br><span class="line">DOWNLOAD_PATH=/media/one/qb</span><br><span class="line">BT_PORT=$(cat /var/lib/qbittorrent/.config/qBittorrent/qBittorrent.conf | grep -i 'Connection\\PortRangeMin' | cut -d'=' -f2)</span><br><span class="line">QBT_AUTH_SERVER_ADDR="127.0.0.1"</span><br><span class="line">if [ "$DOWNLOAD_PATH" = "/downloads" ] || [ "$DOWNLOAD_PATH" = "/downloads/" ]; then</span><br><span class="line">    echo "please set correct DOWNLOAD_PATH"</span><br><span class="line">    exit -1</span><br><span class="line">fi</span><br><span class="line">docker run -d --name qbittorrent \</span><br><span class="line">        -<span class="ruby">e PUID=$(id -u qbittorrent) \</span></span><br><span class="line"><span class="ruby">        -e PGID=$(cat /etc/group <span class="params">| grep -e '^users' |</span> cut -d<span class="string">':'</span> -f3) \</span></span><br><span class="line"><span class="ruby">        -e WEB_PORT=<span class="number">8088</span> \</span></span><br><span class="line"><span class="ruby">        -e BT_PORT=$BT_PORT \</span></span><br><span class="line"><span class="ruby">        -e QBT_AUTH_SERVER_ADDR=$QBT_AUTH_SERVER_ADDR \</span></span><br><span class="line"><span class="ruby">        --restart <span class="keyword">unless</span>-stopped \</span></span><br><span class="line"><span class="ruby">        --network host \</span></span><br><span class="line"><span class="ruby">        -v /var/lib/qbittorrent/.config/<span class="symbol">qBittorrent:</span>/config \</span></span><br><span class="line"><span class="ruby">        -v /var/lib/qbittorrent/.local/share/data/<span class="symbol">qBittorrent:</span>/data \</span></span><br><span class="line"><span class="ruby">        -v <span class="string">"$DOWNLOAD_PATH"</span><span class="symbol">:/downloads</span> \</span></span><br><span class="line"><span class="ruby">        -v <span class="string">"$DOWNLOAD_PATH"</span><span class="symbol">:<span class="string">"$DOWNLOAD_PATH"</span></span> \</span></span><br><span class="line"><span class="ruby">        --mount type=tmpfs,destination=<span class="regexp">/tmp \</span></span></span><br><span class="line"><span class="ruby">        $&#123;IMAGE_NAME&#125;</span></span><br></pre></td></tr></table></figure>
 <p>这里的端口我改为 8088 ，也可以改为和原来一样的 8083</p>
 <p>之后就可以通过 <code>IP:8088</code>来访问 qb 了。设置没错的话，应该可以看到之前的种子信息的。</p>
+<h2 id="微力同步-verysync"><a href="#微力同步-verysync" class="headerlink" title="微力同步 verysync"></a>微力同步 verysync</h2><p>这是一款和 syncthing 类似的同步工具。<code>/media/one/versync</code>是我自己的路径，其它人使用前需要更改一下。</p>
+<figure class="highlight haml"><table><tr><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">  -<span class="ruby">-name verysync \</span></span><br><span class="line"><span class="ruby">  --restart=always \</span></span><br><span class="line"><span class="ruby">  -p <span class="number">8886</span><span class="symbol">:</span><span class="number">8886</span> \</span></span><br><span class="line"><span class="ruby">  -v /media/one/<span class="symbol">versync:</span>/media \</span></span><br><span class="line"><span class="ruby">  lstcml/n1_verysync</span></span><br></pre></td></tr></table></figure>
+<p>这个应用的功能是，可以把一个文件夹，在多台设备之间保持内容同步。</p>
   </article>
   <aside class="table-content" id="site-toc">
   <div class="table-content-title">
@@ -182,7 +185,7 @@
     <span>目录</span>
   </div>
   <div class="table-content-main">
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#系统固件下载"><span class="toc-text">系统固件下载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#docker-国内源"><span class="toc-text">docker 国内源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#filebrowser"><span class="toc-text">filebrowser</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#qbittorrent"><span class="toc-text">qbittorrent</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#系统固件下载"><span class="toc-text">系统固件下载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#docker-国内源"><span class="toc-text">docker 国内源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#filebrowser"><span class="toc-text">filebrowser</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#qbittorrent"><span class="toc-text">qbittorrent</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#微力同步-verysync"><span class="toc-text">微力同步 verysync</span></a></li></ol>
   </div>
 </aside>
   
@@ -216,6 +219,17 @@
     
     <div class="site-footer-wrapper">
   <footer class="site-footer">
+    
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title"></h5>
+          
+            <span class="site-footer-item">
+              <a href="https://www.youtube.com/powersee" target="_blank">Youtube 频道：youtube.com/powersee</a>
+            </span>
+          
+        </div>
+      
     
     <div class="site-footer-info">
       <i class="fa fa-clock-o"></i> 本站已稳定运行<span id="site-time"></span>
