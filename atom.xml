@@ -5,9 +5,9 @@
   
   <link href="/atom.xml" rel="self"/>
   
-  <link href="https://powersee.GitHub.io/"/>
+  <link href="https://powersee.xyz/"/>
   <updated>2020-02-23T11:30:06.419Z</updated>
-  <id>https://powersee.GitHub.io/</id>
+  <id>https://powersee.xyz/</id>
   
   <author>
     <name>powersee</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>进阶了解 hexo 博客</title>
-    <link href="https://powersee.GitHub.io/2020/02/more-about-hexo/"/>
-    <id>https://powersee.GitHub.io/2020/02/more-about-hexo/</id>
+    <link href="https://powersee.xyz/2020/02/more-about-hexo/"/>
+    <id>https://powersee.xyz/2020/02/more-about-hexo/</id>
     <published>2020-02-23T09:54:01.000Z</published>
     <updated>2020-02-23T11:30:06.419Z</updated>
     
@@ -32,16 +32,16 @@
     </summary>
     
     
-      <category term="WordPress" scheme="https://powersee.GitHub.io/tags/WordPress/"/>
+      <category term="WordPress" scheme="https://powersee.xyz/tags/WordPress/"/>
     
-      <category term="随笔" scheme="https://powersee.GitHub.io/tags/%E9%9A%8F%E7%AC%94/"/>
+      <category term="随笔" scheme="https://powersee.xyz/tags/%E9%9A%8F%E7%AC%94/"/>
     
   </entry>
   
   <entry>
     <title>N1 小钢炮系统相关</title>
-    <link href="https://powersee.GitHub.io/2020/02/about-N1-nano/"/>
-    <id>https://powersee.GitHub.io/2020/02/about-N1-nano/</id>
+    <link href="https://powersee.xyz/2020/02/about-N1-nano/"/>
+    <id>https://powersee.xyz/2020/02/about-N1-nano/</id>
     <published>2020-02-14T03:54:43.000Z</published>
     <updated>2020-03-01T12:37:28.881Z</updated>
     
@@ -54,18 +54,18 @@
     </summary>
     
     
-      <category term="设备" scheme="https://powersee.GitHub.io/tags/%E8%AE%BE%E5%A4%87/"/>
+      <category term="设备" scheme="https://powersee.xyz/tags/%E8%AE%BE%E5%A4%87/"/>
     
-      <category term="Linux" scheme="https://powersee.GitHub.io/tags/Linux/"/>
+      <category term="Linux" scheme="https://powersee.xyz/tags/Linux/"/>
     
-      <category term="docker" scheme="https://powersee.GitHub.io/tags/docker/"/>
+      <category term="docker" scheme="https://powersee.xyz/tags/docker/"/>
     
   </entry>
   
   <entry>
     <title>关于服务器资源取回本地的几种方法</title>
-    <link href="https://powersee.GitHub.io/2020/01/three-ways-to-retrieve-the-file/"/>
-    <id>https://powersee.GitHub.io/2020/01/three-ways-to-retrieve-the-file/</id>
+    <link href="https://powersee.xyz/2020/01/three-ways-to-retrieve-the-file/"/>
+    <id>https://powersee.xyz/2020/01/three-ways-to-retrieve-the-file/</id>
     <published>2020-01-24T03:14:41.000Z</published>
     <updated>2020-02-23T05:56:16.152Z</updated>
     
@@ -78,16 +78,16 @@
     </summary>
     
     
-      <category term="服务器" scheme="https://powersee.GitHub.io/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+      <category term="服务器" scheme="https://powersee.xyz/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
     
-      <category term="BT" scheme="https://powersee.GitHub.io/tags/BT/"/>
+      <category term="BT" scheme="https://powersee.xyz/tags/BT/"/>
     
   </entry>
   
   <entry>
     <title>OMV 安装失败如何卸载</title>
-    <link href="https://powersee.GitHub.io/2019/12/remove-omv/"/>
-    <id>https://powersee.GitHub.io/2019/12/remove-omv/</id>
+    <link href="https://powersee.xyz/2019/12/remove-omv/"/>
+    <id>https://powersee.xyz/2019/12/remove-omv/</id>
     <published>2019-12-11T10:25:22.000Z</published>
     <updated>2020-02-23T05:56:16.151Z</updated>
     
@@ -100,14 +100,14 @@
     </summary>
     
     
-      <category term="Linux" scheme="https://powersee.GitHub.io/tags/Linux/"/>
+      <category term="Linux" scheme="https://powersee.xyz/tags/Linux/"/>
     
   </entry>
   
   <entry>
     <title>斐讯 N1、P1 安装 armbian 变身电脑主机</title>
-    <link href="https://powersee.GitHub.io/2019/12/N1-armbian/"/>
-    <id>https://powersee.GitHub.io/2019/12/N1-armbian/</id>
+    <link href="https://powersee.xyz/2019/12/N1-armbian/"/>
+    <id>https://powersee.xyz/2019/12/N1-armbian/</id>
     <published>2019-12-11T03:44:34.000Z</published>
     <updated>2020-02-23T05:56:16.140Z</updated>
     
@@ -121,16 +121,16 @@
     </summary>
     
     
-      <category term="设备" scheme="https://powersee.GitHub.io/tags/%E8%AE%BE%E5%A4%87/"/>
+      <category term="设备" scheme="https://powersee.xyz/tags/%E8%AE%BE%E5%A4%87/"/>
     
-      <category term="Linux" scheme="https://powersee.GitHub.io/tags/Linux/"/>
+      <category term="Linux" scheme="https://powersee.xyz/tags/Linux/"/>
     
   </entry>
   
   <entry>
     <title>使用 syncthing 同步多台设备的文件</title>
-    <link href="https://powersee.GitHub.io/2019/11/syncthing-better/"/>
-    <id>https://powersee.GitHub.io/2019/11/syncthing-better/</id>
+    <link href="https://powersee.xyz/2019/11/syncthing-better/"/>
+    <id>https://powersee.xyz/2019/11/syncthing-better/</id>
     <published>2019-11-30T10:13:05.000Z</published>
     <updated>2020-02-23T05:56:16.152Z</updated>
     
@@ -146,14 +146,14 @@
     </summary>
     
     
-      <category term="服务器" scheme="https://powersee.GitHub.io/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+      <category term="服务器" scheme="https://powersee.xyz/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
     
   </entry>
   
   <entry>
     <title>nds 游戏存档导入到电脑的模拟器玩</title>
-    <link href="https://powersee.GitHub.io/2019/11/nds2desmume/"/>
-    <id>https://powersee.GitHub.io/2019/11/nds2desmume/</id>
+    <link href="https://powersee.xyz/2019/11/nds2desmume/"/>
+    <id>https://powersee.xyz/2019/11/nds2desmume/</id>
     <published>2019-11-27T06:52:54.000Z</published>
     <updated>2020-02-23T05:56:16.149Z</updated>
     
@@ -166,16 +166,16 @@
     </summary>
     
     
-      <category term="设备" scheme="https://powersee.GitHub.io/tags/%E8%AE%BE%E5%A4%87/"/>
+      <category term="设备" scheme="https://powersee.xyz/tags/%E8%AE%BE%E5%A4%87/"/>
     
-      <category term="游戏" scheme="https://powersee.GitHub.io/tags/%E6%B8%B8%E6%88%8F/"/>
+      <category term="游戏" scheme="https://powersee.xyz/tags/%E6%B8%B8%E6%88%8F/"/>
     
   </entry>
   
   <entry>
     <title>即使是使用 ipv6 也最好做好防范，ip6tables 与 ss</title>
-    <link href="https://powersee.GitHub.io/2019/11/ip6tables-and-ss/"/>
-    <id>https://powersee.GitHub.io/2019/11/ip6tables-and-ss/</id>
+    <link href="https://powersee.xyz/2019/11/ip6tables-and-ss/"/>
+    <id>https://powersee.xyz/2019/11/ip6tables-and-ss/</id>
     <published>2019-11-25T04:43:28.000Z</published>
     <updated>2020-02-23T05:56:16.147Z</updated>
     
@@ -192,8 +192,8 @@
   
   <entry>
     <title>如何让 qBittorrent 在 Linux 上连接更多的 tracker</title>
-    <link href="https://powersee.GitHub.io/2019/11/qb-more-tracker/"/>
-    <id>https://powersee.GitHub.io/2019/11/qb-more-tracker/</id>
+    <link href="https://powersee.xyz/2019/11/qb-more-tracker/"/>
+    <id>https://powersee.xyz/2019/11/qb-more-tracker/</id>
     <published>2019-11-10T09:02:48.000Z</published>
     <updated>2020-02-23T05:56:16.151Z</updated>
     
@@ -206,18 +206,18 @@
     </summary>
     
     
-      <category term="Linux" scheme="https://powersee.GitHub.io/tags/Linux/"/>
+      <category term="Linux" scheme="https://powersee.xyz/tags/Linux/"/>
     
-      <category term="下载" scheme="https://powersee.GitHub.io/tags/%E4%B8%8B%E8%BD%BD/"/>
+      <category term="下载" scheme="https://powersee.xyz/tags/%E4%B8%8B%E8%BD%BD/"/>
     
-      <category term="BT" scheme="https://powersee.GitHub.io/tags/BT/"/>
+      <category term="BT" scheme="https://powersee.xyz/tags/BT/"/>
     
   </entry>
   
   <entry>
     <title>关于玩客云的一些资料</title>
-    <link href="https://powersee.GitHub.io/2019/10/about-wankeyun/"/>
-    <id>https://powersee.GitHub.io/2019/10/about-wankeyun/</id>
+    <link href="https://powersee.xyz/2019/10/about-wankeyun/"/>
+    <id>https://powersee.xyz/2019/10/about-wankeyun/</id>
     <published>2019-10-30T05:38:07.000Z</published>
     <updated>2020-02-23T05:56:16.143Z</updated>
     
@@ -236,8 +236,8 @@
   
   <entry>
     <title>小钢炮又被折腾坏记录，最终成功用上 zsh</title>
-    <link href="https://powersee.GitHub.io/2019/10/nano-zsh/"/>
-    <id>https://powersee.GitHub.io/2019/10/nano-zsh/</id>
+    <link href="https://powersee.xyz/2019/10/nano-zsh/"/>
+    <id>https://powersee.xyz/2019/10/nano-zsh/</id>
     <published>2019-10-26T11:31:39.000Z</published>
     <updated>2020-02-23T05:56:16.149Z</updated>
     
@@ -254,8 +254,8 @@
   
   <entry>
     <title>小米手机免 root 去除广告以及卸载系统应用</title>
-    <link href="https://powersee.GitHub.io/2019/09/MIUI-adb/"/>
-    <id>https://powersee.GitHub.io/2019/09/MIUI-adb/</id>
+    <link href="https://powersee.xyz/2019/09/MIUI-adb/"/>
+    <id>https://powersee.xyz/2019/09/MIUI-adb/</id>
     <published>2019-09-18T03:27:35.000Z</published>
     <updated>2020-02-23T05:56:16.139Z</updated>
     
@@ -272,8 +272,8 @@
   
   <entry>
     <title>服务器搭建全能下载器 Aria2 以及私人网盘，只需一行命令（docker）</title>
-    <link href="https://powersee.GitHub.io/2019/09/docker-aria2/"/>
-    <id>https://powersee.GitHub.io/2019/09/docker-aria2/</id>
+    <link href="https://powersee.xyz/2019/09/docker-aria2/"/>
+    <id>https://powersee.xyz/2019/09/docker-aria2/</id>
     <published>2019-09-16T11:40:18.000Z</published>
     <updated>2020-02-23T05:56:16.145Z</updated>
     
@@ -286,16 +286,16 @@
     </summary>
     
     
-      <category term="docker" scheme="https://powersee.GitHub.io/tags/docker/"/>
+      <category term="docker" scheme="https://powersee.xyz/tags/docker/"/>
     
-      <category term="下载" scheme="https://powersee.GitHub.io/tags/%E4%B8%8B%E8%BD%BD/"/>
+      <category term="下载" scheme="https://powersee.xyz/tags/%E4%B8%8B%E8%BD%BD/"/>
     
   </entry>
   
   <entry>
     <title>BT挂机利器 transmission docker 安装法</title>
-    <link href="https://powersee.GitHub.io/2019/09/transmission-docker/"/>
-    <id>https://powersee.GitHub.io/2019/09/transmission-docker/</id>
+    <link href="https://powersee.xyz/2019/09/transmission-docker/"/>
+    <id>https://powersee.xyz/2019/09/transmission-docker/</id>
     <published>2019-09-07T14:11:40.000Z</published>
     <updated>2020-02-23T05:56:16.153Z</updated>
     
@@ -312,8 +312,8 @@
   
   <entry>
     <title>用服务器来离线下载 BT 种子，体验千兆网络的魅力——docker 安装 qBittorrent，以及把文件取回手机</title>
-    <link href="https://powersee.GitHub.io/2019/08/docker-qb/"/>
-    <id>https://powersee.GitHub.io/2019/08/docker-qb/</id>
+    <link href="https://powersee.xyz/2019/08/docker-qb/"/>
+    <id>https://powersee.xyz/2019/08/docker-qb/</id>
     <published>2019-08-29T01:54:24.000Z</published>
     <updated>2020-02-25T10:34:31.195Z</updated>
     
@@ -329,18 +329,18 @@
     </summary>
     
     
-      <category term="docker" scheme="https://powersee.GitHub.io/tags/docker/"/>
+      <category term="docker" scheme="https://powersee.xyz/tags/docker/"/>
     
-      <category term="下载" scheme="https://powersee.GitHub.io/tags/%E4%B8%8B%E8%BD%BD/"/>
+      <category term="下载" scheme="https://powersee.xyz/tags/%E4%B8%8B%E8%BD%BD/"/>
     
-      <category term="BT" scheme="https://powersee.GitHub.io/tags/BT/"/>
+      <category term="BT" scheme="https://powersee.xyz/tags/BT/"/>
     
   </entry>
   
   <entry>
     <title>推送到 kindle</title>
-    <link href="https://powersee.GitHub.io/2019/04/push-to-kindle/"/>
-    <id>https://powersee.GitHub.io/2019/04/push-to-kindle/</id>
+    <link href="https://powersee.xyz/2019/04/push-to-kindle/"/>
+    <id>https://powersee.xyz/2019/04/push-to-kindle/</id>
     <published>2019-04-28T14:23:56.000Z</published>
     <updated>2020-02-23T05:56:16.150Z</updated>
     
@@ -357,8 +357,8 @@
   
   <entry>
     <title>Nginx下修改WordPress固定链接导致无法访问</title>
-    <link href="https://powersee.GitHub.io/2019/03/Nginx-WordPress-link-error/"/>
-    <id>https://powersee.GitHub.io/2019/03/Nginx-WordPress-link-error/</id>
+    <link href="https://powersee.xyz/2019/03/Nginx-WordPress-link-error/"/>
+    <id>https://powersee.xyz/2019/03/Nginx-WordPress-link-error/</id>
     <published>2019-03-12T01:08:51.000Z</published>
     <updated>2020-02-23T05:56:16.140Z</updated>
     
@@ -371,14 +371,14 @@
     </summary>
     
     
-      <category term="WordPress" scheme="https://powersee.GitHub.io/tags/WordPress/"/>
+      <category term="WordPress" scheme="https://powersee.xyz/tags/WordPress/"/>
     
   </entry>
   
   <entry>
     <title>禁止 mac 在U盘产生隐藏文件</title>
-    <link href="https://powersee.GitHub.io/2018/10/mac-hide-file/"/>
-    <id>https://powersee.GitHub.io/2018/10/mac-hide-file/</id>
+    <link href="https://powersee.xyz/2018/10/mac-hide-file/"/>
+    <id>https://powersee.xyz/2018/10/mac-hide-file/</id>
     <published>2018-10-08T14:51:23.000Z</published>
     <updated>2020-02-23T05:56:16.148Z</updated>
     
@@ -391,14 +391,14 @@
     </summary>
     
     
-      <category term="mac" scheme="https://powersee.GitHub.io/tags/mac/"/>
+      <category term="mac" scheme="https://powersee.xyz/tags/mac/"/>
     
   </entry>
   
   <entry>
     <title>解决 ireader 阅读器无法连接电脑问题</title>
-    <link href="https://powersee.GitHub.io/2018/10/Solve-the-problem-that-the-ireader-cannot-connect-to-the-computer/"/>
-    <id>https://powersee.GitHub.io/2018/10/Solve-the-problem-that-the-ireader-cannot-connect-to-the-computer/</id>
+    <link href="https://powersee.xyz/2018/10/Solve-the-problem-that-the-ireader-cannot-connect-to-the-computer/"/>
+    <id>https://powersee.xyz/2018/10/Solve-the-problem-that-the-ireader-cannot-connect-to-the-computer/</id>
     <published>2018-10-02T14:59:34.000Z</published>
     <updated>2020-02-23T05:56:16.141Z</updated>
     
@@ -411,14 +411,14 @@
     </summary>
     
     
-      <category term="设备" scheme="https://powersee.GitHub.io/tags/%E8%AE%BE%E5%A4%87/"/>
+      <category term="设备" scheme="https://powersee.xyz/tags/%E8%AE%BE%E5%A4%87/"/>
     
   </entry>
   
   <entry>
     <title>hexo 换电脑方案</title>
-    <link href="https://powersee.GitHub.io/2018/09/hexo-change-computer/"/>
-    <id>https://powersee.GitHub.io/2018/09/hexo-change-computer/</id>
+    <link href="https://powersee.xyz/2018/09/hexo-change-computer/"/>
+    <id>https://powersee.xyz/2018/09/hexo-change-computer/</id>
     <published>2018-09-09T02:11:51.000Z</published>
     <updated>2020-02-23T05:56:16.146Z</updated>
     
@@ -431,7 +431,7 @@
     </summary>
     
     
-      <category term="网络" scheme="https://powersee.GitHub.io/tags/%E7%BD%91%E7%BB%9C/"/>
+      <category term="网络" scheme="https://powersee.xyz/tags/%E7%BD%91%E7%BB%9C/"/>
     
   </entry>
   
