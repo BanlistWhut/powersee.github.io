@@ -5,9 +5,9 @@
   
   <link href="/atom.xml" rel="self"/>
   
-  <link href="https://powersee.xyz/"/>
-  <updated>2020-02-23T11:30:06.419Z</updated>
-  <id>https://powersee.xyz/</id>
+  <link href="https://powersee.github.io/"/>
+  <updated>2020-03-14T02:32:01.589Z</updated>
+  <id>https://powersee.github.io/</id>
   
   <author>
     <name>powersee</name>
@@ -17,9 +17,80 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>我家云相关</title>
+    <link href="https://powersee.github.io/2020/03/wojiayun/"/>
+    <id>https://powersee.github.io/2020/03/wojiayun/</id>
+    <published>2020-03-13T08:20:35.000Z</published>
+    <updated>2020-03-14T02:32:01.589Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>我家云，又名掉盘云，众多矿渣中的一款。其配置还算不错，但由于有一个严重的缺点——掉盘，即机器内的硬盘时不时地，就自动断开连接，导致获得【掉盘云】这个荣称。也因此而难以获得垃圾佬们的芳心，二手价格长期维持在百元以下。</p><p>不过现今有大佬开发了比较好用的固件，据说很多人解决了掉盘的问题，因此价格开始逐渐上升了。</p><p>恩山固件发布贴：<a href="https://www.right.com.cn/forum/thread-976714-1-1.html" target="_blank" rel="noopener">粒子云，我家云omv自用备份稳定性佳</a></p><p>固件作者：Ride_Wind，<a href="https://www.right.com.cn/forum/space-uid-155217.html" target="_blank" rel="noopener">恩山链接</a></p><p>博客：<a href="https://blog.windtech.cf/" target="_blank" rel="noopener">https://blog.windtech.cf/</a></p><h2 id="刷机相关"><a href="#刷机相关" class="headerlink" title="刷机相关"></a>刷机相关</h2><p>【webpad】大佬的刷机教程 <a href="https://www.right.com.cn/forum/thread-341574-1-1.html" target="_blank" rel="noopener">联想粒子矿云/我家云 线刷OMV（Open Media Vault），图文教程</a></p><p>推荐文章教程：来自 smzdm 的【阿文菌】 <a href="https://post.smzdm.com/p/az50epz5/" target="_blank" rel="noopener">我家云 保姆级教程：完美OMV固件</a></p><p>第一次刷机如果只显示【发现一个 loader 设备】，可以点击高级功能，里面可以点【进入 maskrom】</p><p>不过我刷机的时候并不知道这个，我是把机器拆开，然后找一根很短的电线，短接主板后面的两个点。</p><p><img src="/img/2020/短接.jpg" alt="短接"></p><p>一手按住，一手通电，机器一启动就自动进入 maskrom 了，然后便可以愉快地刷机，这种方法也是终极的就砖方法。</p><h2 id="docker相关"><a href="#docker相关" class="headerlink" title="docker相关"></a>docker相关</h2><p>乘风大佬的固件，本身就修改好 docker 的镜像源了，因此我们可以直接拉取镜像。</p><h3 id="portainer"><a href="#portainer" class="headerlink" title="portainer"></a>portainer</h3><figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line">docker volume create portainer_data</span><br><span class="line">docker run -d -p <span class="number">9000</span>:<span class="number">9000</span> -v <span class="regexp">/var/</span>run<span class="regexp">/docker.sock:/</span>var<span class="regexp">/run/</span>docker.sock -v <span class="string">portainer_data:</span><span class="regexp">/data --restart always portainer/</span><span class="string">portainer:</span>linux-arm</span><br></pre></td></tr></table></figure><h3 id="qbittorrent"><a href="#qbittorrent" class="headerlink" title="qbittorrent"></a>qbittorrent</h3><figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line"><span class="attribute">IMAGE_NAME</span>=80x86/qbittorrent:4.2.1-arm64</span><br><span class="line"><span class="comment">#这里我原本的默认下载路径是 /sharedfolders/wjy/ 你应该改成自己的</span></span><br><span class="line"><span class="attribute">DOWNLOAD_PATH</span>=/sharedfolders/wjy/</span><br><span class="line"><span class="attribute">QBT_AUTH_SERVER_ADDR</span>=<span class="string">"127.0.0.1"</span></span><br><span class="line"></span><br><span class="line">docker <span class="builtin-name">run</span> -d --name qbittorrent \</span><br><span class="line">        -e <span class="attribute">WEB_PORT</span>=8080 \</span><br><span class="line">        -e <span class="attribute">BT_PORT</span>=8998 \</span><br><span class="line">        -e <span class="attribute">QBT_AUTH_SERVER_ADDR</span>=<span class="variable">$QBT_AUTH_SERVER_ADDR</span> \</span><br><span class="line">        --restart unless-stopped \</span><br><span class="line">        --network host \</span><br><span class="line">        -v /var/lib/qbittorrent/.config/qBittorrent:<span class="built_in">/config </span>\</span><br><span class="line">        -v /var/lib/qbittorrent/.local/share/data/qBittorrent:/data \</span><br><span class="line">        -v <span class="string">"<span class="variable">$DOWNLOAD_PATH</span>"</span>:/downloads \</span><br><span class="line">        -v <span class="string">"<span class="variable">$DOWNLOAD_PATH</span>"</span>:<span class="string">"<span class="variable">$DOWNLOAD_PATH</span>"</span> \</span><br><span class="line">        --mount <span class="attribute">type</span>=tmpfs,destination=/tmp \</span><br><span class="line">        <span class="variable">$&#123;IMAGE_NAME&#125;</span></span><br></pre></td></tr></table></figure><p>之后可能会出现文件夹权限问题，将会导致 qb 无法启动，给予 777 权限</p><figure class="highlight crystal"><table><tr><td class="code"><pre><span class="line">chmod -R <span class="number">777</span> /var/<span class="class"><span class="keyword">lib</span>/<span class="title">qbittorrent</span>/</span></span><br></pre></td></tr></table></figure><h2 id="导航相关"><a href="#导航相关" class="headerlink" title="导航相关"></a>导航相关</h2><p>在web导航页面添加或者删除图标，修改 /opt/wwwroot/navi/index.php</p><h2 id="杂七杂八"><a href="#杂七杂八" class="headerlink" title="杂七杂八"></a>杂七杂八</h2><h3 id="查看-CPU-温度"><a href="#查看-CPU-温度" class="headerlink" title="查看 CPU 温度"></a>查看 CPU 温度</h3><figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line">cpu=<span class="variable">$(</span>&lt;<span class="regexp">/sys/class</span><span class="regexp">/thermal/thermal</span>_zone<span class="number">0</span>/temp)</span><br><span class="line">echo <span class="string">"$((cpu/1000)) c"</span></span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;介绍&quot;&gt;&lt;a href=&quot;#介绍&quot; class=&quot;headerlink&quot; title=&quot;介绍&quot;&gt;&lt;/a&gt;介绍&lt;/h2&gt;&lt;p&gt;我家云，又名掉盘云，众多矿渣中的一款。其配置还算不错，但由于有一个严重的缺点——掉盘，即机器内的硬盘时不时地，就自动断开连接，导致获得【掉盘
+      
+    
+    </summary>
+    
+    
+      <category term="设备" scheme="https://powersee.github.io/tags/%E8%AE%BE%E5%A4%87/"/>
+    
+      <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>装好 Mojave 之后要做的事</title>
+    <link href="https://powersee.github.io/2020/03/Mojave/"/>
+    <id>https://powersee.github.io/2020/03/Mojave/</id>
+    <published>2020-03-08T12:26:20.000Z</published>
+    <updated>2020-03-08T12:45:01.430Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近越来越觉得 macOS 的 10.15 版本很不好用，刚好手边也有一块闲置的硬盘，于是我想用它装 10.14 的 macOS 。</p><p>重新下载镜像，写入 U 盘，修改 config ，重启写入硬盘，完成。由于装过很多次，对此也算是轻车熟路。麻烦的是之后的驱动，以及常用软件的下载。</p><h2 id="0，声卡驱动"><a href="#0，声卡驱动" class="headerlink" title="0，声卡驱动"></a>0，声卡驱动</h2><p>github 下载最新的 applealc ，放入 kexts 里的 other ，把里面的万能声卡移出来。clover configurator 里注入 id，重启完成。</p><h2 id="1，调整按键"><a href="#1，调整按键" class="headerlink" title="1，调整按键"></a>1，调整按键</h2><p>由于使用 macOS 时，最主要用到的按键是 command ，在普通键盘上就是 Windows 键。为了能够和平时一样使用 ctrl + c , ctrl + v 来复制粘贴。可以在【系统偏好设置】–【键盘】–【修饰键…】里面将两者的位置换一下。</p><h2 id="2，开启-hidpi"><a href="#2，开启-hidpi" class="headerlink" title="2，开启 hidpi"></a>2，开启 hidpi</h2><p>如果使用原生的分辨率，字体会非常的小，而且还会模糊。这种情况在 Windows 上面也有，不过 Windows 上我们可以开启屏幕缩放，比如我的 1080P 显示器，我就比较喜欢开启 115% 的缩放。但是在 macOS 上，官方的设定是用 4K 的显示器时，就可以在【系统偏好设置】–【显示器】开启。然而我并没有 4K 的显示器……<br>这时就只能自己来手动开启了。</p><p><a href="https://github.com/xzhih/one-key-hidpi" target="_blank" rel="noopener">https://github.com/xzhih/one-key-hidpi</a></p><p>用 GitHub 上的这个脚本很容易就可以开启。（在 Catalina 里面的会复杂一些，因为一些权限的问题）<br>然后，此时在【系统偏好设置】–【显示器】的缩放里面就能看到选项了。但是能选的并不多，这时可以下载一个工具，RDM</p><p><a href="http://www.pc6.com/mac/441275.html" target="_blank" rel="noopener">http://www.pc6.com/mac/441275.html</a></p><p>这个工具提供更多的选择，比如我的显示器是 1920 × 1200 的，在系统里有 1280 × 800 和 1650 × 1050 的选项，但是用这个工具后，我可以选择 1440 × 900 。这个分辨率我个人觉得更加合适。</p><h2 id="3，oh-my-zsh-与-iterm2"><a href="#3，oh-my-zsh-与-iterm2" class="headerlink" title="3，oh my zsh 与 iterm2"></a>3，oh my zsh 与 iterm2</h2><p>由于系统本身就自带有 zsh 这个 shell 了，所以我只需要再装一下 oh-my-zsh ，然后在其装好时会询问【是否将 zsh 设置为默认的 shell】，选择是即可。<br>之后安装 iterm2 替代 terminal 。</p><p>然后我还可以把之前系统的用户目录下的【.zshrc】和【.zsh_history】复制过来。</p><h2 id="4，复制-ssh-文件夹"><a href="#4，复制-ssh-文件夹" class="headerlink" title="4，复制 .ssh 文件夹"></a>4，复制 .ssh 文件夹</h2><p>这个文件夹里存放着私钥，直接复制过来我就可以 ssh 连接其它终端，以及 GitHub 之类。</p><blockquote><p>暂时写到这……</p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;最近越来越觉得 macOS 的 10.15 版本很不好用，刚好手边也有一块闲置的硬盘，于是我想用它装 10.14 的 macOS 。&lt;/p&gt;
+&lt;p&gt;重新下载镜像，写入 U 盘，修改 config ，重启写入硬盘，完成。由于装过很多次，对此也算是轻车熟路。麻烦的是之后的驱动，
+      
+    
+    </summary>
+    
+    
+      <category term="mac" scheme="https://powersee.github.io/tags/mac/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>备份整个 Linux 系统</title>
+    <link href="https://powersee.github.io/2020/03/backup/"/>
+    <id>https://powersee.github.io/2020/03/backup/</id>
+    <published>2020-03-06T14:39:07.000Z</published>
+    <updated>2020-03-06T16:15:28.019Z</updated>
+    
+    <content type="html"><![CDATA[<p>近来经常折腾 N1 ，刷机频繁。然后我就想，我能否把现在用的这个系统，整个备份一下呢？就像 Windows 上的 ghost 一样。</p><p>接着我就到 恩山 搜一下，果然也有人有过这个想法，并且发帖问了。但是下方的评论看起来好像挺难的。但我记得之前看过用 dd 这个命令就可以，所以我先来试试。</p><p>首先要知道当前的机器上有哪些磁盘，用 <code>fdisk -l</code> 可以查出</p><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> fdisk -l</span></span><br><span class="line">Disk /dev/mmcblk0: 7.3 GiB, 7818182656 bytes, 15269888 sectors</span><br><span class="line">Units: sectors of 1 * 512 = 512 bytes</span><br><span class="line">Sector size (logical/physical): 512 bytes / 512 bytes</span><br><span class="line">I/O size (minimum/optimal): 512 bytes / 512 bytes</span><br><span class="line"></span><br><span class="line">Disk /dev/mmcblk0boot1: 4 MiB, 4194304 bytes, 8192 sectors</span><br><span class="line">Units: sectors of 1 * 512 = 512 bytes</span><br><span class="line">Sector size (logical/physical): 512 bytes / 512 bytes</span><br><span class="line">I/O size (minimum/optimal): 512 bytes / 512 bytes</span><br><span class="line"></span><br><span class="line">Disk /dev/mmcblk0boot0: 4 MiB, 4194304 bytes, 8192 sectors</span><br><span class="line">Units: sectors of 1 * 512 = 512 bytes</span><br><span class="line">Sector size (logical/physical): 512 bytes / 512 bytes</span><br><span class="line">I/O size (minimum/optimal): 512 bytes / 512 bytes</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Disk /dev/sda: 465.8 GiB, 500107862016 bytes, 976773168 sectors</span><br></pre></td></tr></table></figure><p>可以看出， mmcb1k0 就是机器自身的硬盘，而 sda 则是我自己外接的移动硬盘。</p><p>经过了解知道，dd 可以将当前整块磁盘的内容，完整地复制到其它的磁盘。命令如下：</p><figure class="highlight crystal"><table><tr><td class="code"><pre><span class="line">dd <span class="keyword">if</span>=<span class="regexp">/dev/sda</span> <span class="keyword">of</span>=<span class="regexp">/dev/sdb</span></span><br></pre></td></tr></table></figure><p>这样就是把 sda 这块盘的内容复制到 sdb 里</p><p>但是平时从网上下载的固件主要是 img 格式的，这种怎么做呢？同样用 dd 就行：</p><figure class="highlight crystal"><table><tr><td class="code"><pre><span class="line">dd <span class="keyword">if</span>=<span class="regexp">/dev/sda</span> <span class="keyword">of</span>=<span class="regexp">/media/one</span><span class="regexp">/backup.img</span></span><br></pre></td></tr></table></figure><p>我在 N1 上用的命令是这个：</p><figure class="highlight crystal"><table><tr><td class="code"><pre><span class="line">dd <span class="keyword">if</span>=<span class="regexp">/dev/mmcblk</span>0 <span class="keyword">of</span>=<span class="regexp">/media/one</span><span class="regexp">/back.img</span></span><br></pre></td></tr></table></figure><p>等了好久好久，才复制完成，此时在我移动硬盘的根目录下，可以看到一个 back.img 文件。</p><p>之前要恢复的话，用这个命令</p><figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">dd</span> <span class="keyword">if</span>=/media/one/back<span class="selector-class">.img</span> of=/dev/mmcblk0</span><br></pre></td></tr></table></figure><p>在 ubuntu 中将系统dd到 U盘</p><figure class="highlight lsl"><table><tr><td class="code"><pre><span class="line">sudo dd if=/dev/sda of=/dev/sdb conv=noerror,sync</span><br><span class="line">^C14583513+<span class="number">0</span> records in</span><br><span class="line"><span class="number">14583513</span>+<span class="number">0</span> records out</span><br><span class="line"><span class="number">7466758656</span> bytes (<span class="number">7.5</span> GB, <span class="number">7.0</span> GiB) copied, <span class="number">7048.69</span> s, <span class="number">1.1</span> MB/s</span><br></pre></td></tr></table></figure><p>写了两个小时还没好，要去睡觉了，只能 ctrl+c 取消，结果发现只剩 0.5 G还没写。。。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;近来经常折腾 N1 ，刷机频繁。然后我就想，我能否把现在用的这个系统，整个备份一下呢？就像 Windows 上的 ghost 一样。&lt;/p&gt;
+&lt;p&gt;接着我就到 恩山 搜一下，果然也有人有过这个想法，并且发帖问了。但是下方的评论看起来好像挺难的。但我记得之前看过用 dd 这个
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
     <title>进阶了解 hexo 博客</title>
-    <link href="https://powersee.xyz/2020/02/more-about-hexo/"/>
-    <id>https://powersee.xyz/2020/02/more-about-hexo/</id>
+    <link href="https://powersee.github.io/2020/02/more-about-hexo/"/>
+    <id>https://powersee.github.io/2020/02/more-about-hexo/</id>
     <published>2020-02-23T09:54:01.000Z</published>
     <updated>2020-02-23T11:30:06.419Z</updated>
     
@@ -32,16 +103,16 @@
     </summary>
     
     
-      <category term="WordPress" scheme="https://powersee.xyz/tags/WordPress/"/>
+      <category term="WordPress" scheme="https://powersee.github.io/tags/WordPress/"/>
     
-      <category term="随笔" scheme="https://powersee.xyz/tags/%E9%9A%8F%E7%AC%94/"/>
+      <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
     
   </entry>
   
   <entry>
     <title>N1 小钢炮系统相关</title>
-    <link href="https://powersee.xyz/2020/02/about-N1-nano/"/>
-    <id>https://powersee.xyz/2020/02/about-N1-nano/</id>
+    <link href="https://powersee.github.io/2020/02/about-N1-nano/"/>
+    <id>https://powersee.github.io/2020/02/about-N1-nano/</id>
     <published>2020-02-14T03:54:43.000Z</published>
     <updated>2020-03-01T12:37:28.881Z</updated>
     
@@ -54,18 +125,18 @@
     </summary>
     
     
-      <category term="设备" scheme="https://powersee.xyz/tags/%E8%AE%BE%E5%A4%87/"/>
+      <category term="设备" scheme="https://powersee.github.io/tags/%E8%AE%BE%E5%A4%87/"/>
     
-      <category term="Linux" scheme="https://powersee.xyz/tags/Linux/"/>
+      <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
     
-      <category term="docker" scheme="https://powersee.xyz/tags/docker/"/>
+      <category term="docker" scheme="https://powersee.github.io/tags/docker/"/>
     
   </entry>
   
   <entry>
     <title>关于服务器资源取回本地的几种方法</title>
-    <link href="https://powersee.xyz/2020/01/three-ways-to-retrieve-the-file/"/>
-    <id>https://powersee.xyz/2020/01/three-ways-to-retrieve-the-file/</id>
+    <link href="https://powersee.github.io/2020/01/three-ways-to-retrieve-the-file/"/>
+    <id>https://powersee.github.io/2020/01/three-ways-to-retrieve-the-file/</id>
     <published>2020-01-24T03:14:41.000Z</published>
     <updated>2020-02-23T05:56:16.152Z</updated>
     
@@ -78,16 +149,16 @@
     </summary>
     
     
-      <category term="服务器" scheme="https://powersee.xyz/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+      <category term="服务器" scheme="https://powersee.github.io/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
     
-      <category term="BT" scheme="https://powersee.xyz/tags/BT/"/>
+      <category term="BT" scheme="https://powersee.github.io/tags/BT/"/>
     
   </entry>
   
   <entry>
     <title>OMV 安装失败如何卸载</title>
-    <link href="https://powersee.xyz/2019/12/remove-omv/"/>
-    <id>https://powersee.xyz/2019/12/remove-omv/</id>
+    <link href="https://powersee.github.io/2019/12/remove-omv/"/>
+    <id>https://powersee.github.io/2019/12/remove-omv/</id>
     <published>2019-12-11T10:25:22.000Z</published>
     <updated>2020-02-23T05:56:16.151Z</updated>
     
@@ -100,14 +171,14 @@
     </summary>
     
     
-      <category term="Linux" scheme="https://powersee.xyz/tags/Linux/"/>
+      <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
     
   </entry>
   
   <entry>
     <title>斐讯 N1、P1 安装 armbian 变身电脑主机</title>
-    <link href="https://powersee.xyz/2019/12/N1-armbian/"/>
-    <id>https://powersee.xyz/2019/12/N1-armbian/</id>
+    <link href="https://powersee.github.io/2019/12/N1-armbian/"/>
+    <id>https://powersee.github.io/2019/12/N1-armbian/</id>
     <published>2019-12-11T03:44:34.000Z</published>
     <updated>2020-02-23T05:56:16.140Z</updated>
     
@@ -121,16 +192,16 @@
     </summary>
     
     
-      <category term="设备" scheme="https://powersee.xyz/tags/%E8%AE%BE%E5%A4%87/"/>
+      <category term="设备" scheme="https://powersee.github.io/tags/%E8%AE%BE%E5%A4%87/"/>
     
-      <category term="Linux" scheme="https://powersee.xyz/tags/Linux/"/>
+      <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
     
   </entry>
   
   <entry>
     <title>使用 syncthing 同步多台设备的文件</title>
-    <link href="https://powersee.xyz/2019/11/syncthing-better/"/>
-    <id>https://powersee.xyz/2019/11/syncthing-better/</id>
+    <link href="https://powersee.github.io/2019/11/syncthing-better/"/>
+    <id>https://powersee.github.io/2019/11/syncthing-better/</id>
     <published>2019-11-30T10:13:05.000Z</published>
     <updated>2020-02-23T05:56:16.152Z</updated>
     
@@ -146,14 +217,14 @@
     </summary>
     
     
-      <category term="服务器" scheme="https://powersee.xyz/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+      <category term="服务器" scheme="https://powersee.github.io/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
     
   </entry>
   
   <entry>
     <title>nds 游戏存档导入到电脑的模拟器玩</title>
-    <link href="https://powersee.xyz/2019/11/nds2desmume/"/>
-    <id>https://powersee.xyz/2019/11/nds2desmume/</id>
+    <link href="https://powersee.github.io/2019/11/nds2desmume/"/>
+    <id>https://powersee.github.io/2019/11/nds2desmume/</id>
     <published>2019-11-27T06:52:54.000Z</published>
     <updated>2020-02-23T05:56:16.149Z</updated>
     
@@ -166,16 +237,16 @@
     </summary>
     
     
-      <category term="设备" scheme="https://powersee.xyz/tags/%E8%AE%BE%E5%A4%87/"/>
+      <category term="设备" scheme="https://powersee.github.io/tags/%E8%AE%BE%E5%A4%87/"/>
     
-      <category term="游戏" scheme="https://powersee.xyz/tags/%E6%B8%B8%E6%88%8F/"/>
+      <category term="游戏" scheme="https://powersee.github.io/tags/%E6%B8%B8%E6%88%8F/"/>
     
   </entry>
   
   <entry>
     <title>即使是使用 ipv6 也最好做好防范，ip6tables 与 ss</title>
-    <link href="https://powersee.xyz/2019/11/ip6tables-and-ss/"/>
-    <id>https://powersee.xyz/2019/11/ip6tables-and-ss/</id>
+    <link href="https://powersee.github.io/2019/11/ip6tables-and-ss/"/>
+    <id>https://powersee.github.io/2019/11/ip6tables-and-ss/</id>
     <published>2019-11-25T04:43:28.000Z</published>
     <updated>2020-02-23T05:56:16.147Z</updated>
     
@@ -192,8 +263,8 @@
   
   <entry>
     <title>如何让 qBittorrent 在 Linux 上连接更多的 tracker</title>
-    <link href="https://powersee.xyz/2019/11/qb-more-tracker/"/>
-    <id>https://powersee.xyz/2019/11/qb-more-tracker/</id>
+    <link href="https://powersee.github.io/2019/11/qb-more-tracker/"/>
+    <id>https://powersee.github.io/2019/11/qb-more-tracker/</id>
     <published>2019-11-10T09:02:48.000Z</published>
     <updated>2020-02-23T05:56:16.151Z</updated>
     
@@ -206,18 +277,18 @@
     </summary>
     
     
-      <category term="Linux" scheme="https://powersee.xyz/tags/Linux/"/>
+      <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
     
-      <category term="下载" scheme="https://powersee.xyz/tags/%E4%B8%8B%E8%BD%BD/"/>
+      <category term="下载" scheme="https://powersee.github.io/tags/%E4%B8%8B%E8%BD%BD/"/>
     
-      <category term="BT" scheme="https://powersee.xyz/tags/BT/"/>
+      <category term="BT" scheme="https://powersee.github.io/tags/BT/"/>
     
   </entry>
   
   <entry>
     <title>关于玩客云的一些资料</title>
-    <link href="https://powersee.xyz/2019/10/about-wankeyun/"/>
-    <id>https://powersee.xyz/2019/10/about-wankeyun/</id>
+    <link href="https://powersee.github.io/2019/10/about-wankeyun/"/>
+    <id>https://powersee.github.io/2019/10/about-wankeyun/</id>
     <published>2019-10-30T05:38:07.000Z</published>
     <updated>2020-02-23T05:56:16.143Z</updated>
     
@@ -236,8 +307,8 @@
   
   <entry>
     <title>小钢炮又被折腾坏记录，最终成功用上 zsh</title>
-    <link href="https://powersee.xyz/2019/10/nano-zsh/"/>
-    <id>https://powersee.xyz/2019/10/nano-zsh/</id>
+    <link href="https://powersee.github.io/2019/10/nano-zsh/"/>
+    <id>https://powersee.github.io/2019/10/nano-zsh/</id>
     <published>2019-10-26T11:31:39.000Z</published>
     <updated>2020-02-23T05:56:16.149Z</updated>
     
@@ -254,8 +325,8 @@
   
   <entry>
     <title>小米手机免 root 去除广告以及卸载系统应用</title>
-    <link href="https://powersee.xyz/2019/09/MIUI-adb/"/>
-    <id>https://powersee.xyz/2019/09/MIUI-adb/</id>
+    <link href="https://powersee.github.io/2019/09/MIUI-adb/"/>
+    <id>https://powersee.github.io/2019/09/MIUI-adb/</id>
     <published>2019-09-18T03:27:35.000Z</published>
     <updated>2020-02-23T05:56:16.139Z</updated>
     
@@ -272,8 +343,8 @@
   
   <entry>
     <title>服务器搭建全能下载器 Aria2 以及私人网盘，只需一行命令（docker）</title>
-    <link href="https://powersee.xyz/2019/09/docker-aria2/"/>
-    <id>https://powersee.xyz/2019/09/docker-aria2/</id>
+    <link href="https://powersee.github.io/2019/09/docker-aria2/"/>
+    <id>https://powersee.github.io/2019/09/docker-aria2/</id>
     <published>2019-09-16T11:40:18.000Z</published>
     <updated>2020-02-23T05:56:16.145Z</updated>
     
@@ -286,16 +357,16 @@
     </summary>
     
     
-      <category term="docker" scheme="https://powersee.xyz/tags/docker/"/>
+      <category term="docker" scheme="https://powersee.github.io/tags/docker/"/>
     
-      <category term="下载" scheme="https://powersee.xyz/tags/%E4%B8%8B%E8%BD%BD/"/>
+      <category term="下载" scheme="https://powersee.github.io/tags/%E4%B8%8B%E8%BD%BD/"/>
     
   </entry>
   
   <entry>
     <title>BT挂机利器 transmission docker 安装法</title>
-    <link href="https://powersee.xyz/2019/09/transmission-docker/"/>
-    <id>https://powersee.xyz/2019/09/transmission-docker/</id>
+    <link href="https://powersee.github.io/2019/09/transmission-docker/"/>
+    <id>https://powersee.github.io/2019/09/transmission-docker/</id>
     <published>2019-09-07T14:11:40.000Z</published>
     <updated>2020-02-23T05:56:16.153Z</updated>
     
@@ -312,8 +383,8 @@
   
   <entry>
     <title>用服务器来离线下载 BT 种子，体验千兆网络的魅力——docker 安装 qBittorrent，以及把文件取回手机</title>
-    <link href="https://powersee.xyz/2019/08/docker-qb/"/>
-    <id>https://powersee.xyz/2019/08/docker-qb/</id>
+    <link href="https://powersee.github.io/2019/08/docker-qb/"/>
+    <id>https://powersee.github.io/2019/08/docker-qb/</id>
     <published>2019-08-29T01:54:24.000Z</published>
     <updated>2020-02-25T10:34:31.195Z</updated>
     
@@ -329,18 +400,18 @@
     </summary>
     
     
-      <category term="docker" scheme="https://powersee.xyz/tags/docker/"/>
+      <category term="docker" scheme="https://powersee.github.io/tags/docker/"/>
     
-      <category term="下载" scheme="https://powersee.xyz/tags/%E4%B8%8B%E8%BD%BD/"/>
+      <category term="下载" scheme="https://powersee.github.io/tags/%E4%B8%8B%E8%BD%BD/"/>
     
-      <category term="BT" scheme="https://powersee.xyz/tags/BT/"/>
+      <category term="BT" scheme="https://powersee.github.io/tags/BT/"/>
     
   </entry>
   
   <entry>
     <title>推送到 kindle</title>
-    <link href="https://powersee.xyz/2019/04/push-to-kindle/"/>
-    <id>https://powersee.xyz/2019/04/push-to-kindle/</id>
+    <link href="https://powersee.github.io/2019/04/push-to-kindle/"/>
+    <id>https://powersee.github.io/2019/04/push-to-kindle/</id>
     <published>2019-04-28T14:23:56.000Z</published>
     <updated>2020-02-23T05:56:16.150Z</updated>
     
@@ -357,8 +428,8 @@
   
   <entry>
     <title>Nginx下修改WordPress固定链接导致无法访问</title>
-    <link href="https://powersee.xyz/2019/03/Nginx-WordPress-link-error/"/>
-    <id>https://powersee.xyz/2019/03/Nginx-WordPress-link-error/</id>
+    <link href="https://powersee.github.io/2019/03/Nginx-WordPress-link-error/"/>
+    <id>https://powersee.github.io/2019/03/Nginx-WordPress-link-error/</id>
     <published>2019-03-12T01:08:51.000Z</published>
     <updated>2020-02-23T05:56:16.140Z</updated>
     
@@ -371,67 +442,7 @@
     </summary>
     
     
-      <category term="WordPress" scheme="https://powersee.xyz/tags/WordPress/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>禁止 mac 在U盘产生隐藏文件</title>
-    <link href="https://powersee.xyz/2018/10/mac-hide-file/"/>
-    <id>https://powersee.xyz/2018/10/mac-hide-file/</id>
-    <published>2018-10-08T14:51:23.000Z</published>
-    <updated>2020-02-23T05:56:16.148Z</updated>
-    
-    <content type="html"><![CDATA[<p>自从 U 盘在 mac 上使用一段时间后，我发现里面有好多隐藏文件。<br><a id="more"></a><br>每个都是 4KB。基本上 U 盘里每个文件，都有一个跟它对应的隐藏文件。看来是 Mac 自动生成的，但不知道是用来干什么的，而且平时也没什么影响，毕竟隐藏文件不管在 win 还是 Mac，默认情况下都是不显示的，所以也就没去管它。</p><p>直到，那天 U 盘插别人的电脑，居然被安全软件检测到这些隐藏文件，弹窗说有安全隐患……</p><p>再接着，拿 U 盘去自助打印机，这一堆隐藏文件显示在那里，严重影响我查找要打印的文件的效率。这不能忍。</p><p>于是我百度一下，没有找到方法。再谷歌，就找到了。</p><p>是 Mac 上【聚焦搜索】（spotlight）这个软件造成的，这是一个全局搜索软件。应该是它为了能快速搜索到 U 盘里的文件，所以，当我们在 mac 上往 U 盘传文件的时候，同时会在文件旁边创建一个 4KB 的隐藏文件。</p><h2 id="关闭方法"><a href="#关闭方法" class="headerlink" title="关闭方法"></a>关闭方法</h2><p>打开【系统偏好设置】，第一行倒数第二个的【聚焦】，进去后点【隐私】，然后左下角的【+】，之后选中 U 盘，确认就好了。以后再往 U 盘写入文件就不会有这些隐藏文件了，之前产生的那些可以在 win 下将之删除。（Mac 下在访达里根本无法显示这些文件）</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;自从 U 盘在 mac 上使用一段时间后，我发现里面有好多隐藏文件。&lt;br&gt;
-    
-    </summary>
-    
-    
-      <category term="mac" scheme="https://powersee.xyz/tags/mac/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>解决 ireader 阅读器无法连接电脑问题</title>
-    <link href="https://powersee.xyz/2018/10/Solve-the-problem-that-the-ireader-cannot-connect-to-the-computer/"/>
-    <id>https://powersee.xyz/2018/10/Solve-the-problem-that-the-ireader-cannot-connect-to-the-computer/</id>
-    <published>2018-10-02T14:59:34.000Z</published>
-    <updated>2020-02-23T05:56:16.141Z</updated>
-    
-    <content type="html"><![CDATA[<p>今晚把阅读器用 USB 连接电脑，想传些文件。发现连接后，资源管理器无法读到盘符。</p><a id="more"></a><p>由于平时我主要用 Mac 系统，无法用 usb 线与阅读器互传文件的，因此都是用 WIFI 传输。不过之前曾经在虚拟机里运行 XP 系统，可以与阅读器连接并且传输文件，因此硬件是没问题的。</p><p>现在 win10 状态下却无法连接，折腾一番后，没法，联系客服。在掌阅的微信公众号【掌阅iReader】里面，右下角，服务，人工服务。</p><p>一大段话确认我硬件和操作没有问题后，回复我：</p><blockquote><p>若是您的电脑没有识别：请您这边电子书阅读器插上USB连接电脑后右击–我的电脑–属性–点击打开设备管理器截图提供这边帮您查看一下</p></blockquote><p>当阅读器插入后这里面会多出一个设备【Android Phone】，展开它，里面是【Android ADB Interface】。右键，更新驱动。</p><p><strong>重点来了</strong></p><p>不要点【自动搜索……】，而是点下面的【浏览我的计算机以查找驱动程序软件】。</p><p>然后这时会有两个选项，选择下面那个带有【MTP】的，安装这个，然后就完了。资源管理器里可以识别到了。</p><p><img src="https://i.loli.net/2018/10/02/5bb388899cc2d.jpg" alt="IMG_20181002_202702.jpg"></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;今晚把阅读器用 USB 连接电脑，想传些文件。发现连接后，资源管理器无法读到盘符。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="设备" scheme="https://powersee.xyz/tags/%E8%AE%BE%E5%A4%87/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>hexo 换电脑方案</title>
-    <link href="https://powersee.xyz/2018/09/hexo-change-computer/"/>
-    <id>https://powersee.xyz/2018/09/hexo-change-computer/</id>
-    <published>2018-09-09T02:11:51.000Z</published>
-    <updated>2020-02-23T05:56:16.146Z</updated>
-    
-    <content type="html"><![CDATA[<p>hexo 搭建博客容易。但是搭建好后只能在这一台电脑上用，这就有点麻烦了。而且要是电脑坏了那且不是完了？所以备份以及恢复很重要。</p><a id="more"></a><p>（当然，windows 下能下载个便携版的 hexo 环境，(<a href="https://portablehexo.bitmoe.cn/" target="_blank" rel="noopener">https://portablehexo.bitmoe.cn/</a>) ，放在 U 盘里面，这样随便到哪里都可以用。这种这里不讨论。）</p><h2 id="备份哪"><a href="#备份哪" class="headerlink" title="备份哪"></a>备份哪</h2><p>用 hexo 搭建博客好后，生成的静态网页是放在（public）这个文件夹里的。正常流程就是把这个文件夹里的内容发布到 github 或者自己的服务器上。而我们要备份的，不是这个，而是整个博客源码，就是（public）的上一层的这整个文件夹。</p><h2 id="如何备份"><a href="#如何备份" class="headerlink" title="如何备份"></a>如何备份</h2><p>那么可以手动复制吗？额，有点难。因为小文件太多，接近一万个，复制要很久。而且文件经常变动，每次变动都再重新复制一份？不现实。</p><p>因此用 <strong>git</strong> 用管理是最好的方法。在博客项目根目录，比如我的博客源码放在 blog 这个文件夹里，那么就用命令行进入这个文件夹，git init 初始化这个项目，将它变成一个仓库，然后就可以把备份到网上了。</p><h2 id="准备新环境"><a href="#准备新环境" class="headerlink" title="准备新环境"></a>准备新环境</h2><p>比如说电脑坏了，或者换了新电脑。要怎么在新的新电脑上继续写博客呢？</p><p>首先得先在新的电脑上安装好运行 hexo 的环境，比如 windows 就得先安装 node.js 和 git，然后再安装 hexo。等可以运行 hexo 并在浏览器显示了，再把刚才备份到网上的博客源码克隆下来。</p><h2 id="克隆之后"><a href="#克隆之后" class="headerlink" title="克隆之后"></a>克隆之后</h2><p>如果顺利的话，此时进入克隆下来的文件夹，再 npm install 一下，应该就可以用了。如果像我这样，发现可以启动，但是打开链接后什么都没显示。那么应该是主题缺失的原因。可以选择重新下载主题，或者在备份的时候把主题也备份到网络。可以参考这篇文章：<a href="https://powersee.github.io/2018/08/about-git-cache/">修复 next 主题无法提交到 git 仓库</a></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;hexo 搭建博客容易。但是搭建好后只能在这一台电脑上用，这就有点麻烦了。而且要是电脑坏了那且不是完了？所以备份以及恢复很重要。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="网络" scheme="https://powersee.xyz/tags/%E7%BD%91%E7%BB%9C/"/>
+      <category term="WordPress" scheme="https://powersee.github.io/tags/WordPress/"/>
     
   </entry>
   

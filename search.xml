@@ -1,6 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[我家云相关]]></title>
+    <url>%2F2020%2F03%2Fwojiayun%2F</url>
+    <content type="text"><![CDATA[介绍我家云，又名掉盘云，众多矿渣中的一款。其配置还算不错，但由于有一个严重的缺点——掉盘，即机器内的硬盘时不时地，就自动断开连接，导致获得【掉盘云】这个荣称。也因此而难以获得垃圾佬们的芳心，二手价格长期维持在百元以下。 不过现今有大佬开发了比较好用的固件，据说很多人解决了掉盘的问题，因此价格开始逐渐上升了。 恩山固件发布贴：粒子云，我家云omv自用备份稳定性佳 固件作者：Ride_Wind，恩山链接 博客：https://blog.windtech.cf/ 刷机相关【webpad】大佬的刷机教程 联想粒子矿云/我家云 线刷OMV（Open Media Vault），图文教程 推荐文章教程：来自 smzdm 的【阿文菌】 我家云 保姆级教程：完美OMV固件 第一次刷机如果只显示【发现一个 loader 设备】，可以点击高级功能，里面可以点【进入 maskrom】 不过我刷机的时候并不知道这个，我是把机器拆开，然后找一根很短的电线，短接主板后面的两个点。 一手按住，一手通电，机器一启动就自动进入 maskrom 了，然后便可以愉快地刷机，这种方法也是终极的就砖方法。 docker相关乘风大佬的固件，本身就修改好 docker 的镜像源了，因此我们可以直接拉取镜像。 portainerdocker volume create portainer_datadocker run -d -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data --restart always portainer/portainer:linux-arm qbittorrentIMAGE_NAME=80x86/qbittorrent:4.2.1-arm64#这里我原本的默认下载路径是 /sharedfolders/wjy/ 你应该改成自己的DOWNLOAD_PATH=/sharedfolders/wjy/QBT_AUTH_SERVER_ADDR="127.0.0.1"docker run -d --name qbittorrent \ -e WEB_PORT=8080 \ -e BT_PORT=8998 \ -e QBT_AUTH_SERVER_ADDR=$QBT_AUTH_SERVER_ADDR \ --restart unless-stopped \ --network host \ -v /var/lib/qbittorrent/.config/qBittorrent:/config \ -v /var/lib/qbittorrent/.local/share/data/qBittorrent:/data \ -v "$DOWNLOAD_PATH":/downloads \ -v "$DOWNLOAD_PATH":"$DOWNLOAD_PATH" \ --mount type=tmpfs,destination=/tmp \ $&#123;IMAGE_NAME&#125; 之后可能会出现文件夹权限问题，将会导致 qb 无法启动，给予 777 权限 chmod -R 777 /var/lib/qbittorrent/ 导航相关在web导航页面添加或者删除图标，修改 /opt/wwwroot/navi/index.php 杂七杂八查看 CPU 温度cpu=$(&lt;/sys/class/thermal/thermal_zone0/temp)echo "$((cpu/1000)) c"]]></content>
+      <tags>
+        <tag>设备</tag>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[装好 Mojave 之后要做的事]]></title>
+    <url>%2F2020%2F03%2FMojave%2F</url>
+    <content type="text"><![CDATA[最近越来越觉得 macOS 的 10.15 版本很不好用，刚好手边也有一块闲置的硬盘，于是我想用它装 10.14 的 macOS 。 重新下载镜像，写入 U 盘，修改 config ，重启写入硬盘，完成。由于装过很多次，对此也算是轻车熟路。麻烦的是之后的驱动，以及常用软件的下载。 0，声卡驱动github 下载最新的 applealc ，放入 kexts 里的 other ，把里面的万能声卡移出来。clover configurator 里注入 id，重启完成。 1，调整按键由于使用 macOS 时，最主要用到的按键是 command ，在普通键盘上就是 Windows 键。为了能够和平时一样使用 ctrl + c , ctrl + v 来复制粘贴。可以在【系统偏好设置】–【键盘】–【修饰键…】里面将两者的位置换一下。 2，开启 hidpi如果使用原生的分辨率，字体会非常的小，而且还会模糊。这种情况在 Windows 上面也有，不过 Windows 上我们可以开启屏幕缩放，比如我的 1080P 显示器，我就比较喜欢开启 115% 的缩放。但是在 macOS 上，官方的设定是用 4K 的显示器时，就可以在【系统偏好设置】–【显示器】开启。然而我并没有 4K 的显示器……这时就只能自己来手动开启了。 https://github.com/xzhih/one-key-hidpi 用 GitHub 上的这个脚本很容易就可以开启。（在 Catalina 里面的会复杂一些，因为一些权限的问题）然后，此时在【系统偏好设置】–【显示器】的缩放里面就能看到选项了。但是能选的并不多，这时可以下载一个工具，RDM http://www.pc6.com/mac/441275.html 这个工具提供更多的选择，比如我的显示器是 1920 × 1200 的，在系统里有 1280 × 800 和 1650 × 1050 的选项，但是用这个工具后，我可以选择 1440 × 900 。这个分辨率我个人觉得更加合适。 3，oh my zsh 与 iterm2由于系统本身就自带有 zsh 这个 shell 了，所以我只需要再装一下 oh-my-zsh ，然后在其装好时会询问【是否将 zsh 设置为默认的 shell】，选择是即可。之后安装 iterm2 替代 terminal 。 然后我还可以把之前系统的用户目录下的【.zshrc】和【.zsh_history】复制过来。 4，复制 .ssh 文件夹这个文件夹里存放着私钥，直接复制过来我就可以 ssh 连接其它终端，以及 GitHub 之类。 暂时写到这……]]></content>
+      <tags>
+        <tag>mac</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[备份整个 Linux 系统]]></title>
+    <url>%2F2020%2F03%2Fbackup%2F</url>
+    <content type="text"><![CDATA[近来经常折腾 N1 ，刷机频繁。然后我就想，我能否把现在用的这个系统，整个备份一下呢？就像 Windows 上的 ghost 一样。 接着我就到 恩山 搜一下，果然也有人有过这个想法，并且发帖问了。但是下方的评论看起来好像挺难的。但我记得之前看过用 dd 这个命令就可以，所以我先来试试。 首先要知道当前的机器上有哪些磁盘，用 fdisk -l 可以查出 # fdisk -lDisk /dev/mmcblk0: 7.3 GiB, 7818182656 bytes, 15269888 sectorsUnits: sectors of 1 * 512 = 512 bytesSector size (logical/physical): 512 bytes / 512 bytesI/O size (minimum/optimal): 512 bytes / 512 bytesDisk /dev/mmcblk0boot1: 4 MiB, 4194304 bytes, 8192 sectorsUnits: sectors of 1 * 512 = 512 bytesSector size (logical/physical): 512 bytes / 512 bytesI/O size (minimum/optimal): 512 bytes / 512 bytesDisk /dev/mmcblk0boot0: 4 MiB, 4194304 bytes, 8192 sectorsUnits: sectors of 1 * 512 = 512 bytesSector size (logical/physical): 512 bytes / 512 bytesI/O size (minimum/optimal): 512 bytes / 512 bytesDisk /dev/sda: 465.8 GiB, 500107862016 bytes, 976773168 sectors 可以看出， mmcb1k0 就是机器自身的硬盘，而 sda 则是我自己外接的移动硬盘。 经过了解知道，dd 可以将当前整块磁盘的内容，完整地复制到其它的磁盘。命令如下： dd if=/dev/sda of=/dev/sdb 这样就是把 sda 这块盘的内容复制到 sdb 里 但是平时从网上下载的固件主要是 img 格式的，这种怎么做呢？同样用 dd 就行： dd if=/dev/sda of=/media/one/backup.img 我在 N1 上用的命令是这个： dd if=/dev/mmcblk0 of=/media/one/back.img 等了好久好久，才复制完成，此时在我移动硬盘的根目录下，可以看到一个 back.img 文件。 之前要恢复的话，用这个命令 dd if=/media/one/back.img of=/dev/mmcblk0 在 ubuntu 中将系统dd到 U盘 sudo dd if=/dev/sda of=/dev/sdb conv=noerror,sync^C14583513+0 records in14583513+0 records out7466758656 bytes (7.5 GB, 7.0 GiB) copied, 7048.69 s, 1.1 MB/s 写了两个小时还没好，要去睡觉了，只能 ctrl+c 取消，结果发现只剩 0.5 G还没写。。。]]></content>
+  </entry>
+  <entry>
     <title><![CDATA[进阶了解 hexo 博客]]></title>
     <url>%2F2020%2F02%2Fmore-about-hexo%2F</url>
     <content type="text"><![CDATA[前言个人使用 hexo 搭建博客已经有一年多的时间了。但是说实在，对其了解并不多，我只知道用它，可以把我的 markdown 文档渲染成 html 文件，之后放到 GitHub 上就可以搭建博客。 一开始的使用是看别人的教程，网上一堆人写了用 hexo 来搭建免费博客的文章。其官网 https://hexo.io/zh-cn/ 上面也有教程，几条命令就可以在电脑上弄好一个博客。 之后便是将文章推送到 GitHub 上面，进行设置，使用 GitHub page 建立博客网站。在这时我了解到，我们还可以搭建在国内的网站上面，如 gitee ，coding 。可以让我们的访问速度更快。而且之前还了解到有位老哥有一个不错的方法，可以让国外的 ip 就访问 github 的博客，国内的 ip 就访问 gitee 或者 coding 的博客。好像是利用域名解析来达到目的的，具体我没有去尝试。 备份不像 wordpress ，所有文件都是在服务器上。hexo 的博客源文件都是在我们自己的电脑上面的，如果我们的电脑出问题，如硬盘坏了，被偷了，那么我们的博客就没法更新和修改。因此我们需要自己来备份这些文件。 如果只是想备份文章而已，那么同步网盘如 onedrive 、坚果云 也足够的。当然你想同步整个博客文件夹也可以，不过我不建议这么做，因为里面的文件实在太多了，之前 git push 的时候看到，好像有几万个文件。而且，这样也太 low 了。 正确的备份方法应该是使用 git 来备份。 备份前准备我们得知道我们备份的目的，像我的话，我最主要的目的是备份文章，其次是博客主题，再来是博客的一些配置。目的明确之后，就来分析博客根目录下的文件。 需要备份的 source //文件夹放置着博客文章，最最重要的一个文件夹themes //放置着主题，我个人喜欢一起备份scaffolds //页面模板位置_config.ymlpackage.jsonpackage-lock.json 不需要备份的 .deploy_git //里面的文件除了多一个 .git 其它和 public 里面一样node_modules //在根目录下 npm i 就会读取 package.json 来安装模块，没必要备份public // hexo 生成 html 页面后所放的地方，hexo g 就可以生成，没必要备份db.json //执行 hexo s 启动本地服务器的时候就会自动生成，没必要备份 了解这些之后，我们就可以只备份必要的文件。 以前的备份方案我之前是根据这篇文章 Hexo博客从一台电脑迁移到其他电脑 将博客源文件备份到 GitHub 上面。这个方法是让渲染文件和博客源文件，都放在同一个仓库里面的不同分支。但我个人觉得到不如放两个仓库好。 现在的备份方案首先我们如果想备份主题的话，需要把主题文件夹里的 .git 给删除了，让它变成一个普通的文件夹。比如很多人使用的 next 主题，就进入 themes/next 里面将 .git 文件夹给删除了就行。 在博客根目录下 git init ,让其变成一个 git 仓库。将那些不需要备份的文件和文件夹添加到 .gitignore 中，我的里面有这些内容。 publicdb.json.deploy_git.DS_Storenode_modules 之后 git add . ，再 commit ，然后将其推送到远程仓库即可。之后换电脑，只需把这个仓库 clone 到电脑，进入仓库， npm i 一下，npm 就会根据两个 package 开头的文件，去帮我们安装相对应的模块，之后我们便可以看到 node_modules 文件夹又回来了。此时我们的博客便已搭建成功，可以继续写博客了。]]></content>
@@ -261,8 +283,8 @@
     <url>%2F2018%2F06%2Finstall-wordpress-with-lnmp%2F</url>
     <content type="text"><![CDATA[#发现1.5正式版更新了，我自己也试了，所以现在把原来命令行里的 1.4 全部都换成 1.5 了 一，安装lnmp(Nginx/MySQL/PHP)环境 wget http://soft2.vpser.net/lnmp/lnmp1.5-full.tar.gz tar -zxvf lnmp1.5-full.tar.gz cd lnmp1.5-full ./install.sh 一路默认，虚拟机一个小时应该能安装好 之后就可以访问IP了 默认的访问目录为这个 /home/wwwroot/default 二，安装wordpress此时进入默认的访问目录的上一级 cd /home/wwwroot/ wget https://cn.wordpress.org/wordpress-4.9.4-zh_CN.tar.gz tar -zxvf wordpress-4.9.4-zh_CN.tar.gz mv default old mv wordpress default 此时应该就可以访问wordpress了 三，创建数据库 mysql -u root -p 输入密码，默认的话就是root create database wordpress; exit 四，给权限 chown -R 755 /home/wwwroot/ chown -R www:www /home/wwwroot/ 此时输入IP即可访问配置 wordpress]]></content>
       <tags>
-        <tag>服务器</tag>
         <tag>WordPress</tag>
+        <tag>服务器</tag>
       </tags>
   </entry>
   <entry>
