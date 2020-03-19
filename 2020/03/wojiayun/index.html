@@ -12,7 +12,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="设备,Linux," />
+    <meta name="keywords" content="Linux,设备," />
   
 
   
@@ -163,7 +163,11 @@
 <p>一手按住，一手通电，机器一启动就自动进入 maskrom 了，然后便可以愉快地刷机，这种方法也是终极的救砖方法。</p>
 <h2 id="docker相关"><a href="#docker相关" class="headerlink" title="docker相关"></a>docker相关</h2><p>乘风大佬的固件，本身就修改好 docker 的镜像源了，因此我们可以直接拉取镜像。</p>
 <h3 id="portainer"><a href="#portainer" class="headerlink" title="portainer"></a>portainer</h3><figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line">docker volume create portainer_data</span><br><span class="line">docker run -d -p <span class="number">9000</span>:<span class="number">9000</span> -v <span class="regexp">/var/</span>run<span class="regexp">/docker.sock:/</span>var<span class="regexp">/run/</span>docker.sock -v <span class="string">portainer_data:</span><span class="regexp">/data --restart always portainer/</span><span class="string">portainer:</span>linux-arm</span><br></pre></td></tr></table></figure>
-<h3 id="qbittorrent"><a href="#qbittorrent" class="headerlink" title="qbittorrent"></a>qbittorrent</h3><figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line"><span class="attribute">IMAGE_NAME</span>=80x86/qbittorrent:4.2.1-arm64</span><br><span class="line"><span class="comment">#这里我原本的默认下载路径是 /sharedfolders/wjy/ 你应该改成自己的</span></span><br><span class="line"><span class="attribute">DOWNLOAD_PATH</span>=/sharedfolders/wjy/</span><br><span class="line"><span class="attribute">QBT_AUTH_SERVER_ADDR</span>=<span class="string">"127.0.0.1"</span></span><br><span class="line"></span><br><span class="line">docker <span class="builtin-name">run</span> -d --name qbittorrent \</span><br><span class="line">        -e <span class="attribute">WEB_PORT</span>=8080 \</span><br><span class="line">        -e <span class="attribute">BT_PORT</span>=8998 \</span><br><span class="line">        -e <span class="attribute">QBT_AUTH_SERVER_ADDR</span>=<span class="variable">$QBT_AUTH_SERVER_ADDR</span> \</span><br><span class="line">        --restart unless-stopped \</span><br><span class="line">        --network host \</span><br><span class="line">        -v /var/lib/qbittorrent/.config/qBittorrent:<span class="built_in">/config </span>\</span><br><span class="line">        -v /var/lib/qbittorrent/.local/share/data/qBittorrent:/data \</span><br><span class="line">        -v <span class="string">"<span class="variable">$DOWNLOAD_PATH</span>"</span>:/downloads \</span><br><span class="line">        -v <span class="string">"<span class="variable">$DOWNLOAD_PATH</span>"</span>:<span class="string">"<span class="variable">$DOWNLOAD_PATH</span>"</span> \</span><br><span class="line">        --mount <span class="attribute">type</span>=tmpfs,destination=/tmp \</span><br><span class="line">        <span class="variable">$&#123;IMAGE_NAME&#125;</span></span><br></pre></td></tr></table></figure>
+<h3 id="qbittorrent"><a href="#qbittorrent" class="headerlink" title="qbittorrent"></a>qbittorrent</h3><p>自带的 qb 是 4.1.7 ，它好像有个问题，没法通过链接的方式来下载种子。所以我想把它停了，改用 docker 来创建一个最新版的 qb 。</p>
+<p>那么我需要先把自带的 qb 的开机自起取消，这个比较容易，改个名字它就不会启动了。</p>
+<figure class="highlight armasm"><table><tr><td class="code"><pre><span class="line"><span class="symbol">mv</span> /<span class="meta">opt</span>/<span class="keyword">bin/qbittorrent-nox </span>/<span class="meta">opt</span>/<span class="keyword">bin/1qbittorrent-nox</span></span><br></pre></td></tr></table></figure>
+<p>qb最重要的两个文件夹 <code>.config</code> 和 <code>.local</code> ，自带的 qb 是将其放在 <code>/root</code> 里，如果你使用 docker 版的 qb 后，想保留之前的种子信息，下方的 -v 参数自己修改一下。我就不保留了。</p>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line"><span class="attribute">IMAGE_NAME</span>=80x86/qbittorrent:4.2.1-arm64</span><br><span class="line"><span class="comment">#这里我原本的默认下载路径是 /sharedfolders/wjy/ 你应该改成自己的</span></span><br><span class="line"><span class="attribute">DOWNLOAD_PATH</span>=/sharedfolders/wjy/</span><br><span class="line"><span class="attribute">QBT_AUTH_SERVER_ADDR</span>=<span class="string">"127.0.0.1"</span></span><br><span class="line"></span><br><span class="line">docker <span class="builtin-name">run</span> -d --name qbittorrent \</span><br><span class="line">        -e <span class="attribute">WEB_PORT</span>=8080 \</span><br><span class="line">        -e <span class="attribute">BT_PORT</span>=8998 \</span><br><span class="line">        -e <span class="attribute">QBT_AUTH_SERVER_ADDR</span>=<span class="variable">$QBT_AUTH_SERVER_ADDR</span> \</span><br><span class="line">        --restart unless-stopped \</span><br><span class="line">        --network host \</span><br><span class="line">        -v /var/lib/qbittorrent/.config/qBittorrent:<span class="built_in">/config </span>\</span><br><span class="line">        -v /var/lib/qbittorrent/.local/share/data/qBittorrent:/data \</span><br><span class="line">        -v <span class="string">"<span class="variable">$DOWNLOAD_PATH</span>"</span>:/downloads \</span><br><span class="line">        -v <span class="string">"<span class="variable">$DOWNLOAD_PATH</span>"</span>:<span class="string">"<span class="variable">$DOWNLOAD_PATH</span>"</span> \</span><br><span class="line">        --mount <span class="attribute">type</span>=tmpfs,destination=/tmp \</span><br><span class="line">        <span class="variable">$&#123;IMAGE_NAME&#125;</span></span><br></pre></td></tr></table></figure>
 <p>之后可能会出现文件夹权限问题，将会导致 qb 无法启动，给予 777 权限</p>
 <figure class="highlight crystal"><table><tr><td class="code"><pre><span class="line">chmod -R <span class="number">777</span> /var/<span class="class"><span class="keyword">lib</span>/<span class="title">qbittorrent</span>/</span></span><br></pre></td></tr></table></figure>
 <h2 id="导航相关"><a href="#导航相关" class="headerlink" title="导航相关"></a>导航相关</h2><p>在web导航页面添加或者删除图标，修改 /opt/wwwroot/navi/index.php</p>
@@ -196,9 +200,9 @@
   
     <div class="passage-tags">
      
-      <a href="/tags/设备/"><i class="fa fa-tags"></i>设备</a>
-     
       <a href="/tags/Linux/"><i class="fa fa-tags"></i>Linux</a>
+     
+      <a href="/tags/设备/"><i class="fa fa-tags"></i>设备</a>
     
     </div>
   
@@ -260,7 +264,7 @@
 
 <div class="bottom-bar">
   <div class="bottom-bar-left">
-    <a href="javascript:void(0);" data-enable="false">
+    <a href="/2020/03/wjy-python/" data-enable="true">
       <i class="fa fa-arrow-left"></i>
     </a>
     <a href="/2020/03/Mojave/" data-enable="true">
