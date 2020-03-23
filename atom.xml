@@ -185,6 +185,26 @@
   </entry>
   
   <entry>
+    <title>OMV 安装失败如何卸载</title>
+    <link href="https://powersee.github.io/2019/12/remove-omv/"/>
+    <id>https://powersee.github.io/2019/12/remove-omv/</id>
+    <published>2019-12-11T10:25:22.000Z</published>
+    <updated>2020-03-23T11:22:40.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>记录在 armbian 上安装 omv 失败的过程。</p><a id="more"></a><p>omv 好像不支持在 Debian bust 上面安装，我直接安装后报错了。然后也没法卸载，并且 apt 也没法用了，一用就会提示<code>E: 软件包 openmediavault-omvextrasorg 需要重新安装，但是我无法找到相应的安装文件。</code>苦恼。</p><p>最终解决方法：</p><ol><li><p><code>rm -rf /var/lib/dpkg/info/openmediavault-omvextrasorg*</code></p></li><li><p><code>sudo dpkg --remove --force-remove-reinstreq openmediavault-omvextrasorg</code></p><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">dpkg: 警告: 由于开启了 --force 选项，以下问题被忽略：</span><br><span class="line">dpkg: 警告: 该软件包现在的状态极为不妥；</span><br><span class="line">建议您在卸载它之前再重新安装一次</span><br><span class="line">(正在读取数据库 ... 系统当前共安装有 112651 个文件和目录。)</span><br><span class="line">正在卸载 openmediavault-omvextrasorg (5.1.9) ...</span><br></pre></td></tr></table></figure></li><li><p>之后再使用 apt 就不会出现问题了。</p></li></ol>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;记录在 armbian 上安装 omv 失败的过程。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
+    
+  </entry>
+  
+  <entry>
     <title>斐讯 N1、P1 安装 armbian 变身电脑主机</title>
     <link href="https://powersee.github.io/2019/12/N1-armbian/"/>
     <id>https://powersee.github.io/2019/12/N1-armbian/</id>
@@ -333,6 +353,24 @@
   </entry>
   
   <entry>
+    <title>小米手机免 root 去除广告以及卸载系统应用</title>
+    <link href="https://powersee.github.io/2019/09/MIUI-adb/"/>
+    <id>https://powersee.github.io/2019/09/MIUI-adb/</id>
+    <published>2019-09-18T03:27:35.000Z</published>
+    <updated>2020-03-23T11:22:40.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>本文需在电脑上进行。</p><a id="more"></a><h2 id="手机打开-USB-调试"><a href="#手机打开-USB-调试" class="headerlink" title="手机打开 USB 调试"></a>手机打开 USB 调试</h2><p>以及 USB 调试（安全模式）</p><h2 id="下载-ADB-工具"><a href="#下载-ADB-工具" class="headerlink" title="下载 ADB 工具"></a>下载 ADB 工具</h2><p><a href="http://veger.ys168.com/" target="_blank" rel="noopener">http://veger.ys168.com/</a><br>在电脑软件这个文件夹里</p><p>解压后把三个文件，解压到 <code>C:\Windows\</code>里面</p><h2 id="安装小米刷机工具（安装手机驱动）"><a href="#安装小米刷机工具（安装手机驱动）" class="headerlink" title="安装小米刷机工具（安装手机驱动）"></a>安装小米刷机工具（安装手机驱动）</h2><p><a href="http://bigota.d.miui.com/tools/MiFlash2018-5-28-0.zip" target="_blank" rel="noopener">http://bigota.d.miui.com/tools/MiFlash2018-5-28-0.zip</a></p><h2 id="电脑打开-cmd"><a href="#电脑打开-cmd" class="headerlink" title="电脑打开 cmd"></a>电脑打开 cmd</h2><p>删除应用的 ADB 命令是：<br><figure class="highlight crmsh"><table><tr><td class="code"><pre><span class="line">adb shell pm uninstall --<span class="keyword">user</span> <span class="title">0</span> 应用包名</span><br></pre></td></tr></table></figure></p><p>（MIUI 9、MIUI 10 测试删除后能正常开机使用）<br><figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line">adb shell pm uninstall --user <span class="number">0</span>  com<span class="selector-class">.miui</span><span class="selector-class">.systemAdSolution</span> （小米系统广告解决方案 必删）  </span><br><span class="line">adb shell pm uninstall --user <span class="number">0</span>  com<span class="selector-class">.miui</span><span class="selector-class">.analytics</span> （小米广告分析，必删）  </span><br><span class="line">adb shell pm uninstall --user <span class="number">0</span> com<span class="selector-class">.xiaomi</span><span class="selector-class">.gamecenter</span><span class="selector-class">.sdk</span><span class="selector-class">.service</span> （小米游戏中心服务）  </span><br><span class="line">adb shell pm uninstall --user <span class="number">0</span> com<span class="selector-class">.xiaomi</span><span class="selector-class">.gamecenter</span> （小米游戏中心）  </span><br><span class="line">adb shell pm uninstall --user <span class="number">0</span> com<span class="selector-class">.sohu</span><span class="selector-class">.inputmethod</span><span class="selector-class">.sogou</span><span class="selector-class">.xiaomi</span> （搜狗输入法）  </span><br><span class="line">adb shell pm uninstall --user <span class="number">0</span> com<span class="selector-class">.miui</span><span class="selector-class">.player</span> （小米音乐）  </span><br><span class="line">adb shell pm uninstall --user <span class="number">0</span> com<span class="selector-class">.miui</span><span class="selector-class">.video</span> （小米视频）  </span><br><span class="line">adb shell pm uninstall --user <span class="number">0</span> com<span class="selector-class">.miui</span><span class="selector-class">.notes</span> （小米便签）  </span><br><span class="line">adb shell pm uninstall --user <span class="number">0</span> com<span class="selector-class">.miui</span><span class="selector-class">.translation</span><span class="selector-class">.youdao</span> （有道翻译）  </span><br><span class="line">adb shell pm uninstall --user <span class="number">0</span> com<span class="selector-class">.miui</span><span class="selector-class">.translation</span><span class="selector-class">.kingsoft</span> （金山翻译）  </span><br><span class="line">adb shell pm uninstall --user <span class="number">0</span> com<span class="selector-class">.android</span><span class="selector-class">.email</span> （邮件）  </span><br><span class="line">adb shell pm uninstall --user <span class="number">0</span> com<span class="selector-class">.xiaomi</span><span class="selector-class">.scanner</span> （小米扫描）  </span><br><span class="line">adb shell pm uninstall --user <span class="number">0</span> com<span class="selector-class">.miui</span><span class="selector-class">.hybrid</span> （混合器）  </span><br><span class="line">adb shell pm uninstall --user <span class="number">0</span> com<span class="selector-class">.miui</span><span class="selector-class">.bugreport</span> （bug 反馈）  </span><br><span class="line">adb shell pm uninstall --user <span class="number">0</span> com<span class="selector-class">.milink</span><span class="selector-class">.service</span> （米连服务）  </span><br><span class="line">adb shell pm uninstall --user <span class="number">0</span> com<span class="selector-class">.android</span><span class="selector-class">.browser</span> （浏览器）  </span><br><span class="line">adb shell pm uninstall --user <span class="number">0</span> com<span class="selector-class">.miui</span><span class="selector-class">.gallery</span> （相册）  </span><br><span class="line">adb shell pm uninstall --user <span class="number">0</span> com<span class="selector-class">.miui</span><span class="selector-class">.yellowpage</span> （黄页）  </span><br><span class="line">adb shell pm uninstall --user <span class="number">0</span> com<span class="selector-class">.xiaomi</span><span class="selector-class">.midrop</span> （小米快传）  </span><br><span class="line">adb shell pm uninstall --user <span class="number">0</span> com<span class="selector-class">.miui</span><span class="selector-class">.virtualsim</span> （小米虚拟器）  </span><br><span class="line">adb shell pm uninstall --user <span class="number">0</span> com<span class="selector-class">.xiaomi</span><span class="selector-class">.payment</span> （小米支付）  </span><br><span class="line">adb shell pm uninstall --user <span class="number">0</span> com<span class="selector-class">.mipay</span><span class="selector-class">.wallet</span> （小米钱包）  </span><br><span class="line">adb shell pm uninstall --user <span class="number">0</span> com<span class="selector-class">.android</span><span class="selector-class">.soundrecorder</span> （录音机）  </span><br><span class="line">adb shell pm uninstall --user <span class="number">0</span> com<span class="selector-class">.miui</span><span class="selector-class">.screenrecorder</span> （屏幕录制）  </span><br><span class="line">adb shell pm uninstall --user <span class="number">0</span> com<span class="selector-class">.android</span><span class="selector-class">.wallpaper</span> （壁纸）  </span><br><span class="line">adb shell pm uninstall --user <span class="number">0</span> com<span class="selector-class">.miui</span><span class="selector-class">.voiceassist</span> （语音助手）  </span><br><span class="line">adb shell pm uninstall --user <span class="number">0</span> com<span class="selector-class">.miui</span><span class="selector-class">.fm</span> （收音机）  </span><br><span class="line">adb shell pm uninstall --user <span class="number">0</span> com<span class="selector-class">.miui</span><span class="selector-class">.touchassistant</span> （悬浮球）  </span><br><span class="line">adb shell pm uninstall --user <span class="number">0</span> com<span class="selector-class">.android</span><span class="selector-class">.cellbroadcastreceiver</span> （小米广播）  </span><br><span class="line">adb shell pm uninstall --user <span class="number">0</span> com<span class="selector-class">.xiaomi</span><span class="selector-class">.mitunes</span> （小米助手）  </span><br><span class="line">adb shell pm uninstall --user <span class="number">0</span> com<span class="selector-class">.xiaomi</span><span class="selector-class">.pass</span> （小米卡包）  </span><br><span class="line">adb shell pm uninstall --user <span class="number">0</span> com<span class="selector-class">.android</span><span class="selector-class">.thememanager</span> （个性主题管理）  </span><br><span class="line">adb shell pm uninstall --user <span class="number">0</span> com<span class="selector-class">.android</span><span class="selector-class">.wallpaper</span> （动态壁纸）  </span><br><span class="line">adb shell pm uninstall --user <span class="number">0</span> com<span class="selector-class">.android</span><span class="selector-class">.wallpaper</span><span class="selector-class">.livepicker</span> （动态壁纸获取）  </span><br><span class="line">adb shell pm uninstall --user <span class="number">0</span> com<span class="selector-class">.miui</span><span class="selector-class">.klo</span><span class="selector-class">.bugreport</span> （KLO bug 反馈）</span><br></pre></td></tr></table></figure></p><p>前面两个是 MIUI 系统支撑广告及精准化推送的应用，应第一时间删除，删除后不会出现无法开机的情况。这样 MIUI 系统的广告就会少很多——没有验证是否完全屏蔽。  </p><p><strong>【警告】以下系统自带应用删除后必定无法正常开机（来自网络），请避免误删：</strong>  </p><figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line">com<span class="selector-class">.miui</span><span class="selector-class">.cloudservice</span> （小米云服务）  </span><br><span class="line">com<span class="selector-class">.xiaomi</span><span class="selector-class">.account</span> （小米账户）  </span><br><span class="line">com<span class="selector-class">.miui</span><span class="selector-class">.cloudbackup</span> （云备份）  </span><br><span class="line">com<span class="selector-class">.xiaomi</span><span class="selector-class">.market</span> （应用市场）</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;本文需在电脑上进行。&lt;/p&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
     <title>服务器搭建全能下载器 Aria2 以及私人网盘，只需一行命令（docker）</title>
     <link href="https://powersee.github.io/2019/09/docker-aria2/"/>
     <id>https://powersee.github.io/2019/09/docker-aria2/</id>
@@ -414,46 +452,6 @@
     
     </summary>
     
-    
-  </entry>
-  
-  <entry>
-    <title>禁止 mac 在U盘产生隐藏文件</title>
-    <link href="https://powersee.github.io/2018/10/mac-hide-file/"/>
-    <id>https://powersee.github.io/2018/10/mac-hide-file/</id>
-    <published>2018-10-08T14:51:23.000Z</published>
-    <updated>2020-02-23T05:56:18.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>自从 U 盘在 mac 上使用一段时间后，我发现里面有好多隐藏文件。<br><a id="more"></a><br>每个都是 4KB。基本上 U 盘里每个文件，都有一个跟它对应的隐藏文件。看来是 Mac 自动生成的，但不知道是用来干什么的，而且平时也没什么影响，毕竟隐藏文件不管在 win 还是 Mac，默认情况下都是不显示的，所以也就没去管它。</p><p>直到，那天 U 盘插别人的电脑，居然被安全软件检测到这些隐藏文件，弹窗说有安全隐患……</p><p>再接着，拿 U 盘去自助打印机，这一堆隐藏文件显示在那里，严重影响我查找要打印的文件的效率。这不能忍。</p><p>于是我百度一下，没有找到方法。再谷歌，就找到了。</p><p>是 Mac 上【聚焦搜索】（spotlight）这个软件造成的，这是一个全局搜索软件。应该是它为了能快速搜索到 U 盘里的文件，所以，当我们在 mac 上往 U 盘传文件的时候，同时会在文件旁边创建一个 4KB 的隐藏文件。</p><h2 id="关闭方法"><a href="#关闭方法" class="headerlink" title="关闭方法"></a>关闭方法</h2><p>打开【系统偏好设置】，第一行倒数第二个的【聚焦】，进去后点【隐私】，然后左下角的【+】，之后选中 U 盘，确认就好了。以后再往 U 盘写入文件就不会有这些隐藏文件了，之前产生的那些可以在 win 下将之删除。（Mac 下在访达里根本无法显示这些文件）</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;自从 U 盘在 mac 上使用一段时间后，我发现里面有好多隐藏文件。&lt;br&gt;
-    
-    </summary>
-    
-    
-      <category term="mac" scheme="https://powersee.github.io/tags/mac/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>解决 ireader 阅读器无法连接电脑问题</title>
-    <link href="https://powersee.github.io/2018/10/Solve-the-problem-that-the-ireader-cannot-connect-to-the-computer/"/>
-    <id>https://powersee.github.io/2018/10/Solve-the-problem-that-the-ireader-cannot-connect-to-the-computer/</id>
-    <published>2018-10-02T14:59:34.000Z</published>
-    <updated>2020-02-23T05:56:18.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>今晚把阅读器用 USB 连接电脑，想传些文件。发现连接后，资源管理器无法读到盘符。</p><a id="more"></a><p>由于平时我主要用 Mac 系统，无法用 usb 线与阅读器互传文件的，因此都是用 WIFI 传输。不过之前曾经在虚拟机里运行 XP 系统，可以与阅读器连接并且传输文件，因此硬件是没问题的。</p><p>现在 win10 状态下却无法连接，折腾一番后，没法，联系客服。在掌阅的微信公众号【掌阅iReader】里面，右下角，服务，人工服务。</p><p>一大段话确认我硬件和操作没有问题后，回复我：</p><blockquote><p>若是您的电脑没有识别：请您这边电子书阅读器插上USB连接电脑后右击–我的电脑–属性–点击打开设备管理器截图提供这边帮您查看一下</p></blockquote><p>当阅读器插入后这里面会多出一个设备【Android Phone】，展开它，里面是【Android ADB Interface】。右键，更新驱动。</p><p><strong>重点来了</strong></p><p>不要点【自动搜索……】，而是点下面的【浏览我的计算机以查找驱动程序软件】。</p><p>然后这时会有两个选项，选择下面那个带有【MTP】的，安装这个，然后就完了。资源管理器里可以识别到了。</p><p><img src="https://i.loli.net/2018/10/02/5bb388899cc2d.jpg" alt="IMG_20181002_202702.jpg"></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;今晚把阅读器用 USB 连接电脑，想传些文件。发现连接后，资源管理器无法读到盘符。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="设备" scheme="https://powersee.github.io/tags/%E8%AE%BE%E5%A4%87/"/>
     
   </entry>
   
