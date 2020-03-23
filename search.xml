@@ -37,8 +37,8 @@
     <url>%2F2020%2F02%2Fmore-about-hexo%2F</url>
     <content type="text"><![CDATA[前言个人使用 hexo 搭建博客已经有一年多的时间了。但是说实在，对其了解并不多，我只知道用它，可以把我的 markdown 文档渲染成 html 文件，之后放到 GitHub 上就可以搭建博客。 一开始的使用是看别人的教程，网上一堆人写了用 hexo 来搭建免费博客的文章。其官网 https://hexo.io/zh-cn/ 上面也有教程，几条命令就可以在电脑上弄好一个博客。 之后便是将文章推送到 GitHub 上面，进行设置，使用 GitHub page 建立博客网站。在这时我了解到，我们还可以搭建在国内的网站上面，如 gitee ，coding 。可以让我们的访问速度更快。而且之前还了解到有位老哥有一个不错的方法，可以让国外的 ip 就访问 github 的博客，国内的 ip 就访问 gitee 或者 coding 的博客。好像是利用域名解析来达到目的的，具体我没有去尝试。 备份不像 wordpress ，所有文件都是在服务器上。hexo 的博客源文件都是在我们自己的电脑上面的，如果我们的电脑出问题，如硬盘坏了，被偷了，那么我们的博客就没法更新和修改。因此我们需要自己来备份这些文件。 如果只是想备份文章而已，那么同步网盘如 onedrive 、坚果云 也足够的。当然你想同步整个博客文件夹也可以，不过我不建议这么做，因为里面的文件实在太多了，之前 git push 的时候看到，好像有几万个文件。而且，这样也太 low 了。 正确的备份方法应该是使用 git 来备份。 备份前准备我们得知道我们备份的目的，像我的话，我最主要的目的是备份文章，其次是博客主题，再来是博客的一些配置。目的明确之后，就来分析博客根目录下的文件。 需要备份的 source //文件夹放置着博客文章，最最重要的一个文件夹themes //放置着主题，我个人喜欢一起备份scaffolds //页面模板位置_config.ymlpackage.jsonpackage-lock.json 不需要备份的 .deploy_git //里面的文件除了多一个 .git 其它和 public 里面一样node_modules //在根目录下 npm i 就会读取 package.json 来安装模块，没必要备份public // hexo 生成 html 页面后所放的地方，hexo g 就可以生成，没必要备份db.json //执行 hexo s 启动本地服务器的时候就会自动生成，没必要备份 了解这些之后，我们就可以只备份必要的文件。 以前的备份方案我之前是根据这篇文章 Hexo博客从一台电脑迁移到其他电脑 将博客源文件备份到 GitHub 上面。这个方法是让渲染文件和博客源文件，都放在同一个仓库里面的不同分支。但我个人觉得到不如放两个仓库好。 现在的备份方案首先我们如果想备份主题的话，需要把主题文件夹里的 .git 给删除了，让它变成一个普通的文件夹。比如很多人使用的 next 主题，就进入 themes/next 里面将 .git 文件夹给删除了就行。 在博客根目录下 git init ,让其变成一个 git 仓库。将那些不需要备份的文件和文件夹添加到 .gitignore 中，我的里面有这些内容。 publicdb.json.deploy_git.DS_Storenode_modules 之后 git add . ，再 commit ，然后将其推送到远程仓库即可。之后换电脑，只需把这个仓库 clone 到电脑，进入仓库， npm i 一下，npm 就会根据两个 package 开头的文件，去帮我们安装相对应的模块，之后我们便可以看到 node_modules 文件夹又回来了。此时我们的博客便已搭建成功，可以继续写博客了。]]></content>
       <tags>
-        <tag>WordPress</tag>
         <tag>随笔</tag>
+        <tag>WordPress</tag>
       </tags>
   </entry>
   <entry>
@@ -206,8 +206,8 @@
     <url>%2F2018%2F08%2Fjekyll-vs-hexo%2F</url>
     <content type="text"><![CDATA[jekyll 和 hexo 的差别呢，就是 jekyll 可以直接在 GitHub 上面写文章，而 hexo 则需要在电脑里面写好再上传上来。前面平台搭建的部分可以说是差不多的，搭建好同样传到 GitHub 上，jekyll 是把博客源码传上来，而 hexo 则是先在电脑里生成 html 的静态文件，再将这些传上来。 也因为这样，hexo 的备份会比较麻烦一点。而 jekyll 则可以说本来就自带备份（针对于像我这种使用 git pages 的人来说）。因为 jekyll 本身就是把整个博客都上传的。 不仅备份方便，编辑修改也方便，因为文件都在 GitHub 上，可以直接用浏览器登录 GitHub ，直接更改文章源文件就能修改博客文章，在上面新增 Markdown 文件就能往博客添加新文章。 但是呢，jekyll 不能像 hexo 一样使用命令行 hexo new &#39;title&#39; 来生成文章模板。因此用这个来写文章的话，就得自己打文章开头的那些设置，如这些 ---layout: posttitle: jekyll 与 hexo 的对比date: 2018-08-05 21:02:07tags:--- 因此这个感觉也算是劣势吧。当然复制粘贴上一篇文章的，然后修改一下也不会用太久的时间。但还是能自动生成方便啊。 因此在这上面写好像也没见得有多爽……]]></content>
       <tags>
-        <tag>网络</tag>
         <tag>随笔</tag>
+        <tag>网络</tag>
       </tags>
   </entry>
   <entry>
@@ -285,8 +285,8 @@
     <url>%2F2018%2F06%2Finstall-wordpress-with-lnmp%2F</url>
     <content type="text"><![CDATA[#发现1.5正式版更新了，我自己也试了，所以现在把原来命令行里的 1.4 全部都换成 1.5 了 一，安装lnmp(Nginx/MySQL/PHP)环境 wget http://soft2.vpser.net/lnmp/lnmp1.5-full.tar.gz tar -zxvf lnmp1.5-full.tar.gz cd lnmp1.5-full ./install.sh 一路默认，虚拟机一个小时应该能安装好 之后就可以访问IP了 默认的访问目录为这个 /home/wwwroot/default 二，安装wordpress此时进入默认的访问目录的上一级 cd /home/wwwroot/ wget https://cn.wordpress.org/wordpress-4.9.4-zh_CN.tar.gz tar -zxvf wordpress-4.9.4-zh_CN.tar.gz mv default old mv wordpress default 此时应该就可以访问wordpress了 三，创建数据库 mysql -u root -p 输入密码，默认的话就是root create database wordpress; exit 四，给权限 chown -R 755 /home/wwwroot/ chown -R www:www /home/wwwroot/ 此时输入IP即可访问配置 wordpress]]></content>
       <tags>
-        <tag>WordPress</tag>
         <tag>服务器</tag>
+        <tag>WordPress</tag>
       </tags>
   </entry>
   <entry>
