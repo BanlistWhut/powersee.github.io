@@ -22,7 +22,7 @@
     layer.style.display = 'block';
     searchDOM.style.display = 'flex';
     inputDOM.focus();
-    title.innerHTML = '搜索';
+    title.innerHTML = '搜索(点击 Google 可切换搜索引擎)';
 
     window.AD_CONFIG.layer.add(() => {
       title.innerHTML = '';
