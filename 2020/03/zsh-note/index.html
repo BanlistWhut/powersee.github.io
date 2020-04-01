@@ -6,12 +6,12 @@
   <meta name="author" content="Powersee" />
   
   
-  <title>归档: 2018/10 | Powersee的博客</title>
+  <title>最强 shell 非 zsh 莫属 | Powersee的博客</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="Hexo, Theme-AD" />
+    <meta name="keywords" content="Linux," />
   
 
   
@@ -38,7 +38,7 @@
     welcome: {"enable":false,"interval":30},
     start_time: "2018-05-20",
     passwords: [],
-    is_post: false,
+    is_post: true,
     lock: false,
     author: "Powersee",
     share: {"weibo":true,"qq":true,"wechat":true},
@@ -130,24 +130,77 @@
 </nav>
 <div id="site-process"></div>
     <main>
-      <div class="timeline">
-  <h2 class="timeline-title">归档: 51篇</h2>
+      
+  <div class="passage">
+  <div class="passage-meta">
+    <span>
+      <i class="fa fa-calendar"></i>2020-03-31
+    </span>
+    
+    
+      <span>
+        | <i class="fa fa-unlock-alt"></i>UNLOCK
+      </span>
+    
+  </div>
+  <h1 class="passage-title">
+    最强 shell 非 zsh 莫属
+  </h1>
   
+  <article class="passage-article">
+    <p>个人比较喜欢 zsh ，特别是自动补全的插件 zsh-autosuggestions ，感觉用了就回不去了。再也无法忍受用以前那些 shell 的各种不便。因此我尽量在常用的设备上安装 zsh ，比如电脑，虚拟机，家里的一堆矿渣设备，国内外的云服务器上。</p>
+<p>由于每次的操作都基本一样，所以我之前都是将步骤写在笔记中，用到时就复制粘贴即可。现在将内容整理到博客中，方便有时没法打开笔记，可以通过访问博客来查看。</p>
+<p>不同的发行版有不同的包管理工具，安装过程却都差不多，apt install zsh 像这样直接安装即可。</p>
+<hr>
+<p>下载 oh my zsh</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"</span><br></pre></td></tr></table></figure>
+<p>下载 zsh-autosuggestions 这个插件</p>
+<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">git clone git:<span class="regexp">//gi</span>thub.com<span class="regexp">/zsh-users/</span>zsh-autosuggestions <span class="variable">$ZSH_CUSTOM</span><span class="regexp">/plugins/</span>zsh-autosuggestions</span><br></pre></td></tr></table></figure>
+<p>不行的话用这行</p>
+<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">git clone https:<span class="regexp">//gi</span>tee.com<span class="regexp">/powersee/</span>zsh-autosuggestions.git <span class="variable">$ZSH_CUSTOM</span><span class="regexp">/plugins/</span>zsh-autosuggestions</span><br></pre></td></tr></table></figure>
+<p>编辑 .zshrc 启用插件</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">vim ~/.zshrc</span><br></pre></td></tr></table></figure>
+<p>将 zsh-autosuggestions 添加到插件里，加在 git 后面即可，可以用空格，也可以换行。</p>
+<p>然后由于有时连接的设备太多，不太容易分清楚哪一台，所以我喜欢用 <code>ys</code> 这个主题。一般修改第 11 行。</p>
+<p>然后对于常用命令，可以用 alias 来自定义，比如找个空白处，写上</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">alias</span> d=<span class="string">"docker"</span></span><br></pre></td></tr></table></figure>
+<p>然后重新读取一下配置文件</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">source ~/.zshrc</span><br></pre></td></tr></table></figure>
+<p>此时输入 <code>d info</code> 就等于 输入 <code>docker info</code></p>
+
+  </article>
+  <aside class="table-content" id="site-toc">
+  <div class="table-content-title">
+    <i class="fa fa-arrow-right fa-lg" id="site-toc-hide-btn"></i>
+    <span>目录</span>
+  </div>
+  <div class="table-content-main">
     
-      <h3 class="timeline-subtitle">2018</h3>
-    
-    <div class="timeline-item">
-      <time>2018-10-08</time>
-      <a target="_self" href="/2018/10/mac-hide-file/">禁止 mac 在U盘产生隐藏文件</a>
-    </div>
+  </div>
+</aside>
   
+    <aside class="passage-copyright">
+      <div>本文作者: powersee</div>
+      
+        <div>
+          原文链接: 
+          <a href="" target="_blank">https://powersee.github.io/2020/03/zsh-note/</a>
+        </div>
+      
+      <div>
+        版权声明: 本博客所有文章除特别声明外, 均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议. 转载请注明出处!
+      </div>
+    </aside>
+  
+  
+    <div class="passage-tags">
+     
+      <a href="/tags/Linux/"><i class="fa fa-tags"></i>Linux</a>
     
-    <div class="timeline-item">
-      <time>2018-10-02</time>
-      <a target="_self" href="/2018/10/Solve-the-problem-that-the-ireader-cannot-connect-to-the-computer/">解决 ireader 阅读器无法连接电脑问题</a>
     </div>
   
 </div>
+
     </main>
     
     <div class="site-footer-wrapper">
@@ -207,12 +260,12 @@
     <a href="javascript:void(0);" data-enable="false">
       <i class="fa fa-arrow-left"></i>
     </a>
-    <a href="javascript:void(0);" data-enable="false">
+    <a href="/2020/03/n1-armbian-server/" data-enable="true">
       <i class="fa fa-arrow-right"></i>
     </a>
   </div>
   <div class="bottom-bar-right">
-    <a href="javascript:void(0);" data-enable="false" id="site-toc-show-btn">
+    <a href="javascript:void(0);" data-enable="true" id="site-toc-show-btn">
       <i class="fa fa-bars"></i>
     </a>
     

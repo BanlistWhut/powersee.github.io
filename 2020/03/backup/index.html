@@ -166,6 +166,15 @@
 <p>在 ubuntu 中将系统dd到 U盘</p>
 <figure class="highlight lsl"><table><tr><td class="code"><pre><span class="line">sudo dd if=/dev/sda of=/dev/sdb conv=noerror,sync</span><br><span class="line">^C14583513+<span class="number">0</span> records in</span><br><span class="line"><span class="number">14583513</span>+<span class="number">0</span> records out</span><br><span class="line"><span class="number">7466758656</span> bytes (<span class="number">7.5</span> GB, <span class="number">7.0</span> GiB) copied, <span class="number">7048.69</span> s, <span class="number">1.1</span> MB/s</span><br></pre></td></tr></table></figure>
 <p>写了两个小时还没好，要去睡觉了，只能 ctrl+c 取消，结果发现只剩 0.5 G还没写。。。</p>
+<hr>
+<p>时隔多日，我已经把 N1 刷成了 armbian 无桌面版，配置花了好多时间。所以应该备份一下系统，自己之后把系统搞坏了，也可以用来恢复</p>
+<p>于是我同样将系统备份到硬盘，7.3G 用了 40 分钟。</p>
+<figure class="highlight crystal"><table><tr><td class="code"><pre><span class="line"><span class="comment"># root @ powersee in ~ [18:40:49] </span></span><br><span class="line">$ dd <span class="keyword">if</span>=<span class="regexp">/dev/mmcblk</span>1 <span class="keyword">of</span>=<span class="regexp">/media/one</span><span class="regexp">/back.img</span></span><br><span class="line"><span class="regexp">15269888+0 records in</span></span><br><span class="line"><span class="regexp">15269888+0 records out</span></span><br><span class="line"><span class="regexp">7818182656 bytes (7.8 GB, 7.3 GiB) copied, 2434.71 s, 3.2 MB/s</span></span><br></pre></td></tr></table></figure>
+<p>之后我把这个 img 文件，复制到电脑，然后用工具将它写入 U盘，之后插到 emmc 里面同样是 armbian 的N1上，结果开机后进入的还是 emmc 里的系统。但是通过 fdisk -l 我发现，boot 分区是在U盘里的。也就是说，N1是从U盘读取启动文件，然后启动 emmc 里面的系统，不知道 emmc 里是其它系统时，是否就能从 U盘启动系统？以后了解了再来更新。</p>
+<p>然后觉得用 dd 命令有个大缺点，就是我系统磁盘是 7.3G，那么备份出来的 img 文件就是这么大，明明我系统只占 4G……</p>
+<hr>
+<p>最终方案，我发现对于备份 N1 系统，或许没那么麻烦，因为一开始系统是在U盘里的，所以我可以先对U盘里的系统进行修改，装 docker 、samba 、修改源……</p>
+<p>然后，我可以用 USB image tool ，把U盘中的系统备份到电脑。之后如果我把系统搞坏了，那我可以把系统恢复到U盘，再写入emmc。</p>
 
   </article>
   <aside class="table-content" id="site-toc">
