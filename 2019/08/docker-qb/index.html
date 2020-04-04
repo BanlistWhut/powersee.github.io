@@ -18,13 +18,17 @@
   <meta name="description" content="此教程并不难，只要你会复制粘贴即可。🌟🌟🌟搭配视频：用服务器来离线下载 BT 种子，体验千兆网络的魅力利用免费CDN加速取回BT资源">
 
   
-
+    <link rel="alternate" href="atom.xml" title="Powersee的博客" type="application/atom+xml">
   
 
   
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+    <script src="//cdn.jsdelivr.net/npm/leancloud-storage@3.11.1/dist/av-min.js" async></script>
   
 
+  
+
+  
+    <script src="//unpkg.com/valine/dist/Valine.min.js" async></script>
   
 
   
@@ -34,15 +38,15 @@
   // it can be used in every script
   
   window.AD_CONFIG = {
-    leancloud: {"comment":false,"count":false},
+    leancloud: {"appid":"VajpGhSOODMeqXP5XKmqfgpn-MdYXbMMI","appkey":"kqvc2gs5GSIeVUWnWiHySH9u","comment":true,"count":true},
     welcome: {"enable":false,"interval":30},
     start_time: "2018-05-20",
-    passwords: [],
+    passwords: ["3f29e1b2b05f8371595dc761fed8e8b37544b38d56dfce81a551b46c82f2f56b", ],
     is_post: true,
     lock: false,
     author: "Powersee",
     share: {"weibo":true,"qq":true,"wechat":true},
-    mathjax: true,
+    mathjax: false,
     page_type: "",
     root: "/"
   };
@@ -240,6 +244,16 @@
 
     </main>
     
+      
+<div class="site-comment-contanier" data-plateform="leancloud">
+  
+    <p id="site-comment-info">
+      <i class="fa fa-spinner fa-spin"></i> 评论加载中
+    </p>
+    <div id="site-comment"></div>
+  
+</div>
+    
     <div class="site-footer-wrapper">
   <footer class="site-footer">
     
@@ -258,9 +272,13 @@
       <i class="fa fa-clock-o"></i> 本站已稳定运行<span id="site-time"></span>
     </div>
     
+      <div class="site-footer-info">
+        <i class="fa fa-paw"></i> 您是本站第 <span id="site-count"></span> 位访客
+      </div>
+    
     
       <div class="site-footer-info">
-        <i class="fa fa-at"></i> Email: powersee@powersee.xyz
+        <i class="fa fa-at"></i> <a href="mailto:powersee@powersee.xyz" target="_blank">联系邮箱 ：powersee@powersee.xyz</a>
       </div>
     
     <div class="site-footer-info">
@@ -305,6 +323,10 @@
     <a href="javascript:void(0);" data-enable="true" id="site-toc-show-btn">
       <i class="fa fa-bars"></i>
     </a>
+    
+      <a href="#site-comment" data-enable="true">
+        <i class="fa fa-commenting"></i>
+      </a>
     
     <a href="javascript:void(0);" id="site-toggle-share-btn">
       <i class="fa fa-share-alt"></i>

@@ -18,13 +18,17 @@
   <meta name="description" content="斐讯 N1 这台设备，我之前一直是使用小钢炮这个系统。因为它非常强大了，可以下载，可以共享硬盘里的文件，还可以玩 docker。不过其实这台设备还可以装 Debian 和 Ubuntu 系统的，装好之后就可以变成一台电脑主机了，这想想都兴奋。所以我一直想来尝试一下装 armbian 系统。">
 
   
-
+    <link rel="alternate" href="atom.xml" title="Powersee的博客" type="application/atom+xml">
   
 
   
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+    <script src="//cdn.jsdelivr.net/npm/leancloud-storage@3.11.1/dist/av-min.js" async></script>
   
 
+  
+
+  
+    <script src="//unpkg.com/valine/dist/Valine.min.js" async></script>
   
 
   
@@ -34,15 +38,15 @@
   // it can be used in every script
   
   window.AD_CONFIG = {
-    leancloud: {"comment":false,"count":false},
+    leancloud: {"appid":"VajpGhSOODMeqXP5XKmqfgpn-MdYXbMMI","appkey":"kqvc2gs5GSIeVUWnWiHySH9u","comment":true,"count":true},
     welcome: {"enable":false,"interval":30},
     start_time: "2018-05-20",
-    passwords: [],
+    passwords: ["3f29e1b2b05f8371595dc761fed8e8b37544b38d56dfce81a551b46c82f2f56b", ],
     is_post: true,
     lock: false,
     author: "Powersee",
     share: {"weibo":true,"qq":true,"wechat":true},
-    mathjax: true,
+    mathjax: false,
     page_type: "",
     root: "/"
   };
@@ -219,6 +223,16 @@
 
     </main>
     
+      
+<div class="site-comment-contanier" data-plateform="leancloud">
+  
+    <p id="site-comment-info">
+      <i class="fa fa-spinner fa-spin"></i> 评论加载中
+    </p>
+    <div id="site-comment"></div>
+  
+</div>
+    
     <div class="site-footer-wrapper">
   <footer class="site-footer">
     
@@ -237,9 +251,13 @@
       <i class="fa fa-clock-o"></i> 本站已稳定运行<span id="site-time"></span>
     </div>
     
+      <div class="site-footer-info">
+        <i class="fa fa-paw"></i> 您是本站第 <span id="site-count"></span> 位访客
+      </div>
+    
     
       <div class="site-footer-info">
-        <i class="fa fa-at"></i> Email: powersee@powersee.xyz
+        <i class="fa fa-at"></i> <a href="mailto:powersee@powersee.xyz" target="_blank">联系邮箱 ：powersee@powersee.xyz</a>
       </div>
     
     <div class="site-footer-info">
@@ -284,6 +302,10 @@
     <a href="javascript:void(0);" data-enable="true" id="site-toc-show-btn">
       <i class="fa fa-bars"></i>
     </a>
+    
+      <a href="#site-comment" data-enable="true">
+        <i class="fa fa-commenting"></i>
+      </a>
     
     <a href="javascript:void(0);" id="site-toggle-share-btn">
       <i class="fa fa-share-alt"></i>
