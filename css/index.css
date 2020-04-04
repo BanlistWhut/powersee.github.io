@@ -8,8 +8,7 @@
 
 html {
   font-size: 16px;
-  color: #212121;
-  -webkit-filter: grayscale(100%);filter:progid:DXImageTransform.Microsoft.BasicImage(graysale=1); }
+  color: #212121; }
 
 body, input, label, select, option, textarea, button, fieldset, legend {
   font-family:  Microsoft YaHei, Microsoft Jhenghei, Consolas, Hiragino Sans GB; }
