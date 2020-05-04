@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[关于 R1 音响]]></title>
+    <url>%2F2020%2F05%2Fabout-R1%2F</url>
+    <content type="text"><![CDATA[前言这款产品是 燕飞利仕 和斐讯合作的产品，应该是2018年推出的。 这是一款智能音响，可以搭配【斐讯ai】这个 app 来使用，不过，由于斐讯后来翻车了，至今也快两年了。所谓智能音响，也就是可以用语音来控制罢了。但是由于斐讯服务器那边不能用（或者说不稳定）。账号现在没法正常注册，看论坛有人说每天 0 点会开放注册一段时间，由于本人 2017 年时就有了斐讯的账号，也没去尝试能否注册。 所以很多人就只能把这音响当普通音响来用，音响开机后按三下顶部的按键，就可以打开蓝牙，之后用手机或者电脑连接，听歌或者听有声小说还是不错的。 问题不过最近我在拼多多买了这台设备，发现斐讯的服务器还是可以连接的嘛，而且网上有大佬修改了 app ，使得现在没有账号的情况下，也能配置音响的网络，使其连接家中的WIFI。修改版APP下载：http://veger.ys168.com/ 但是有些时候，配置网络好了，喊【小讯小讯】，却会提示，未绑定。。。 这时候有两种解决方案一，修改路由器的 dns 将路由器的 DNS 改为 47.240.76.176 二，自定义 hosts 在路由器的 hosts 中添加 118.24.249.189 aios-home.hivoice.cn 在老毛子路由器中 在 openwrt 路由器中 这样做音响才能完成绑定，之后我们就可以使用语音来控制它了。 如果你用的是普通的路由器，那看看哪个地方可以修改 hosts，实在找不到就修改 DNS 吧。 相关文章R1音箱 小白入门 和目前现状 R1音响三大dlna软件对比 这篇文章作者用自己的服务器提供绑定服务。 https://www.cnblogs.com/lome/p/12465328.html#4548078 这篇教自建服务 http://www.mz6.net/news/android/12911.html 另外一个自建服务的帖子 https://www.right.com.cn/forum/thread-3285422-1-1.html]]></content>
+      <tags>
+        <tag>设备</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[关于 docker 一些事]]></title>
     <url>%2F2020%2F04%2Fabout-docker%2F</url>
     <content type="text"><![CDATA[有些小伙伴反映 armbian 的 docker，按照小钢炮那篇文章的方法，有一些容器老是无法启动成功。在此开一篇帖子记录一下。当然帖子的内容肯定不仅限于 armbian 。 docker 镜像最近公用镜像又抽风了，没事多准备几个吧。 七牛提供的 https://reg-mirror.qiniu.com 阿里云私有镜像加速。（自己进入https://cr.console.aliyun.com/cn-shenzhen/instances/mirrors 用自己的账号登陆，获取属于自己的加速镜像） 得到的格式是这样的：https://xxxxxxxx.mirror.aliyuncs.com/ 关于 qbarmbian 用小钢炮的配置来建立 qb 容器的话，有一堆的问题，这里我改了一些内容，自己试了几次，应该没什么大问题了。使用的是 4.2.1，想用新的可以去 dockerhub 看→传送门 IMAGE_NAME=80x86/qbittorrent:4.2.1-arm64#下面我是将 /media/one 作为下载路径，你自己修改DOWNLOAD_PATH=/media/one/QBT_AUTH_SERVER_ADDR="127.0.0.1"#下面我是将 /media/one/lib/qb 作为配置文件的路径，你自己修改QBCONF=/media/one/lib/qbdocker run -d --name qbittorrent \ -e WEB_PORT=8080 \ -e BT_PORT=8998 \ -e QBT_AUTH_SERVER_ADDR=$QBT_AUTH_SERVER_ADDR \ --restart unless-stopped \ --network host \ -v $QBCONF/.config/qBittorrent:/config \ -v $QBCONF/.local/share/data/qBittorrent:/data \ -v "$DOWNLOAD_PATH":/downloads \ -v "$DOWNLOAD_PATH":"$DOWNLOAD_PATH" \ --mount type=tmpfs,destination=/tmp \ $&#123;IMAGE_NAME&#125; 将上面这堆在终端中输入后，到 portainer 中查看日志。 如果启动成功，最后会出现一个地址，如果不成功，也可以看看具体出现什么问题。 比较常见的问题是，docker 对文件夹没有读写权限。简单粗暴解决方案，给予 777 权限。先在 portainer 中停止 qb 容器，然后在终端执行下面的命令。 chmod 777 -R $QBCONFchmod 777 -R $DOWNLOAD_PATH 然后再去启动容器。按理应该就可以了。]]></content>
@@ -334,8 +342,8 @@
     <url>%2F2018%2F06%2Finstall-wordpress-with-lnmp%2F</url>
     <content type="text"><![CDATA[#发现1.5正式版更新了，我自己也试了，所以现在把原来命令行里的 1.4 全部都换成 1.5 了 一，安装lnmp(Nginx/MySQL/PHP)环境 wget http://soft2.vpser.net/lnmp/lnmp1.5-full.tar.gz tar -zxvf lnmp1.5-full.tar.gz cd lnmp1.5-full ./install.sh 一路默认，虚拟机一个小时应该能安装好 之后就可以访问IP了 默认的访问目录为这个 /home/wwwroot/default 二，安装wordpress此时进入默认的访问目录的上一级 cd /home/wwwroot/ wget https://cn.wordpress.org/wordpress-4.9.4-zh_CN.tar.gz tar -zxvf wordpress-4.9.4-zh_CN.tar.gz mv default old mv wordpress default 此时应该就可以访问wordpress了 三，创建数据库 mysql -u root -p 输入密码，默认的话就是root create database wordpress; exit 四，给权限 chown -R 755 /home/wwwroot/ chown -R www:www /home/wwwroot/ 此时输入IP即可访问配置 wordpress]]></content>
       <tags>
-        <tag>WordPress</tag>
         <tag>服务器</tag>
+        <tag>WordPress</tag>
       </tags>
   </entry>
   <entry>

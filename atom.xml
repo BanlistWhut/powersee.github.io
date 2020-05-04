@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://powersee.github.io/"/>
-  <updated>2020-04-26T01:34:54.984Z</updated>
+  <updated>2020-05-04T01:43:28.108Z</updated>
   <id>https://powersee.github.io/</id>
   
   <author>
@@ -17,11 +17,35 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>关于 R1 音响</title>
+    <link href="https://powersee.github.io/2020/05/about-R1/"/>
+    <id>https://powersee.github.io/2020/05/about-R1/</id>
+    <published>2020-05-04T01:24:19.000Z</published>
+    <updated>2020-05-04T01:43:28.108Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>这款产品是 燕飞利仕 和斐讯合作的产品，应该是2018年推出的。</p><p>这是一款智能音响，可以搭配【斐讯ai】这个 app 来使用，不过，由于斐讯后来翻车了，至今也快两年了。所谓智能音响，也就是可以用语音来控制罢了。但是由于斐讯服务器那边不能用（或者说不稳定）。账号现在没法正常注册，看论坛有人说每天 0 点会开放注册一段时间，由于本人 2017 年时就有了斐讯的账号，也没去尝试能否注册。</p><p>所以很多人就只能把这音响当普通音响来用，音响开机后按三下顶部的按键，就可以打开蓝牙，之后用手机或者电脑连接，听歌或者听有声小说还是不错的。</p><h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>不过最近我在拼多多买了这台设备，发现斐讯的服务器还是可以连接的嘛，而且网上有大佬修改了 app ，使得现在没有账号的情况下，也能配置音响的网络，使其连接家中的WIFI。修改版APP下载：<a href="http://veger.ys168.com/" target="_blank" rel="noopener">http://veger.ys168.com/</a></p><p>但是有些时候，配置网络好了，喊【小讯小讯】，却会提示，未绑定。。。</p><h2 id="这时候有两种解决方案"><a href="#这时候有两种解决方案" class="headerlink" title="这时候有两种解决方案"></a>这时候有两种解决方案</h2><p>一，修改路由器的 dns</p><p>将路由器的 DNS 改为 47.240.76.176</p><p><img src="/img/2020/padavan-dns.jpg" alt="padavan-dns"></p><p>二，自定义 hosts</p><p>在路由器的 hosts 中添加 118.24.249.189  aios-home.hivoice.cn</p><p>在老毛子路由器中</p><p><img src="/img/2020/padavan-hosts.jpg" alt="padavan-hosts"></p><p>在 openwrt 路由器中</p><p><img src="/img/2020/openwrt-hosts.jpg" alt="openwrt-hosts"></p><p>这样做音响才能完成绑定，之后我们就可以使用语音来控制它了。</p><blockquote><p>如果你用的是普通的路由器，那看看哪个地方可以修改 hosts，实在找不到就修改 DNS 吧。  </p></blockquote><hr><h2 id="相关文章"><a href="#相关文章" class="headerlink" title="相关文章"></a>相关文章</h2><p><a href="https://www.right.com.cn/forum/thread-4013529-1-1.html" target="_blank" rel="noopener">R1音箱 小白入门 和目前现状</a></p><p><a href="https://www.right.com.cn/forum/thread-4017780-1-1.html" target="_blank" rel="noopener">R1音响三大dlna软件对比</a></p><p>这篇文章作者用自己的服务器提供绑定服务。</p><p><a href="https://www.cnblogs.com/lome/p/12465328.html#4548078" target="_blank" rel="noopener">https://www.cnblogs.com/lome/p/12465328.html#4548078</a></p><p>这篇教自建服务</p><p><a href="http://www.mz6.net/news/android/12911.html" target="_blank" rel="noopener">http://www.mz6.net/news/android/12911.html</a></p><p>另外一个自建服务的帖子</p><p><a href="https://www.right.com.cn/forum/thread-3285422-1-1.html" target="_blank" rel="noopener">https://www.right.com.cn/forum/thread-3285422-1-1.html</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;这款产品是 燕飞利仕 和斐讯合作的产品，应该是2018年推出的。&lt;/p&gt;
+&lt;p&gt;这是一款智能音响，可以搭配【斐讯ai】这个 app 来使用，
+      
+    
+    </summary>
+    
+    
+      <category term="设备" scheme="https://powersee.github.io/tags/%E8%AE%BE%E5%A4%87/"/>
+    
+  </entry>
+  
+  <entry>
     <title>关于 docker 一些事</title>
     <link href="https://powersee.github.io/2020/04/about-docker/"/>
     <id>https://powersee.github.io/2020/04/about-docker/</id>
     <published>2020-04-26T00:17:59.000Z</published>
-    <updated>2020-04-26T01:34:54.984Z</updated>
+    <updated>2020-05-01T15:12:40.095Z</updated>
     
     <content type="html"><![CDATA[<p>有些小伙伴反映 armbian 的 docker，按照小钢炮那篇文章的方法，有一些容器老是无法启动成功。在此开一篇帖子记录一下。当然帖子的内容肯定不仅限于 armbian 。</p><h2 id="docker-镜像"><a href="#docker-镜像" class="headerlink" title="docker 镜像"></a>docker 镜像</h2><p>最近公用镜像又抽风了，没事多准备几个吧。</p><p>七牛提供的 <a href="https://reg-mirror.qiniu.com/" target="_blank" rel="noopener">https://reg-mirror.qiniu.com</a></p><p>阿里云私有镜像加速。<br>（自己进入<br><a href="https://cr.console.aliyun.com/cn-shenzhen/instances/mirrors" target="_blank" rel="noopener">https://cr.console.aliyun.com/cn-shenzhen/instances/mirrors</a> 用自己的账号登陆，获取属于自己的加速镜像）</p><p>得到的格式是这样的：<a href="https://xxxxxxxx.mirror.aliyuncs.com/" target="_blank" rel="noopener">https://xxxxxxxx.mirror.aliyuncs.com/</a></p><h2 id="关于-qb"><a href="#关于-qb" class="headerlink" title="关于 qb"></a>关于 qb</h2><p>armbian 用小钢炮的配置来建立 qb 容器的话，有一堆的问题，这里我改了一些内容，自己试了几次，应该没什么大问题了。使用的是 4.2.1，想用新的可以去 dockerhub 看→<a href="https://hub.docker.com/r/80x86/qbittorrent/tags" target="_blank" rel="noopener">传送门</a></p><figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line"><span class="attribute">IMAGE_NAME</span>=80x86/qbittorrent:4.2.1-arm64</span><br><span class="line"><span class="comment">#下面我是将 /media/one 作为下载路径，你自己修改</span></span><br><span class="line"><span class="attribute">DOWNLOAD_PATH</span>=/media/one/</span><br><span class="line"><span class="attribute">QBT_AUTH_SERVER_ADDR</span>=<span class="string">"127.0.0.1"</span></span><br><span class="line"><span class="comment">#下面我是将 /media/one/lib/qb 作为配置文件的路径，你自己修改</span></span><br><span class="line"><span class="attribute">QBCONF</span>=/media/one/lib/qb</span><br><span class="line">docker <span class="builtin-name">run</span> -d --name qbittorrent \</span><br><span class="line">        -e <span class="attribute">WEB_PORT</span>=8080 \</span><br><span class="line">        -e <span class="attribute">BT_PORT</span>=8998 \</span><br><span class="line">        -e <span class="attribute">QBT_AUTH_SERVER_ADDR</span>=<span class="variable">$QBT_AUTH_SERVER_ADDR</span> \</span><br><span class="line">        --restart unless-stopped \</span><br><span class="line">        --network host \</span><br><span class="line">        -v <span class="variable">$QBCONF</span>/.config/qBittorrent:<span class="built_in">/config </span>\</span><br><span class="line">        -v <span class="variable">$QBCONF</span>/.local/share/data/qBittorrent:/data \</span><br><span class="line">        -v <span class="string">"<span class="variable">$DOWNLOAD_PATH</span>"</span>:/downloads \</span><br><span class="line">        -v <span class="string">"<span class="variable">$DOWNLOAD_PATH</span>"</span>:<span class="string">"<span class="variable">$DOWNLOAD_PATH</span>"</span> \</span><br><span class="line">        --mount <span class="attribute">type</span>=tmpfs,destination=/tmp \</span><br><span class="line">        <span class="variable">$&#123;IMAGE_NAME&#125;</span></span><br></pre></td></tr></table></figure><p>将上面这堆在终端中输入后，到 portainer 中查看日志。</p><p><img src="/img/2020/container.jpg" alt="container"></p><p>如果启动成功，最后会出现一个地址，如果不成功，也可以看看具体出现什么问题。</p><p><img src="/img/2020/qb启动成功.jpg" alt="qb启动成功"></p><p>比较常见的问题是，docker 对文件夹没有读写权限。简单粗暴解决方案，给予 777 权限。先在 portainer 中停止 qb 容器，然后在终端执行下面的命令。</p><figure class="highlight perl"><table><tr><td class="code"><pre><span class="line"><span class="keyword">chmod</span> <span class="number">777</span> -R $QBCONF</span><br><span class="line"><span class="keyword">chmod</span> <span class="number">777</span> -R $DOWNLOAD_PATH</span><br></pre></td></tr></table></figure><p>然后再去启动容器。按理应该就可以了。</p>]]></content>
     
@@ -454,24 +478,6 @@
       &lt;p&gt;玩客云能做什么？1、下载迅雷可以下载的内容。2、当私人网盘来使用，出门在外时，也可访问家中硬盘中的文件。&lt;/p&gt;
 &lt;p&gt;那它有什么缺点？最大的缺点是，会不停往硬盘存东西。因此会加大硬盘损耗，以及占用带宽。&lt;/p&gt;
 &lt;p&gt;下面是关于玩客云，个人收集的一些资料。&lt;/p&gt;
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>小钢炮又被折腾坏记录，最终成功用上 zsh</title>
-    <link href="https://powersee.github.io/2019/10/nano-zsh/"/>
-    <id>https://powersee.github.io/2019/10/nano-zsh/</id>
-    <published>2019-10-26T11:31:39.000Z</published>
-    <updated>2020-02-23T05:56:18.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>刚才给小钢炮安装了 zsh ，这个过程还是有点复杂的，不过好在都能找到教程。</p><a id="more"></a><h2 id="1、先去看灯大的这个文章"><a href="#1、先去看灯大的这个文章" class="headerlink" title="1、先去看灯大的这个文章"></a>1、先去看灯大的这个文章</h2><p><a href="https://gitee.com/8ox86/phicomm-n1-issue/wikis/entware%20guide?sort_id=1368793" target="_blank" rel="noopener">https://gitee.com/8ox86/phicomm-n1-issue/wikis/entware%20guide?sort_id=1368793</a></p><p>让我们可以用 opkg2 来安装其它应用</p><h2 id="2、安装-zsh-与配置集"><a href="#2、安装-zsh-与配置集" class="headerlink" title="2、安装 zsh 与配置集"></a>2、安装 zsh 与配置集</h2><p>于是我就安装了 zsh 以及 oh my zsh 为的就是用这个自动补全插件 zsh-autosuggestions</p><figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line">opkg2 <span class="keyword">install</span> zsh</span><br></pre></td></tr></table></figure><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sh -c <span class="string">"<span class="variable">$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)</span>"</span></span><br></pre></td></tr></table></figure><figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">git clone git:<span class="regexp">//gi</span>thub.com<span class="regexp">/zsh-users/</span>zsh-autosuggestions <span class="variable">$ZSH_CUSTOM</span><span class="regexp">/plugins/</span>zsh-autosuggestions</span><br></pre></td></tr></table></figure><h2 id="3、遇坑部分，无法-ssh-连接"><a href="#3、遇坑部分，无法-ssh-连接" class="headerlink" title="3、遇坑部分，无法 ssh 连接"></a>3、遇坑部分，无法 ssh 连接</h2><p>顺利地安装成功了，然后，我想将 zsh 设置为默认的 shell ，使用 chsh -s /opt/bin/zsh 却失败了。</p><p>然后网上找其它方法，看到有个是修改 /etc/passwd 这个文件，第一行就是 root 用户的默认 shell 路径，于是用 vim 修改这个文件，改为 zsh 的路径，然后退出，再重新 ssh 连接，就登录不了了……</p><p><img src="/img/2019/can&#39;t login after edit the passwd.jpg" alt=""></p><p>本想这次扑街了，又得重装系统了，可惜 qb 的配置没有备份……</p><h2 id="4、想办法备份"><a href="#4、想办法备份" class="headerlink" title="4、想办法备份"></a>4、想办法备份</h2><p>于是想办法看看能不能备份出来，不然重装系统后所有记录都没了。想到 qb 的配置文件是放在 /var/lib/qbittorrent 这个文件夹里的，之前我是 ssh 之后，把复制到自己的硬盘的。现在无法 ssh，得另寻方法。</p><p>于是想到小钢炮的 web 界面有个定时任务的功能 Scheduled Tasks ，在这个我也可以执行命令啊，那我在这里备份这个文件夹不就行了。</p><p>同时灯大的 wiki 里也有写备份 qb 和 tr 的方法，他是用 tar 来打包这个文件夹的，这种可能更好吧。</p><p>于是我添加了这条任务，每十五分钟就将这两个文件夹打包备份到我这个叫 one 的硬盘里。</p><figure class="highlight crystal"><table><tr><td class="code"><pre><span class="line"><span class="number">15</span> * * * * tar cvf /media/one/qb.tar /var/<span class="class"><span class="keyword">lib</span>/<span class="title">qbittorrent</span> &amp;&amp; <span class="title">tar</span> <span class="title">cvf</span> /<span class="title">media</span>/<span class="title">one</span>/<span class="title">tr</span>.<span class="title">tar</span> /<span class="title">var</span>/<span class="title">lib</span>/<span class="title">transmission</span></span></span><br></pre></td></tr></table></figure><h2 id="5、曲线救国"><a href="#5、曲线救国" class="headerlink" title="5、曲线救国"></a>5、曲线救国</h2><p>所以这样打包好后，就可以重装系统了嘛。不过我突然想到，既然这里可以执行命令，那我在这里修改 passwd 这个文件，改回去不就行了？</p><p>于是我将 passwd 这个文件的内容，输出到硬盘里</p><figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">cat <span class="regexp">/etc/</span>passwd &gt; <span class="regexp">/media/</span>one<span class="regexp">/pass.txt</span></span><br></pre></td></tr></table></figure><p>接着我用 filebrowser 修改这个文档里面的内容，再把它输入回 passwd</p><figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">cat <span class="regexp">/media/</span>one<span class="regexp">/pass.txt &gt; /</span>etc<span class="regexp">/passwd</span></span><br></pre></td></tr></table></figure><p>完成，再来 ssh ，就成功登录上了。</p><p>但是我的 zsh 还是没办法设置为默认 shell ……</p><p>怎么办呢？</p><h2 id="6、用上-zsh"><a href="#6、用上-zsh" class="headerlink" title="6、用上 zsh"></a>6、用上 zsh</h2><p>我想到，当我们用 ssh 连接上小钢炮的 sh 时，它会去执行 /etc/prifile 这个文件里面的内容，那我直接在这里面添加一行</p><figure class="highlight ebnf"><table><tr><td class="code"><pre><span class="line"><span class="attribute">zsh</span></span><br></pre></td></tr></table></figure><p>我将它放在环境变量之后，在 13 行这个位置。这样之后用 ssh 连接，系统就会先启动 sh ，然后读取 /etc/prifile 的内容，读到 13 行，执行了 zsh 这个命令，然后 shell 就自动切换到 zsh 了。</p><p>由于这个过程很快，我们不可能看到，所以一连接上看到的就是 zsh 了。完美！</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;刚才给小钢炮安装了 zsh ，这个过程还是有点复杂的，不过好在都能找到教程。&lt;/p&gt;
     
     </summary>
     
