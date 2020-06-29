@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://powersee.github.io/"/>
-  <updated>2020-06-28T06:06:34.785Z</updated>
+  <updated>2020-06-29T14:01:57.593Z</updated>
   <id>https://powersee.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>蜗牛星际驱动核显，使用 jellyfin 和 qbittorrent</title>
+    <link href="https://powersee.github.io/2020/06/xingjiwoniu/"/>
+    <id>https://powersee.github.io/2020/06/xingjiwoniu/</id>
+    <published>2020-06-29T02:14:09.000Z</published>
+    <updated>2020-06-29T14:01:57.593Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近入手了一台蜗牛星际，这里记录一些自己踩过的坑。</p><h2 id="驱动核显"><a href="#驱动核显" class="headerlink" title="驱动核显"></a>驱动核显</h2><h3 id="如何替换-lzma-文件"><a href="#如何替换-lzma-文件" class="headerlink" title="如何替换 lzma 文件"></a>如何替换 lzma 文件</h3><p>需要用到 pe ，这里我用的是 wepe</p><p>将pe系统写入U盘，插入蜗牛的usb口，连接键盘鼠标，开机一直按 del 键，进入bios，在最右边选择U盘，进入 pe。</p><p>之后打开桌面的 DG ，选中引导所在的硬盘或者U盘（我的话是将引导放在16G的 msata 硬盘里的）。选择分区1，点右边的浏览文件，可以看到里面有两个文件 <code>extra.lzma</code> 和 <code>extra2.lzma</code> </p><p><img src="\img\2020\驱动核显需要替换的文件.jpg" alt="驱动核显需要替换的文件"></p><p>将这两个文件替换为网盘中的那两个即可。</p><p>网盘：<a href="http://veger.ys168.com/" target="_blank" rel="noopener">http://veger.ys168.com/</a></p><p>可以右键然后选择【复制文件到当前分区】。</p><p>然后关机，拔掉 pe U盘，再次进入群晖系统，应该就能驱动核显了。</p><h3 id="如何判断已经驱动核显了？"><a href="#如何判断已经驱动核显了？" class="headerlink" title="如何判断已经驱动核显了？"></a>如何判断已经驱动核显了？</h3><p>用 ssh 连接群晖，输入</p><figure class="highlight jboss-cli"><table><tr><td class="code"><pre><span class="line"><span class="keyword">ls</span> <span class="string">/dev/dri/</span></span><br></pre></td></tr></table></figure><p>如果能够看到 renderD128 就是驱动了。</p><h2 id="搭建媒体仓库——-jellyfin"><a href="#搭建媒体仓库——-jellyfin" class="headerlink" title="搭建媒体仓库—— jellyfin"></a>搭建媒体仓库—— jellyfin</h2><p>相比于 plex 和 emby ，jellyfin 的优势是调用硬件转码不用钱。</p><p>这里我是使用 docker 来安装的，容器建立时需要有这个命令，才能调用核显</p><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">--device=/dev/dri/renderD128</span><br></pre></td></tr></table></figure><h2 id="BT下载器——qbittorent"><a href="#BT下载器——qbittorent" class="headerlink" title="BT下载器——qbittorent"></a>BT下载器——qbittorent</h2><p>用手动安装的 qb ，没法正常在 chrome 浏览器打开，只能在隐身模式下才能打开。所以我采用 docker   的方式来安装。</p><p>一开始老是没法设置好 /config 映射到宿主机的文件夹的权限，导致 qb 的 web 界面打开后残缺，而且也没法登录。明明我已经把映射的文件夹权限设置为 everyone 了，还是不行。。。</p><p>最后发现最简单的应该是不管 /config 了，只设置 /downloads 的映射就行。就可以正常使用 qb 。</p><p>但是，我不喜欢这样的方式，我还是喜欢把 /config 映射到宿主机的文件夹中。所以我采用命令行的方式来建立 docker 容器。</p><p>需要先确认文件夹的权限，也可以</p><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">chmod -R 777 /xxx</span><br></pre></td></tr></table></figure><p>来更改文件夹 xxx 的权限。</p><p>如果想要 qb 能连接 ipv6 用户的话，得使用 </p><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">--network host</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;最近入手了一台蜗牛星际，这里记录一些自己踩过的坑。&lt;/p&gt;
+&lt;h2 id=&quot;驱动核显&quot;&gt;&lt;a href=&quot;#驱动核显&quot; class=&quot;headerlink&quot; title=&quot;驱动核显&quot;&gt;&lt;/a&gt;驱动核显&lt;/h2&gt;&lt;h3 id=&quot;如何替换-lzma-文件&quot;&gt;&lt;a href=&quot;#
+      
+    
+    </summary>
+    
+    
+      <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
+    
+      <category term="设备" scheme="https://powersee.github.io/tags/%E8%AE%BE%E5%A4%87/"/>
+    
+      <category term="nas" scheme="https://powersee.github.io/tags/nas/"/>
+    
+  </entry>
   
   <entry>
     <title>关于咪咕 kindle 打卡版</title>
@@ -464,30 +492,6 @@
     
     </summary>
     
-    
-  </entry>
-  
-  <entry>
-    <title>如何让 qBittorrent 在 Linux 上连接更多的 tracker</title>
-    <link href="https://powersee.github.io/2019/11/qb-more-tracker/"/>
-    <id>https://powersee.github.io/2019/11/qb-more-tracker/</id>
-    <published>2019-11-10T09:02:48.000Z</published>
-    <updated>2020-02-23T05:56:18.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>对于 Linux 上的 qBittorrent，它不同于我们在 Windows 和 Mac 上的桌面版，我们只能通过 web 来管理，基本的功能都一样，但是有一个问题比较麻烦，就是无法打开<strong>高级设置</strong>里的【总是向所有等级的 Tracker 汇报】。</p><a id="more"></a><p>❗️❗️注意，qb 4.2 以及之后的版本，webUI 已经可以管理<strong>高级设置</strong>了，所以想简单的，可以升级版本即可。我个人的建议也是直接升级即可，不过如果因为有特殊原因没法升级，可以继续看下面的方法折腾。</p><p>这对于我们下载 BT 任务，影响就比较大了。</p><p>但是在研究一番之后，我还是成功的开启了这个功能。</p><p>我的思路是这样的，Linux 上的 qb，它有一个配置文件：<code>qBittorrent.conf</code> ，我通过修改这个文件，应该也是可以开启这个功能的。但是，我不知道添加什么语句，才能开启。所以我想到看一下我电脑的 qb 配置文件，来参考一下。</p><p>那么我先查看一下我 Mac 上的配置文件：<code>qBittorrent.ini</code> ，它在用户目录下的隐藏文件夹<code>.config</code>里面，在这个文件里面，我找到了这一句</p><figure class="highlight moonscript"><table><tr><td class="code"><pre><span class="line">Advanced\AnnounceToAllTrackers=<span class="literal">true</span></span><br></pre></td></tr></table></figure><p>它是放在 <code>[Preferences]</code>下面的，那么按理，我在 Linux 上也添加这一句，就可以开启这个功能了。</p><p>Linux 上可能不同的发行版本，它配置文件的位置有可能不同，想我的 N1 小钢炮，它的配置文件是在这的：</p><figure class="highlight crystal"><table><tr><td class="code"><pre><span class="line">/var/<span class="class"><span class="keyword">lib</span>/<span class="title">qbittorrent</span>/.<span class="title">config</span>/<span class="title">qBittorrent</span>/<span class="title">qBittorrent</span>.<span class="title">conf</span></span></span><br></pre></td></tr></table></figure><p>而我之前用脚本安装的 qb ，它的配置文件是在 home 目录下的某个位置，而如果在 docker 上面，它在容器中的位置可能也不一样吧。所以如果找不到，可以全局搜索一下：</p><figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line"><span class="builtin-name">find</span> / -name qBittorrent.conf</span><br></pre></td></tr></table></figure><p>找到之后，用 vim 编辑这个文件，添加</p><figure class="highlight moonscript"><table><tr><td class="code"><pre><span class="line">Advanced\AnnounceToAllTrackers=<span class="literal">true</span></span><br></pre></td></tr></table></figure><p>保存，重启 qb（不会的话就重启机器）</p><p>然后就成功了，此时 qb 在下 BT 任务时，就可以连接多个 tracker 了。</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;对于 Linux 上的 qBittorrent，它不同于我们在 Windows 和 Mac 上的桌面版，我们只能通过 web 来管理，基本的功能都一样，但是有一个问题比较麻烦，就是无法打开&lt;strong&gt;高级设置&lt;/strong&gt;里的【总是向所有等级的 Tracker 汇报】。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
-    
-      <category term="下载" scheme="https://powersee.github.io/tags/%E4%B8%8B%E8%BD%BD/"/>
-    
-      <category term="BT" scheme="https://powersee.github.io/tags/BT/"/>
     
   </entry>
   
