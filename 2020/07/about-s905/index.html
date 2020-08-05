@@ -168,6 +168,13 @@
 <p>装好打开这个软件，确认，就可以重启进入 Linux 系统。后面的教程和之前的 N1 教程一模一样的，可以去看之前的文章就行。</p>
 <p><a href="/2020/03/n1-armbian-server/">打造最具性价比服务器 N1-armbian</a></p>
 <p>有一个缺点就是，没法驱动 wifi ，我试过里面好几个 dtb ，都没法，尝试用其它版本的固件，也不行，暂时无解，如果有朋友知道怎么解决欢迎告知我一下，可以用下方的邮箱，或者其它平台的私信、留言都可以，感谢。</p>
+<p>视频发出后，感谢网友 @<a href="https://space.bilibili.com/53153092" target="_blank" rel="noopener">栾__</a> 的回复</p>
+<blockquote>
+<p>wifi可以用544的镜像，后来的都没有驱动</p>
+</blockquote>
+<p>于是我通过搜索找到了这篇帖子</p>
+<p><a href="S905/S905X Armbian安装WiFi驱动8189ETV的解决方法">S905/S905X Armbian安装WiFi驱动8189ETV的解决方法</a></p>
+<p>在里面下载了 5.44 的镜像，将 dtb 文件夹里面的 meson-gxbb-p201.dtb 复制到根目录，改名为 dtb.img。</p>
 
   </article>
   <aside class="table-content" id="site-toc">
@@ -272,7 +279,7 @@
 
 <div class="bottom-bar">
   <div class="bottom-bar-left">
-    <a href="javascript:void(0);" data-enable="false">
+    <a href="/2020/08/about-zyjx/" data-enable="true">
       <i class="fa fa-arrow-left"></i>
     </a>
     <a href="/2020/06/xingjiwoniu/" data-enable="true">
