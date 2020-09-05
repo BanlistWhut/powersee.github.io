@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://powersee.github.io/"/>
-  <updated>2020-08-10T13:29:30.646Z</updated>
+  <updated>2020-09-05T10:26:31.591Z</updated>
   <id>https://powersee.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>搭建自动签到平台——qiandao</title>
+    <link href="https://powersee.github.io/2020/09/qiandao-docker/"/>
+    <id>https://powersee.github.io/2020/09/qiandao-docker/</id>
+    <published>2020-09-05T09:37:26.000Z</published>
+    <updated>2020-09-05T10:26:31.591Z</updated>
+    
+    <content type="html"><![CDATA[<p>Github 项目：<a href="https://github.com/AragonSnow/qiandao" target="_blank" rel="noopener">https://github.com/AragonSnow/qiandao</a></p><p>本文主要介绍 docker 安装法</p><h3 id="一、导入镜像"><a href="#一、导入镜像" class="headerlink" title="一、导入镜像"></a>一、导入镜像</h3><p>直接拉取镜像，可以使用下面这行命令</p><figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="attribute">docker</span> pull asdaragon/qiandao</span><br></pre></td></tr></table></figure><p>拉取不了镜像的，可以使用我放到网盘中的镜像 <a href="http://pan-yz.chaoxing.com/share/info/b63ab64054fc6e0a" target="_blank" rel="noopener">超星网盘地址</a></p><p>百度网盘链接：<a href="https://pan.baidu.com/s/1CteLUgJQR_Rz7Sh3G4E0Pw" target="_blank" rel="noopener">https://pan.baidu.com/s/1CteLUgJQR_Rz7Sh3G4E0Pw</a><br>提取码：6666</p><p>下载后是一个 tar 结尾的文件，可以通过 portainer 将它导入机器里。如果你的机器里没有装 portainer ，就得在命令行中导入了。可以通过 smb 、ftp 、scp 等方式，将文件传入到机器里，之后，在终端中，cd 到文件所在的目录。</p><figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line">docker load -<span class="selector-tag">i</span> qiandao.tar</span><br></pre></td></tr></table></figure><p>就可以导入镜像。</p><h3 id="二、创建和启动容器"><a href="#二、创建和启动容器" class="headerlink" title="二、创建和启动容器"></a>二、创建和启动容器</h3><ol><li>在 portainer 中创建容器</li></ol><p><img src="\img\2020\创建容器.png" alt="创建容器"></p><ol start="2"><li>在群晖中创建容器</li></ol><p>打开【docker】图标，【映像】，选择 qiandao ，【启动】，【高级设置】</p><p><img src="\img\2020\群晖创建qiandao容器.png" alt="群晖创建qiandao容器">设置一下端口就行，之后 【下一步】，【应用】。</p><h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>最简单的使用方法是用别人写好的模板，然后根据要求，看是要 cookie ，还是要账号密码，根据要求给对应的内容即可。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;Github 项目：&lt;a href=&quot;https://github.com/AragonSnow/qiandao&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://github.com/AragonSnow/qiandao&lt;/a&gt;&lt;/p&gt;
+&lt;p
+      
+    
+    </summary>
+    
+    
+      <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
+    
+      <category term="设备" scheme="https://powersee.github.io/tags/%E8%AE%BE%E5%A4%87/"/>
+    
+      <category term="docker" scheme="https://powersee.github.io/tags/docker/"/>
+    
+  </entry>
   
   <entry>
     <title>对于掌阅精选的一些研究</title>
@@ -481,29 +509,6 @@
       <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
     
       <category term="设备" scheme="https://powersee.github.io/tags/%E8%AE%BE%E5%A4%87/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>使用 syncthing 同步多台设备的文件</title>
-    <link href="https://powersee.github.io/2019/11/syncthing-better/"/>
-    <id>https://powersee.github.io/2019/11/syncthing-better/</id>
-    <published>2019-11-30T10:13:05.000Z</published>
-    <updated>2020-02-23T05:56:18.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>又来折腾 syncthing 了，毕竟买了个 10T 的大硬盘，得好好利用起来才行。</p><blockquote><p>syncthing 是一个跨平台、开源的数据同步工具。它可以让你的文件夹，在多台设备保持同步。</p></blockquote><a id="more"></a><h2 id="Syncthing-支持平台"><a href="#Syncthing-支持平台" class="headerlink" title="Syncthing 支持平台"></a>Syncthing 支持平台</h2><p>Syncthing 官方支持 Linux、Windows、OS X、FreeBSD、Solaris 等系统，并且有第三方的 <a href="https://geo.itunes.apple.com/cn/app/fsync/id964427882?mt=8&amp;at=1000l7mq&amp;ct=appinnpost" target="_blank" rel="noopener">iOS</a>、<a href="https://play.google.com/store/apps/details?id=com.nutomic.syncthingandroid" target="_blank" rel="noopener">Android</a> 应用。</p><p>所以利用它，我可以让我手机（Android）的文件，同步到电脑（macOS，Windows）。同时它还可以在 Linux 上用，所以我可以把文件同步到服务器上，也可以同步到刷了<code>小钢炮系统</code>的斐讯 N1 上（系统自带 syncthing）。甚至我可以这些设备全部都使用，确保我的某个文件夹，同步到所有的设备上。（虽然现在没有重要到这样的文件……）</p><p>总之，它是一款很强大的软件，并且还免费开源，很了不起。其实我一年半之前就折腾过了 <a href="/2018/05/syncthing/">之前的文章</a> ，不过说来惭愧，当时折腾了一阵子，就没有再使用它了。因为当时的版本是 0.14 ，很多功能还不完善，并且在 Mac 上面，要使用只能<code>二进制执行文件</code>，并没有做出一个 app ，感觉不太方便。不过我的手机上面一直都有保留着它，即使不怎么使用了。</p><h2 id="现在的变化"><a href="#现在的变化" class="headerlink" title="现在的变化"></a>现在的变化</h2><p>时间过去这么久，这个应用现在更新了很多次，变得越来越好用了。例如：</p><ol><li>有 docker 版本，Linux 上安装起来更加方便</li><li>Windows 和 macOS 都有了 GUI 版本，使用门槛降低</li><li>同步的时候可以选择 仅发送，（而不接收，可以防止对方误操作而导致己方的文件也丢失）</li></ol><p>可能其它的功能我还没有用到，所以并不能更好地体验这个应用，不过就上面这几点，我就挺满意了。</p><h2 id="开始安装"><a href="#开始安装" class="headerlink" title="开始安装"></a>开始安装</h2><p>在其官网： <a href="https://syncthing.net/" target="_blank" rel="noopener">syncthing.net</a> 上面可以看到下载链接，不过都是放在 GitHub 上的，可能得用代理才能下载。</p><ul><li><strong>Windows</strong> tray utility, filesystem watcher &amp; launcher: <a href="https://github.com/canton7/SyncTrayzor/releases/latest" target="_blank" rel="noopener">SyncTrayzor</a></li><li><strong>macOS</strong> application bundle: <a href="https://github.com/syncthing/syncthing-macos/releases/latest" target="_blank" rel="noopener">syncthing-macos</a></li><li><strong>Cross-platform</strong> GUI wrapper: <a href="https://github.com/syncthing/syncthing-gtk/releases/latest" target="_blank" rel="noopener">Syncthing-GTK</a></li></ul><p>安卓手机可以去 Google play 搜索。</p><p>我这里主要介绍用 docker 将它装在服务器上面。</p><figure class="highlight haml"><table><tr><td class="code"><pre><span class="line">docker run \</span><br><span class="line">  -<span class="ruby">-name=syncthing \</span></span><br><span class="line"><span class="ruby">  -e PUID=<span class="number">1000</span> \</span></span><br><span class="line"><span class="ruby">  -e PGID=<span class="number">1000</span> \</span></span><br><span class="line"><span class="ruby">  -e TZ=Asia/Shanghai \</span></span><br><span class="line"><span class="ruby">  -e UMASK_SET=<span class="number">022</span> \</span></span><br><span class="line"><span class="ruby">  -p <span class="number">8384</span><span class="symbol">:</span><span class="number">8384</span> \</span></span><br><span class="line"><span class="ruby">  -p <span class="number">22000</span><span class="symbol">:</span><span class="number">22000</span> \</span></span><br><span class="line"><span class="ruby">  -p <span class="number">21027</span><span class="symbol">:</span><span class="number">21027</span>/udp \</span></span><br><span class="line"><span class="ruby">  -v /home/syncthing/appdata/<span class="symbol">config:</span>/config \</span></span><br><span class="line"><span class="ruby">  -v /home/syncthing/<span class="symbol">data1:</span>/data1 \</span></span><br><span class="line"><span class="ruby">  -v /home/syncthing/<span class="symbol">data2:</span>/data2 \</span></span><br><span class="line"><span class="ruby">  --restart <span class="keyword">unless</span>-stopped \</span></span><br><span class="line"><span class="ruby">  linuxserver/syncthing</span></span><br></pre></td></tr></table></figure><p>这里开放的 webUI 端口为 8384，所以启动成功后到浏览器输入 <code>IP:8384</code> 即可进入管理界面。因为我们是在服务器上使用，一定要设置用户，不然别人随便输入你的 IP:8384 就可以来管理你的设备了，很不安全。如果是在家里使用的话，例如群晖，或者和我一样使用 小钢炮 ，那不用设置也没多大问题。</p><h2 id="添加用户"><a href="#添加用户" class="headerlink" title="添加用户"></a>添加用户</h2><p>这里的添加用户，可以理解成和微信的添加好友相似。两台设备需要添加好友了才能互相发送文件，而要添加可以使用 <strong>二维码</strong> ，也可以使用 <strong>ID</strong> 。这里我以服务器作为被添加的设备。</p><p>点击右上角的 【操作】➡️【显示 ID 】即可看到。如果手机想添加这台设备，打开应用后，向左滑来到设备这里，点右上角的 ➕ ，然后点击二维码就可以扫码了。如果是电脑，就只能用 ID 的方式来添加了。点右下角的【添加远程设备】然后输入服务器的 ID 即可。</p><h2 id="同步文件"><a href="#同步文件" class="headerlink" title="同步文件"></a>同步文件</h2><p>这里我以手机文件同步到服务器为例。在手机上向右滑来到左边的 文件夹 这里。点击右上角的 ➕ 。文件夹标签可以随便起，目录选择要同步的文件夹，要同步到哪台设备，就把那台设备的开关打开。这样手机端的设置就完成了。</p><p>然后过一会服务器的就会收到通知，我们可以在浏览器的 webUI 里看到，提示某某人分享一个某某文件夹给你，是否接受。接受时可以设置要把这个文件夹放在哪里。</p><p>这样设置好后，就只需要等待了，手机会慢慢地把文件上传到服务器里。因为这个应用是使用 端–端 加密的，所以不用怕被中间人知道你在传输什么，不过可能也是因为这个原因吧，感觉传输的速度不是那么快，最高好像只能达到 2M/s 。</p><p>当然这个过程也是可以反过来的，把服务器的文件同步到手机上。</p><p>我本来是打算尝试一下，把服务器里 qbittorrent 下载好的文件，利用这个应用取回手机。但是，速度实在太慢了，虽然最大时能有 2M/s ，但是大部分时间都是几百 k 的速度。如果设置成服务器下载完，让它同步到我的小钢炮里面就还行，毕竟两台设备都是 24 小时开机。但是手机就没必要了，非要把文件取回手机，我还是选择开启一个临时的 HTTP 服务。</p><h2 id="暂时我的使用方案"><a href="#暂时我的使用方案" class="headerlink" title="暂时我的使用方案"></a>暂时我的使用方案</h2><p>我目前的使用有两个</p><ol><li>把手机的微信下载内容，同步到小钢炮。</li><li>把手机里用 vue 这个软件拍的视频，同步到电脑（用于在电脑剪辑）</li></ol><p>以后想到其它玩法再来更新。</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;又来折腾 syncthing 了，毕竟买了个 10T 的大硬盘，得好好利用起来才行。&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;syncthing 是一个跨平台、开源的数据同步工具。它可以让你的文件夹，在多台设备保持同步。&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-    
-      <category term="服务器" scheme="https://powersee.github.io/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
     
   </entry>
   
