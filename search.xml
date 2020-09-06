@@ -1,9 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[在 N1、我家云搭建 discuz 论坛]]></title>
+    <url>%2F2020%2F09%2Fdiscuz-in-N1%2F</url>
+    <content type="text"><![CDATA[前言为了更好地讲解，如何为 qiandao 这个全自动签到平台，制作签到模板，我打算搭建一个 discuz 论坛来演示。本次使用的设备是 斐讯N1，因为之前把它刷成 Ubuntu 系统，再装上 乘风大佬 制作的导航（详情请看：打造最具性价比服务器 N1-armbian），所以现在它是一个 lnmp 环境，添加多一个网站也很容易。 当然，用 我家云、S905电视盒子 也可以，这两个我之前也介绍过怎么在上面安装 armbian 并使用 乘风大佬 制作的导航。 下面开始具体操作流程 一、下载网站源码https://gitee.com/3dming/DiscuzL/attach_files 官方的源码放在 gitee 上面，下载需要有账号。为了方便其他人下载，我将最新版的下载后传到网盘中了。网盘：http://veger.ys168.com/ 在【Web相关】文件夹中 二、上传到设备内需要用到的是压缩包中的 upload 文件夹，你可以选择在电脑上解压，然后再传入 N1，可以用 smb 、ftp、scp 等方式传输。 也可以直接将压缩包先传到 N1 里面。然后使用 unzip 命令解压（建议先建立一个空文件夹，将压缩包放里面），之前再用 mv 命令将 upload 文件夹移动到你想要放的位置。这里顺便改一下文件夹名。 mv upload /opt/wwwroot/discuz 三、修改 nginx 的配置文件先进入配置所在的位置 cd /opt/etc/nginx/vhost 把 h5ai 的配置文件复制一份给 discuz 用，然后手动编辑这份配置 cp h5ai.conf discuz.confvim discuz.conf 我将它修改为这样 server &#123; listen 8188; server_name localhost; root /opt/wwwroot/discuz/; index index.html index.php /_h5ai/public/index.php; include /opt/etc/nginx/conf/php-fpm.conf; #otherconf &#125; 主要就是修改第二和第四行 listen 8188; #端口可以自己设置，但是不能和其它重复server_name localhost; #有域名的话是在这里设置root /opt/wwwroot/discuz/; # 网站源码所在的文件夹路径 改好后，让 Nginx 重新读取一下配置 /opt/sbin/nginx -s reload 四、安装然后你到浏览器打开 N1 的 IP:8188 就可以看到 discuz 的安装界面。 但是你有可能会碰到提示不可写的情况 这时就需要修改权限了 chmod -R 777 /opt/wwwroot/discuz 然后再刷新一下网页应该就可以了 接着来到这一步，数据库密码改为 123456 然后就可以按下一步安装了。 这样应该就可以顺利使用了。 五、卸载删除 nginx 配置和网站源码 rm /opt/etc/nginx/vhost/discuz.confrm -rf /opt/wwwroot/discuz 删除数据库 /opt/bin/mysql -uroot -p# 输入密码 123456drop database ultrax; 完成。]]></content>
+      <tags>
+        <tag>Linux</tag>
+        <tag>网络</tag>
+        <tag>服务器</tag>
+        <tag>设备</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[搭建自动签到平台——qiandao]]></title>
     <url>%2F2020%2F09%2Fqiandao-docker%2F</url>
-    <content type="text"><![CDATA[Github 项目：https://github.com/AragonSnow/qiandao 本文主要介绍 docker 安装法 一、导入镜像直接拉取镜像，可以使用下面这行命令 docker pull asdaragon/qiandao 拉取不了镜像的，可以使用我放到网盘中的镜像 超星网盘地址 百度网盘链接：https://pan.baidu.com/s/1CteLUgJQR_Rz7Sh3G4E0Pw提取码：6666 下载后是一个 tar 结尾的文件，可以通过 portainer 将它导入机器里。如果你的机器里没有装 portainer ，就得在命令行中导入了。可以通过 smb 、ftp 、scp 等方式，将文件传入到机器里，之后，在终端中，cd 到文件所在的目录。 docker load -i qiandao.tar 就可以导入镜像。 二、创建和启动容器 在 portainer 中创建容器 在群晖中创建容器 打开【docker】图标，【映像】，选择 qiandao ，【启动】，【高级设置】 设置一下端口就行，之后 【下一步】，【应用】。 使用最简单的使用方法是用别人写好的模板，然后根据要求，看是要 cookie ，还是要账号密码，根据要求给对应的内容即可。]]></content>
+    <content type="text"><![CDATA[Github 项目：https://github.com/AragonSnow/qiandao 本文主要介绍 docker 安装法 一、导入镜像直接拉取镜像，可以使用下面这行命令 docker pull asdaragon/qiandao 拉取不了镜像的，可以使用我放到网盘中的镜像 超星网盘地址 百度网盘链接：https://pan.baidu.com/s/1CteLUgJQR_Rz7Sh3G4E0Pw提取码：6666 下载后是一个 tar 结尾的文件，可以通过 portainer 将它导入机器里。如果你的机器里没有装 portainer ，就得在命令行中导入了。可以通过 smb 、ftp 、scp 等方式，将文件传入到机器里，之后，在终端中，cd 到文件所在的目录。 docker load -i qiandao.tar 就可以导入镜像。 二、创建和启动容器 在 portainer 中创建容器 在群晖中创建容器 打开【docker】图标，【映像】，选择 qiandao ，【启动】，【高级设置】 设置一下端口就行，之后 【下一步】，【应用】。 三、使用服务器创建容器 要想进行下面的操作，需要有一个服务器，如果你没有的话， 点此链接注册充值 10 美元送 50 美元送的 50美元只有一个月的有效期。（所以不要省，开贵点的机器吧） 使用这家的服务器，是因为它可以随时的删除，不像其它的，一买就得一年。而且，这家还可以选择自动安装 docker ，又节省了一些时间。 点击左边的 billing 充值方式支持 支付宝 微信（但最少 10 美元） 充值好后 ，点右边那个 + 的圆圈 然后选择服务器的地区（日本和新加坡会比较快，不过有可能连接不上，选美国也可以。韩国好像是最近才有的，可以试试。） Server Type点 application ，里面就有 docker Server Size 就是服务器的配置，越高就越贵。（如果有赠送的 50 美元，那就选那个 40 美元的吧，反正你不花，下个月也没了） 把下面的 Enable IPv6 前面的 框 打钩✅（可以使我们下载时连接到更多的用户） 然后点击右下角的 deploy now 等待几分钟…… 就可以看到服务器部署好了，给了一个 ip 地址。 等待服务器装好系统，然后可以用 xshell 之类的工具，连接服务器。主要用到服务器的 ip ，用户名，密码。 连接服务器后，我们便可以在终端中拉取镜像 docker pull asdaragon/qiandao 建立容器 docker run -d --name qiandao -p 9527:80 asdaragon/qiandao 此时用的端口是 9527，然后在浏览器中输入 ip:9527，例如 132.123.22.33:9527 这样的格式，就可以访问签到平台。 使用服务器的好处是，你订阅公共模板应该不会出现什么问题。而已，你可以将你搭建的签到网站，分享给你的朋友，这样这个平台就可以多人使用。 使用最简单的使用方法是用别人写好的模板，然后根据要求，看是要 cookie ，还是要账号密码，根据要求给对应的内容即可。]]></content>
       <tags>
         <tag>Linux</tag>
         <tag>设备</tag>
@@ -389,8 +400,8 @@
     <url>%2F2018%2F06%2Finstall-wordpress-with-lnmp%2F</url>
     <content type="text"><![CDATA[#发现1.5正式版更新了，我自己也试了，所以现在把原来命令行里的 1.4 全部都换成 1.5 了 一，安装lnmp(Nginx/MySQL/PHP)环境 wget http://soft2.vpser.net/lnmp/lnmp1.5-full.tar.gz tar -zxvf lnmp1.5-full.tar.gz cd lnmp1.5-full ./install.sh 一路默认，虚拟机一个小时应该能安装好 之后就可以访问IP了 默认的访问目录为这个 /home/wwwroot/default 二，安装wordpress此时进入默认的访问目录的上一级 cd /home/wwwroot/ wget https://cn.wordpress.org/wordpress-4.9.4-zh_CN.tar.gz tar -zxvf wordpress-4.9.4-zh_CN.tar.gz mv default old mv wordpress default 此时应该就可以访问wordpress了 三，创建数据库 mysql -u root -p 输入密码，默认的话就是root create database wordpress; exit 四，给权限 chown -R 755 /home/wwwroot/ chown -R www:www /home/wwwroot/ 此时输入IP即可访问配置 wordpress]]></content>
       <tags>
-        <tag>服务器</tag>
         <tag>WordPress</tag>
+        <tag>服务器</tag>
       </tags>
   </entry>
   <entry>
