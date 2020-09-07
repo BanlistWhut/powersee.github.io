@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://powersee.github.io/"/>
-  <updated>2020-09-06T10:42:50.032Z</updated>
+  <updated>2020-09-06T18:44:24.535Z</updated>
   <id>https://powersee.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>为签到平台添加获取 Cookie 功能 GetCookies</title>
+    <link href="https://powersee.github.io/2020/09/GetCookies-for-qiandao/"/>
+    <id>https://powersee.github.io/2020/09/GetCookies-for-qiandao/</id>
+    <published>2020-09-06T18:09:51.000Z</published>
+    <updated>2020-09-06T18:44:24.535Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>以前使用 qiandao.today 的时候，我就一直使用 GetCookies 这个浏览器插件，没用它之前，我需要去打开特定的网站，按 F12 查找 cookie ，复制粘贴。有了它，我之前在网页中点两下就可以获取到 cookie ，并且还能自动填写到输入框中。</p><p>原项目地址：<a href="https://github.com/acgotaku/GetCookies" target="_blank" rel="noopener">https://github.com/acgotaku/GetCookies</a></p><p>现在这个插件已经被 chrome 下架，要使用只能手动安装。然而它默认情况下是只能给 qiandao.today 这个网站用的，我们自己的搭建的签到平台，是没法使用这个插件的。</p><p>通过 <a href="https://github.com/acgotaku/GetCookies/issues/2" target="_blank" rel="noopener">Github Issues</a> ，我找到了解决方案。</p><p>更改后项目：<a href="https://github.com/powersee/GetCookies" target="_blank" rel="noopener">https://github.com/powersee/GetCookies</a></p><h3 id="更改过程"><a href="#更改过程" class="headerlink" title="更改过程"></a>更改过程</h3><p>首先需要把插件下载到电脑，可以通过 git clone ，也可以直接 download 。之后需要修改两个地方：</p><p>·mainfest.json</p><p>将第 8 行的</p><figure class="highlight prolog"><table><tr><td class="code"><pre><span class="line"><span class="string">"matches"</span>: [ <span class="string">"https://qiandao.today/*"</span>]</span><br></pre></td></tr></table></figure><p>修改为自己的网站，如果有多个的话，可以使用 <code>,</code> 区分，例如</p><figure class="highlight prolog"><table><tr><td class="code"><pre><span class="line"><span class="string">"matches"</span>: [ <span class="string">"https://qiandao.powersee.top/*"</span>,<span class="string">"http://192.168.123.242:9527/*"</span>]</span><br></pre></td></tr></table></figure><p>·background.js</p><p>去掉第 3 行中判断网址是否包含 qiandao.today 的语句，即改为</p><figure class="highlight lua"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (changeInfo.<span class="built_in">status</span> === <span class="string">'loading'</span>) &#123;</span><br></pre></td></tr></table></figure><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>修改完成后，在浏览器中选择【扩展程序】，【加载已解压的扩展程序】，选择插件所在的文件夹即可。</p><p>判断插件有没有成功加载，可以通过查看 console 中有没有打印出 onload 来判断。</p><p>网站中一键获取 Cookie 效果如图</p><p><img src="\img\2020\getCookies.png" alt="getCookies"></p><hr><p>这次的排查过程挺特别的，之前我尝试过，直接将网址改为 * ，这样所有网站都可以使用这个插件，但结果发现没效果。</p><p>于是尝试改为配置局域网的网站，即</p><figure class="highlight css"><table><tr><td class="code"><pre><span class="line">192<span class="selector-class">.168</span>.*</span><br></pre></td></tr></table></figure><p>也没有效果……</p><p>想不出原因，就搁置了。今天装门下载了个 360 极速浏览器，来测试一下是不是修改后在 chrome 浏览器里面没效果，其它浏览器里就有呢？</p><p>一番折腾后发现，只有网址写完整，才有效果，可以在网址后用 * ，但是不能在网址中用。</p><figure class="highlight dts"><table><tr><td class="code"><pre><span class="line"><span class="symbol">http:</span><span class="comment">//192.168.123.242:9527/*   # 可</span></span><br><span class="line"><span class="symbol">http:</span><span class="comment">//192.168.123.*   # 不可</span></span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;以前使用 qiandao.today 的时候，我就一直使用 GetCookies 这个浏览器插件，没用它之前，我需要去打开特定的网站，按 F
+      
+    
+    </summary>
+    
+    
+      <category term="网络" scheme="https://powersee.github.io/tags/%E7%BD%91%E7%BB%9C/"/>
+    
+  </entry>
   
   <entry>
     <title>在 N1、我家云搭建 discuz 论坛</title>
@@ -35,9 +58,9 @@
     </summary>
     
     
-      <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
-    
       <category term="网络" scheme="https://powersee.github.io/tags/%E7%BD%91%E7%BB%9C/"/>
+    
+      <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
     
       <category term="服务器" scheme="https://powersee.github.io/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
     
@@ -495,26 +518,6 @@
       <category term="服务器" scheme="https://powersee.github.io/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
     
       <category term="BT" scheme="https://powersee.github.io/tags/BT/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>OMV 安装失败如何卸载</title>
-    <link href="https://powersee.github.io/2019/12/remove-omv/"/>
-    <id>https://powersee.github.io/2019/12/remove-omv/</id>
-    <published>2019-12-11T10:25:22.000Z</published>
-    <updated>2020-03-23T11:22:40.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>记录在 armbian 上安装 omv 失败的过程。</p><a id="more"></a><p>omv 好像不支持在 Debian bust 上面安装，我直接安装后报错了。然后也没法卸载，并且 apt 也没法用了，一用就会提示<code>E: 软件包 openmediavault-omvextrasorg 需要重新安装，但是我无法找到相应的安装文件。</code>苦恼。</p><p>最终解决方法：</p><ol><li><p><code>rm -rf /var/lib/dpkg/info/openmediavault-omvextrasorg*</code></p></li><li><p><code>sudo dpkg --remove --force-remove-reinstreq openmediavault-omvextrasorg</code></p><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">dpkg: 警告: 由于开启了 --force 选项，以下问题被忽略：</span><br><span class="line">dpkg: 警告: 该软件包现在的状态极为不妥；</span><br><span class="line">建议您在卸载它之前再重新安装一次</span><br><span class="line">(正在读取数据库 ... 系统当前共安装有 112651 个文件和目录。)</span><br><span class="line">正在卸载 openmediavault-omvextrasorg (5.1.9) ...</span><br></pre></td></tr></table></figure></li><li><p>之后再使用 apt 就不会出现问题了。</p></li></ol>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;记录在 armbian 上安装 omv 失败的过程。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
     
   </entry>
   
