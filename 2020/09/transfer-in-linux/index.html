@@ -6,12 +6,12 @@
   <meta name="author" content="Powersee" />
   
   
-  <title>归档: 2018/6 | Powersee的博客</title>
+  <title>如何将文件传输到另外一台 Linux 设备上 | Powersee的博客</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="Hexo, Theme-AD" />
+    <meta name="keywords" content="Linux," />
   
 
   
@@ -40,7 +40,7 @@
     welcome: {"enable":false,"interval":30},
     start_time: "2018-05-20",
     passwords: ["3f29e1b2b05f8371595dc761fed8e8b37544b38d56dfce81a551b46c82f2f56b", ],
-    is_post: false,
+    is_post: true,
     lock: false,
     author: "Powersee",
     share: {"weibo":true,"qq":true,"wechat":true},
@@ -148,54 +148,74 @@
 </nav>
 <div id="site-process"></div>
     <main>
-      <div class="timeline">
-  <h2 class="timeline-title">归档: 61篇</h2>
+      
+  <div class="passage">
+  <div class="passage-meta">
+    <span>
+      <i class="fa fa-calendar"></i>2020-09-23
+    </span>
+    
+    
+      <span>
+        | <i class="fa fa-unlock-alt"></i>UNLOCK
+      </span>
+    
+  </div>
+  <h1 class="passage-title">
+    如何将文件传输到另外一台 Linux 设备上
+  </h1>
   
-    
-      <h3 class="timeline-subtitle">2018</h3>
-    
-    <div class="timeline-item">
-      <time>2018-06-19</time>
-      <a target="_self" href="/2018/06/install-wordpress-with-lnmp/">利用lnmp搭建wordpress</a>
-    </div>
+  <article class="passage-article">
+    <p>在 Linux 中，如何将文件从当前机器，传输到另外一台机器呢？用 U 盘、移动硬盘、网盘？可以是可以，不过要是用的是服务器，而且要传输的文件数量比较多，这样操作起来就比较麻烦了。还有其它方法吗？</p>
+<h3 id="tar"><a href="#tar" class="headerlink" title="tar"></a>tar</h3><p>或许用 <code>tar</code> 先将文件打包成一个压缩包，传输到另外一台机器后，再解压也是不错的选择。</p>
+<h3 id="scp"><a href="#scp" class="headerlink" title="scp"></a>scp</h3><p>也可以使用 <code>scp</code> 来传输。例如，我现在有两台机器</p>
+<ul>
+<li>A：192.168.1.4</li>
+<li>B：192.168.1.5</li>
+</ul>
+<p>我先通过 <code>ssh</code> 连接到 A 这台机器上，我想把 <code>/tmp/a.txt</code> 这个文件，传输到 B 这台机器上的 <code>/tmp</code> 文件夹中，我可以用这个命令</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">scp /tmp/a.txt root@192.168.1.5:/tmp</span><br></pre></td></tr></table></figure>
+<p>这里我是用 root 这个身份登录 B 这台机器。而且用的是 <code>22</code> 这个默认端口，如果机器的 ssh 是使用其它端口，得用 -p 这个参数。变成这样</p>
+<figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line">scp -<span class="selector-tag">p</span> <span class="number">6655</span> /tmp/<span class="selector-tag">a</span><span class="selector-class">.txt</span> root@<span class="number">192.168</span>.<span class="number">1.5</span>:/tmp</span><br></pre></td></tr></table></figure>
+<p>如果传输的是文件夹，则需要加 <code>-r</code> 参数</p>
+<h3 id="rsync"><a href="#rsync" class="headerlink" title="rsync"></a>rsync</h3><p>rsync 是更好的选择，它把整个文件夹复制过去时，可以同步其所有者和用户组，而不需要像 scp 那样复制后再自己用 <code>chown</code> 和 <code>chgrp</code> 去修改。同时它也会同步文件的属性，如创建日期这些信息过去。</p>
+<p>使用方法如下</p>
+<figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line">rsync -av /tmp/one root<span class="variable">@192</span>.<span class="number">168.1</span>.<span class="number">5</span><span class="symbol">:/tmp</span></span><br></pre></td></tr></table></figure>
+<p>便可以将当前机器的 <code>one</code> 这个文件或者文件夹，传输到 B 这台机器的 <code>/tmp</code> 文件夹下，而且其文件属性不会改变。</p>
+
+  </article>
+  <aside class="table-content" id="site-toc">
+  <div class="table-content-title">
+    <i class="fa fa-arrow-right fa-lg" id="site-toc-hide-btn"></i>
+    <span>目录</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#tar"><span class="toc-text">tar</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#scp"><span class="toc-text">scp</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#rsync"><span class="toc-text">rsync</span></a></li></ol>
+  </div>
+</aside>
   
-    
-    <div class="timeline-item">
-      <time>2018-06-18</time>
-      <a target="_self" href="/2018/06/about-blog/">希望博客能坚持下去</a>
-    </div>
+    <aside class="passage-copyright">
+      <div>本文作者: powersee</div>
+      
+        <div>
+          原文链接: 
+          <a href="" target="_blank">https://powersee.github.io/2020/09/transfer-in-linux/</a>
+        </div>
+      
+      <div>
+        版权声明: 本博客所有文章除特别声明外, 均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议. 转载请注明出处!
+      </div>
+    </aside>
   
-    
-    <div class="timeline-item">
-      <time>2018-06-15</time>
-      <a target="_self" href="/2018/06/about-router/">路由器的端口映射和内网穿透</a>
-    </div>
   
+    <div class="passage-tags">
+     
+      <a href="/tags/Linux/"><i class="fa fa-tags"></i>Linux</a>
     
-    <div class="timeline-item">
-      <time>2018-06-11</time>
-      <a target="_self" href="/2018/06/clone-WordPress/">克隆 WordPress 网站</a>
-    </div>
-  
-    
-    <div class="timeline-item">
-      <time>2018-06-09</time>
-      <a target="_self" href="/2018/06/change-hosts/">更改hosts文件</a>
-    </div>
-  
-    
-    <div class="timeline-item">
-      <time>2018-06-08</time>
-      <a target="_self" href="/2018/06/photos-backup/">我的相册备份方案</a>
-    </div>
-  
-    
-    <div class="timeline-item">
-      <time>2018-06-01</time>
-      <a target="_self" href="/2018/06/Write-system-firmware-to-u-disk-on-MAC/">在mac把系统固件写入U盘</a>
     </div>
   
 </div>
+
     </main>
     
     <div class="site-footer-wrapper">
@@ -267,12 +287,12 @@
     <a href="javascript:void(0);" data-enable="false">
       <i class="fa fa-arrow-left"></i>
     </a>
-    <a href="javascript:void(0);" data-enable="false">
+    <a href="/2020/09/GetCookies-for-qiandao/" data-enable="true">
       <i class="fa fa-arrow-right"></i>
     </a>
   </div>
   <div class="bottom-bar-right">
-    <a href="javascript:void(0);" data-enable="false" id="site-toc-show-btn">
+    <a href="javascript:void(0);" data-enable="true" id="site-toc-show-btn">
       <i class="fa fa-bars"></i>
     </a>
     

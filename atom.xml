@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://powersee.github.io/"/>
-  <updated>2020-09-06T18:44:24.535Z</updated>
+  <updated>2020-09-23T09:35:54.113Z</updated>
   <id>https://powersee.github.io/</id>
   
   <author>
@@ -17,13 +17,37 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>如何将文件传输到另外一台 Linux 设备上</title>
+    <link href="https://powersee.github.io/2020/09/transfer-in-linux/"/>
+    <id>https://powersee.github.io/2020/09/transfer-in-linux/</id>
+    <published>2020-09-23T07:20:36.000Z</published>
+    <updated>2020-09-23T09:35:54.113Z</updated>
+    
+    <content type="html"><![CDATA[<p>在 Linux 中，如何将文件从当前机器，传输到另外一台机器呢？用 U 盘、移动硬盘、网盘？可以是可以，不过要是用的是服务器，而且要传输的文件数量比较多，这样操作起来就比较麻烦了。还有其它方法吗？</p><h3 id="tar"><a href="#tar" class="headerlink" title="tar"></a>tar</h3><p>或许用 <code>tar</code> 先将文件打包成一个压缩包，传输到另外一台机器后，再解压也是不错的选择。</p><h3 id="scp"><a href="#scp" class="headerlink" title="scp"></a>scp</h3><p>也可以使用 <code>scp</code> 来传输。例如，我现在有两台机器</p><ul><li>A：192.168.1.4</li><li>B：192.168.1.5</li></ul><p>我先通过 <code>ssh</code> 连接到 A 这台机器上，我想把 <code>/tmp/a.txt</code> 这个文件，传输到 B 这台机器上的 <code>/tmp</code> 文件夹中，我可以用这个命令</p><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">scp /tmp/a.txt root@192.168.1.5:/tmp</span><br></pre></td></tr></table></figure><p>这里我是用 root 这个身份登录 B 这台机器。而且用的是 <code>22</code> 这个默认端口，如果机器的 ssh 是使用其它端口，得用 -p 这个参数。变成这样</p><figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line">scp -<span class="selector-tag">p</span> <span class="number">6655</span> /tmp/<span class="selector-tag">a</span><span class="selector-class">.txt</span> root@<span class="number">192.168</span>.<span class="number">1.5</span>:/tmp</span><br></pre></td></tr></table></figure><p>如果传输的是文件夹，则需要加 <code>-r</code> 参数</p><h3 id="rsync"><a href="#rsync" class="headerlink" title="rsync"></a>rsync</h3><p>rsync 是更好的选择，它把整个文件夹复制过去时，可以同步其所有者和用户组，而不需要像 scp 那样复制后再自己用 <code>chown</code> 和 <code>chgrp</code> 去修改。同时它也会同步文件的属性，如创建日期这些信息过去。</p><p>使用方法如下</p><figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line">rsync -av /tmp/one root<span class="variable">@192</span>.<span class="number">168.1</span>.<span class="number">5</span><span class="symbol">:/tmp</span></span><br></pre></td></tr></table></figure><p>便可以将当前机器的 <code>one</code> 这个文件或者文件夹，传输到 B 这台机器的 <code>/tmp</code> 文件夹下，而且其文件属性不会改变。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;在 Linux 中，如何将文件从当前机器，传输到另外一台机器呢？用 U 盘、移动硬盘、网盘？可以是可以，不过要是用的是服务器，而且要传输的文件数量比较多，这样操作起来就比较麻烦了。还有其它方法吗？&lt;/p&gt;
+&lt;h3 id=&quot;tar&quot;&gt;&lt;a href=&quot;#tar&quot; class=
+      
+    
+    </summary>
+    
+    
+      <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
+    
+  </entry>
+  
+  <entry>
     <title>为签到平台添加获取 Cookie 功能 GetCookies</title>
     <link href="https://powersee.github.io/2020/09/GetCookies-for-qiandao/"/>
     <id>https://powersee.github.io/2020/09/GetCookies-for-qiandao/</id>
     <published>2020-09-06T18:09:51.000Z</published>
-    <updated>2020-09-06T18:44:24.535Z</updated>
+    <updated>2020-09-07T12:38:38.309Z</updated>
     
-    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>以前使用 qiandao.today 的时候，我就一直使用 GetCookies 这个浏览器插件，没用它之前，我需要去打开特定的网站，按 F12 查找 cookie ，复制粘贴。有了它，我之前在网页中点两下就可以获取到 cookie ，并且还能自动填写到输入框中。</p><p>原项目地址：<a href="https://github.com/acgotaku/GetCookies" target="_blank" rel="noopener">https://github.com/acgotaku/GetCookies</a></p><p>现在这个插件已经被 chrome 下架，要使用只能手动安装。然而它默认情况下是只能给 qiandao.today 这个网站用的，我们自己的搭建的签到平台，是没法使用这个插件的。</p><p>通过 <a href="https://github.com/acgotaku/GetCookies/issues/2" target="_blank" rel="noopener">Github Issues</a> ，我找到了解决方案。</p><p>更改后项目：<a href="https://github.com/powersee/GetCookies" target="_blank" rel="noopener">https://github.com/powersee/GetCookies</a></p><h3 id="更改过程"><a href="#更改过程" class="headerlink" title="更改过程"></a>更改过程</h3><p>首先需要把插件下载到电脑，可以通过 git clone ，也可以直接 download 。之后需要修改两个地方：</p><p>·mainfest.json</p><p>将第 8 行的</p><figure class="highlight prolog"><table><tr><td class="code"><pre><span class="line"><span class="string">"matches"</span>: [ <span class="string">"https://qiandao.today/*"</span>]</span><br></pre></td></tr></table></figure><p>修改为自己的网站，如果有多个的话，可以使用 <code>,</code> 区分，例如</p><figure class="highlight prolog"><table><tr><td class="code"><pre><span class="line"><span class="string">"matches"</span>: [ <span class="string">"https://qiandao.powersee.top/*"</span>,<span class="string">"http://192.168.123.242:9527/*"</span>]</span><br></pre></td></tr></table></figure><p>·background.js</p><p>去掉第 3 行中判断网址是否包含 qiandao.today 的语句，即改为</p><figure class="highlight lua"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (changeInfo.<span class="built_in">status</span> === <span class="string">'loading'</span>) &#123;</span><br></pre></td></tr></table></figure><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>修改完成后，在浏览器中选择【扩展程序】，【加载已解压的扩展程序】，选择插件所在的文件夹即可。</p><p>判断插件有没有成功加载，可以通过查看 console 中有没有打印出 onload 来判断。</p><p>网站中一键获取 Cookie 效果如图</p><p><img src="\img\2020\getCookies.png" alt="getCookies"></p><hr><p>这次的排查过程挺特别的，之前我尝试过，直接将网址改为 * ，这样所有网站都可以使用这个插件，但结果发现没效果。</p><p>于是尝试改为配置局域网的网站，即</p><figure class="highlight css"><table><tr><td class="code"><pre><span class="line">192<span class="selector-class">.168</span>.*</span><br></pre></td></tr></table></figure><p>也没有效果……</p><p>想不出原因，就搁置了。今天装门下载了个 360 极速浏览器，来测试一下是不是修改后在 chrome 浏览器里面没效果，其它浏览器里就有呢？</p><p>一番折腾后发现，只有网址写完整，才有效果，可以在网址后用 * ，但是不能在网址中用。</p><figure class="highlight dts"><table><tr><td class="code"><pre><span class="line"><span class="symbol">http:</span><span class="comment">//192.168.123.242:9527/*   # 可</span></span><br><span class="line"><span class="symbol">http:</span><span class="comment">//192.168.123.*   # 不可</span></span><br></pre></td></tr></table></figure>]]></content>
+    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>以前使用 qiandao.today 的时候，我就一直使用 GetCookies 这个浏览器插件，没用它之前，我需要去打开特定的网站，按 F12 查找 cookie ，复制粘贴。有了它，这整个过程将被简化为，在网页中点两下。</p><p>这是一个开源的 chrome 插件，原项目地址：<a href="https://github.com/acgotaku/GetCookies" target="_blank" rel="noopener">https://github.com/acgotaku/GetCookies</a></p><p>现在这个插件已经被 chrome 下架，要使用只能手动安装。然而它默认情况下是只能给 qiandao.today 这个网站用的，我们自己的搭建的签到平台，是没法使用这个插件的。</p><p>如果你想让它可以在你的签到平台上面使用，需要做一些修改，我是通过 <a href="https://github.com/acgotaku/GetCookies/issues/2" target="_blank" rel="noopener">Github Issues</a> 找到解决方案的。</p><p>更改后项目：<a href="https://github.com/powersee/GetCookies" target="_blank" rel="noopener">https://github.com/powersee/GetCookies</a></p><h3 id="更改过程"><a href="#更改过程" class="headerlink" title="更改过程"></a>更改过程</h3><p>首先需要把插件下载到电脑，可以通过 git clone ，也可以直接 download 。之后需要修改两个地方：</p><p>·<strong>mainfest.json</strong></p><p>将第 8 行的</p><figure class="highlight prolog"><table><tr><td class="code"><pre><span class="line"><span class="string">"matches"</span>: [ <span class="string">"https://qiandao.today/*"</span>]</span><br></pre></td></tr></table></figure><p>修改为自己的网站，如果有多个的话，可以使用 <code>,</code> 区分，例如</p><figure class="highlight prolog"><table><tr><td class="code"><pre><span class="line"><span class="string">"matches"</span>: [ <span class="string">"https://qiandao.powersee.top/*"</span>,<span class="string">"http://192.168.123.242:9527/*"</span>]</span><br></pre></td></tr></table></figure><p>·<strong>background.js</strong></p><p>去掉第 3 行中判断网址是否包含 qiandao.today 的语句，即改为</p><figure class="highlight lua"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (changeInfo.<span class="built_in">status</span> === <span class="string">'loading'</span>) &#123;</span><br></pre></td></tr></table></figure><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>修改完成后，在浏览器中选择【扩展程序】，【加载已解压的扩展程序】，选择插件所在的文件夹即可。</p><p>判断插件有没有成功加载，可以通过查看 console 中有没有打印出 onload 来判断。</p><p>网站中一键获取 Cookie 效果如图</p><p><img src="\img\2020\getCookies.png" alt="getCookies"></p><hr><p>这次的排查过程挺特别的，之前我尝试过，直接将网址改为 * ，这样所有网站都可以使用这个插件，但结果发现没效果。</p><p>于是尝试改为配置局域网的网站，即</p><figure class="highlight css"><table><tr><td class="code"><pre><span class="line">192<span class="selector-class">.168</span>.*</span><br></pre></td></tr></table></figure><p>也没有效果……</p><p>想不出原因，就搁置了。今天装门下载了个 360 极速浏览器，来测试一下是不是修改后在 chrome 浏览器里面没效果，其它浏览器里就有呢？</p><p>一番折腾后发现，只有网址写完整，才有效果，可以在网址后用 * ，但是不能在网址中用。</p><figure class="highlight dts"><table><tr><td class="code"><pre><span class="line"><span class="symbol">http:</span><span class="comment">//192.168.123.242:9527/*   # 可</span></span><br><span class="line"><span class="symbol">http:</span><span class="comment">//192.168.123.*   # 不可</span></span><br></pre></td></tr></table></figure>]]></content>
     
     <summary type="html">
     
@@ -60,11 +84,11 @@
     
       <category term="网络" scheme="https://powersee.github.io/tags/%E7%BD%91%E7%BB%9C/"/>
     
+      <category term="设备" scheme="https://powersee.github.io/tags/%E8%AE%BE%E5%A4%87/"/>
+    
       <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
     
       <category term="服务器" scheme="https://powersee.github.io/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
-    
-      <category term="设备" scheme="https://powersee.github.io/tags/%E8%AE%BE%E5%A4%87/"/>
     
   </entry>
   
@@ -88,9 +112,9 @@
     </summary>
     
     
-      <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
-    
       <category term="设备" scheme="https://powersee.github.io/tags/%E8%AE%BE%E5%A4%87/"/>
+    
+      <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
     
       <category term="docker" scheme="https://powersee.github.io/tags/docker/"/>
     
@@ -142,9 +166,9 @@
     </summary>
     
     
-      <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
-    
       <category term="设备" scheme="https://powersee.github.io/tags/%E8%AE%BE%E5%A4%87/"/>
+    
+      <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
     
   </entry>
   
@@ -168,9 +192,9 @@
     </summary>
     
     
-      <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
-    
       <category term="设备" scheme="https://powersee.github.io/tags/%E8%AE%BE%E5%A4%87/"/>
+    
+      <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
     
       <category term="nas" scheme="https://powersee.github.io/tags/nas/"/>
     
@@ -197,9 +221,9 @@
     </summary>
     
     
-      <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
-    
       <category term="设备" scheme="https://powersee.github.io/tags/%E8%AE%BE%E5%A4%87/"/>
+    
+      <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
     
   </entry>
   
@@ -297,9 +321,9 @@
     </summary>
     
     
-      <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
-    
       <category term="设备" scheme="https://powersee.github.io/tags/%E8%AE%BE%E5%A4%87/"/>
+    
+      <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
     
   </entry>
   
@@ -347,9 +371,9 @@
     </summary>
     
     
-      <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
-    
       <category term="设备" scheme="https://powersee.github.io/tags/%E8%AE%BE%E5%A4%87/"/>
+    
+      <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
     
   </entry>
   
@@ -374,9 +398,9 @@
     </summary>
     
     
-      <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
-    
       <category term="设备" scheme="https://powersee.github.io/tags/%E8%AE%BE%E5%A4%87/"/>
+    
+      <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
     
       <category term="python" scheme="https://powersee.github.io/tags/python/"/>
     
@@ -401,9 +425,9 @@
     </summary>
     
     
-      <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
-    
       <category term="设备" scheme="https://powersee.github.io/tags/%E8%AE%BE%E5%A4%87/"/>
+    
+      <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
     
   </entry>
   
@@ -491,33 +515,11 @@
     </summary>
     
     
-      <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
-    
       <category term="设备" scheme="https://powersee.github.io/tags/%E8%AE%BE%E5%A4%87/"/>
     
+      <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
+    
       <category term="docker" scheme="https://powersee.github.io/tags/docker/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>关于服务器资源取回本地的几种方法</title>
-    <link href="https://powersee.github.io/2020/01/three-ways-to-retrieve-the-file/"/>
-    <id>https://powersee.github.io/2020/01/three-ways-to-retrieve-the-file/</id>
-    <published>2020-01-24T03:14:41.000Z</published>
-    <updated>2020-02-23T05:56:18.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>本文介绍三种我自己都有用过的方法，都是比较简单的。</p><a id="more"></a><h2 id="一、caddy"><a href="#一、caddy" class="headerlink" title="一、caddy"></a>一、caddy</h2><p> 如同之前的文章所讲到的，安装一个 caddy</p><figure class="highlight vim"><table><tr><td class="code"><pre><span class="line">wget -<span class="keyword">N</span> --<span class="keyword">no</span>-check-certificate http<span class="variable">s:</span>//raw.githubusercontent.<span class="keyword">com</span>/ToyoDAdoubi/doubi/master/caddy_install.<span class="keyword">sh</span> &amp;&amp; chmod +<span class="keyword">x</span> caddy_install.<span class="keyword">sh</span> &amp;&amp; bash caddy_install.<span class="keyword">sh</span></span><br></pre></td></tr></table></figure><p>写入配置</p><figure class="highlight vim"><table><tr><td class="code"><pre><span class="line"><span class="keyword">echo</span> <span class="comment">":80 &#123;  </span></span><br><span class="line"> root /path/<span class="keyword">to</span>/downloads</span><br><span class="line"> timeouts none  </span><br><span class="line"> gzip  </span><br><span class="line"> <span class="keyword">browse</span>  </span><br><span class="line">&#125;<span class="comment">" &gt; /usr/local/caddy/Caddyfile</span></span><br></pre></td></tr></table></figure><p>启动 caddy</p><figure class="highlight awk"><table><tr><td class="code"><pre><span class="line"><span class="regexp">/etc/i</span>nit.d<span class="regexp">/caddy start</span></span><br></pre></td></tr></table></figure><p>开放服务器 80 端口</p><figure class="highlight lsl"><table><tr><td class="code"><pre><span class="line">ufw allow <span class="number">80</span></span><br></pre></td></tr></table></figure><p>完成后就可以在浏览器里，输入 <code>IP地址</code> 来访问下载好的文件了。如果是 MP4 文件的话，还可以支持在线播放。</p><h2 id="二、h5ai"><a href="#二、h5ai" class="headerlink" title="二、h5ai"></a>二、h5ai</h2><blockquote><p>这是一个 PHP 程序，原本它是要求机器本身有 PHP 才能用的，不过现在使用 docker 来安装的话，也可以非常迅速就安装好。</p></blockquote><p>一行命令即可，最简单</p><figure class="highlight perl"><table><tr><td class="code"><pre><span class="line">docker run -d -p <span class="number">8055</span>:<span class="number">80</span> -v /home/<span class="regexp">tr/download:/h5ai --name h5ai ilemonrain/h</span>5ai:full -d</span><br></pre></td></tr></table></figure><p>装好后在浏览器输入 <code>ip:8085</code> 就可以看到里面的内容</p><h2 id="三、Python-web"><a href="#三、Python-web" class="headerlink" title="三、Python web"></a>三、Python web</h2><p>这个是最简单的，基本所有的服务器都可以，而且不用额外安装其它的程序。只需要在 ssh 时进入到指定的文件夹，然后输入这条命令即可。</p><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">python -m SimpleHTTPServer</span><br></pre></td></tr></table></figure><p>会默认采用8000端口,此时输入 <strong>IP:8000</strong> 或者 <strong>域名:8000</strong> ，即可访问当前目录下的文件，如果有 <strong>index.html </strong>则会默认加载。</p><p>然后想要停止时，按<code>CTRL + C</code> 取消。<br>不过这种方法有挺多缺点的，比如不支持断点续传，开启时需一直保持 ssh 连接着，显示的文件信息简陋等。</p><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>第三种适合于临时下载的，前两种适合长时间的。如果机器本身有装 docker ，那我建议使用第二种。当然第一种也有好处，就是可以绑定指定的域名。</p><p>各取所需吧，适合自己的需求的才是最好的。</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;本文介绍三种我自己都有用过的方法，都是比较简单的。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="服务器" scheme="https://powersee.github.io/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
-    
-      <category term="BT" scheme="https://powersee.github.io/tags/BT/"/>
     
   </entry>
   
