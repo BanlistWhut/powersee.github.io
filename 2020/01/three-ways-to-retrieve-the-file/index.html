@@ -15,7 +15,7 @@
   
 
   
-  <meta name="description" content="本文介绍三种我自己都有用过的方法，都是比较简单的。">
+  <meta name="description" content="Powersee blog">
 
   
     <link rel="alternate" href="atom.xml" title="Powersee的博客" type="application/atom+xml">
@@ -166,15 +166,25 @@
   </h1>
   
   <article class="passage-article">
-    <h2 id="一、caddy"><a href="#一、caddy" class="headerlink" title="一、caddy"></a>一、caddy</h2><p> 如同之前的文章所讲到的，安装一个 caddy</p>
-<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line">wget -<span class="keyword">N</span> --<span class="keyword">no</span>-check-certificate http<span class="variable">s:</span>//raw.githubusercontent.<span class="keyword">com</span>/ToyoDAdoubi/doubi/master/caddy_install.<span class="keyword">sh</span> &amp;&amp; chmod +<span class="keyword">x</span> caddy_install.<span class="keyword">sh</span> &amp;&amp; bash caddy_install.<span class="keyword">sh</span></span><br></pre></td></tr></table></figure>
+    <p>本文介绍三种我自己都有用过的方法，都是比较简单的。</p>
+<h2 id="一、caddy"><a href="#一、caddy" class="headerlink" title="一、caddy"></a>一、caddy</h2><p> 首先，安装一个 caddy。现在是 <code>2020-09-29</code> ，最新的 caddy 版本是 2.2.0，后期如果有更新的话，请自行到官网或者 <a href="https://github.com/caddyserver/caddy/releases" target="_blank" rel="noopener">GitHub</a> 了解。</p>
+<p>这里下载的是一个 deb 包</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">wget https://github.com/caddyserver/caddy/releases/download/v2.2.0/caddy_2.2.0_linux_amd64.deb</span><br></pre></td></tr></table></figure>
+<p>下载完成后，用 dkpg 来安装</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">dpkg -i caddy_2.2.0_linux_amd64.deb</span><br></pre></td></tr></table></figure>
 <p>写入配置</p>
-<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line"><span class="keyword">echo</span> <span class="comment">":80 &#123;  </span></span><br><span class="line"> root /path/<span class="keyword">to</span>/downloads</span><br><span class="line"> timeouts none  </span><br><span class="line"> gzip  </span><br><span class="line"> <span class="keyword">browse</span>  </span><br><span class="line">&#125;<span class="comment">" &gt; /usr/local/caddy/Caddyfile</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">echo ":80 &#123;  </span><br><span class="line"> root * /path/to/downloads</span><br><span class="line"> file_server browse  </span><br><span class="line">&#125;" &gt; Caddyfile</span><br></pre></td></tr></table></figure>
 <p>启动 caddy</p>
-<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line"><span class="regexp">/etc/i</span>nit.d<span class="regexp">/caddy start</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight crmsh"><table><tr><td class="code"><pre><span class="line">caddy <span class="literal">start</span></span><br></pre></td></tr></table></figure>
 <p>开放服务器 80 端口</p>
 <figure class="highlight lsl"><table><tr><td class="code"><pre><span class="line">ufw allow <span class="number">80</span></span><br></pre></td></tr></table></figure>
 <p>完成后就可以在浏览器里，输入 <code>IP地址</code> 来访问下载好的文件了。如果是 MP4 文件的话，还可以支持在线播放。</p>
+<p>其实不建议用 80 端口，最好还是用其它的吧。如果用其它的端口，在浏览器中访问时，就需要加上 <code>:</code>和 <code>端口号</code>，例如用 <code>9527</code> 端口，此时 <code>IP</code>假设为 <code>111.222.111.111</code> 就需要在浏览器中访问</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">111<span class="selector-class">.222</span><span class="selector-class">.111</span><span class="selector-class">.111</span><span class="selector-pseudo">:9527</span></span><br></pre></td></tr></table></figure>
+<p>需要想要关闭 caddy 服务，可以用</p>
+<figure class="highlight arduino"><table><tr><td class="code"><pre><span class="line">caddy <span class="built_in">stop</span></span><br></pre></td></tr></table></figure>
+<p>如果想卸载，用</p>
+<figure class="highlight ebnf"><table><tr><td class="code"><pre><span class="line"><span class="attribute">dpkg -r caddy</span></span><br></pre></td></tr></table></figure>
 <h2 id="二、h5ai"><a href="#二、h5ai" class="headerlink" title="二、h5ai"></a>二、h5ai</h2><blockquote>
 <p>这是一个 PHP 程序，原本它是要求机器本身有 PHP 才能用的，不过现在使用 docker 来安装的话，也可以非常迅速就安装好。</p>
 </blockquote>
@@ -187,6 +197,7 @@
 <p>然后想要停止时，按<code>CTRL + C</code> 取消。<br>不过这种方法有挺多缺点的，比如不支持断点续传，开启时需一直保持 ssh 连接着，显示的文件信息简陋等。</p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>第三种适合于临时下载的，前两种适合长时间的。如果机器本身有装 docker ，那我建议使用第二种。当然第一种也有好处，就是可以绑定指定的域名。</p>
 <p>各取所需吧，适合自己的需求的才是最好的。</p>
+
   </article>
   <aside class="table-content" id="site-toc">
   <div class="table-content-title">
