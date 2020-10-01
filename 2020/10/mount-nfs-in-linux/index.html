@@ -6,16 +6,16 @@
   <meta name="author" content="Powersee" />
   
   
-  <title>服务器搭建全能下载器 Aria2 以及私人网盘，只需一行命令（docker） | Powersee的博客</title>
+  <title>在 Linux 上挂载 NFS | Powersee的博客</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="下载,docker,BT," />
+    <meta name="keywords" content="Linux," />
   
 
   
-  <meta name="description" content="本文将利用 docker 一键安装 Aria2 和 filebrowser。">
+  <meta name="description" content="Powersee blog">
 
   
     <link rel="alternate" href="atom.xml" title="Powersee的博客" type="application/atom+xml">
@@ -152,7 +152,7 @@
   <div class="passage">
   <div class="passage-meta">
     <span>
-      <i class="fa fa-calendar"></i>2019-09-16
+      <i class="fa fa-calendar"></i>2020-10-01
     </span>
     
     
@@ -162,33 +162,34 @@
     
   </div>
   <h1 class="passage-title">
-    服务器搭建全能下载器 Aria2 以及私人网盘，只需一行命令（docker）
+    在 Linux 上挂载 NFS
   </h1>
   
   <article class="passage-article">
-    <p>建议搭配之前的文章来观看：<a href="/2019/08/docker-qb">用服务器来离线下载 BT 种子，体验千兆网络的魅力</a></p>
-<p><a href="https://github.com/wahyd4/aria2-ariang-docker/blob/master/README.CN.md" target="_blank" rel="noopener">项目 GitHub 地址</a></p>
-<h3 id="安装-docker-如果机器没有的话）"><a href="#安装-docker-如果机器没有的话）" class="headerlink" title="安装 docker(如果机器没有的话）"></a>安装 docker(如果机器没有的话）</h3><figure class="highlight vim"><table><tr><td class="code"><pre><span class="line">curl -sSL http<span class="variable">s:</span>//<span class="built_in">get</span>.docker.<span class="keyword">com</span>/ | <span class="keyword">sh</span></span><br></pre></td></tr></table></figure>
-<h3 id="最快速启动"><a href="#最快速启动" class="headerlink" title="最快速启动"></a>最快速启动</h3><figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line">docker run -d --name aria2-ui -v <span class="regexp">/home/</span><span class="string">down:</span><span class="regexp">/data -p 80:80 wahyd4/</span>aria2-ui</span><br></pre></td></tr></table></figure>
+    <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>NFS 是 Network File System 的缩写。和 smb 相似，可以将服务器中的某个文件夹共享出来，让其它设备可以访问里面的内容。</p>
+<p>我们知道 smb 共享可以挂载在 Windows 电脑上，当一块网络硬盘来使用。</p>
+<p><img src="\img\2020\smb-mount.png" alt="smb-mount"></p>
+<p>NFS 也同样可以，于是我想把 贝壳云 上面连接的 10T 硬盘，通过 NFS 共享，挂载在刷了 armbian 的 N1 上面，这样我两台设备都可以使用这块硬盘，提高利用效率。</p>
+<h2 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h2><p>贝壳云上我刷的是小钢炮系统，里面可以直接开启 NFS ，需要先设置共享。</p>
 <ul>
-<li>Aria2: <a href="http://yourip/ui/" target="_blank" rel="noopener">http://yourip/ui/</a></li>
-<li>FileManger: <a href="http://yourip" target="_blank" rel="noopener">http://yourip</a></li>
-<li>请使用 admin/admin 进行登录</li>
+<li>export dir 想要共享的目录</li>
+<li>hosts allow 允许访问的 IP 地址，这里我填 N1 的 IP 地址</li>
+<li>nfs option 使用默认 <code>rw,sync,root_squash,all_squash,insecure,no_subtree_check</code></li>
 </ul>
-<p>这样下载的文件都放在 <code>/home/down</code> 这个文件夹里面</p>
-<p>文件夹没有写入权限，有兴趣看这篇文章了解 <a href="https://note.qidong.name/2018/01/docker-volume-permission/" target="_blank" rel="noopener">文章链接</a><br>不管原理，无脑给予 777</p>
-<figure class="highlight arduino"><table><tr><td class="code"><pre><span class="line">chmod <span class="number">777</span> /<span class="built_in">home</span>/down</span><br></pre></td></tr></table></figure>
-<p>强制删除容器</p>
-<figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="attribute">docker</span> rm -f aria2-ui</span><br></pre></td></tr></table></figure>
-<h3 id="加密下载界面"><a href="#加密下载界面" class="headerlink" title="加密下载界面"></a>加密下载界面</h3><figure class="highlight haml"><table><tr><td class="code"><pre><span class="line">docker run -d --name ariang \</span><br><span class="line">  -<span class="ruby">p <span class="number">80</span><span class="symbol">:</span><span class="number">80</span> \</span></span><br><span class="line"><span class="ruby">  -e PUID=<span class="number">1000</span> \</span></span><br><span class="line"><span class="ruby">  -e PGID=<span class="number">1000</span> \</span></span><br><span class="line"><span class="ruby">  -e ENABLE_AUTH=<span class="literal">true</span> \</span></span><br><span class="line"><span class="ruby">  -e RPC_SECRET=Hello \</span></span><br><span class="line"><span class="ruby">  -e ARIA2_SSL=<span class="literal">false</span> \</span></span><br><span class="line"><span class="ruby">  -e ARIA2_USER=user \</span></span><br><span class="line"><span class="ruby">  -e ARIA2_PWD=pwd \</span></span><br><span class="line"><span class="ruby">  -v /home/<span class="symbol">down:</span>/data \</span></span><br><span class="line"><span class="ruby">  wahyd4/aria2-ui</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>用户名：user</li>
-<li>密码：pwd</li>
-</ul>
-<h3 id="后续补充"><a href="#后续补充" class="headerlink" title="后续补充"></a>后续补充</h3><p>根据个人的需求来选择，如果觉得不需要加密 Aria2 的管理界面的，其实用第一种方式就行了。非常简单，一行命令即可。</p>
-<p>同时也可以结合 APP ：Transdrone_2.5.15.apk 来使用，这个我放在网盘里，使用它来管理多个下载工具也是比较方便的。</p>
-<p><a href="http://veger.ys168.com/" target="_blank" rel="noopener">http://veger.ys168.com/</a></p>
-<p><img src="https://i.loli.net/2019/09/30/SZ4jLRqiB5dzNgF.png" alt="transdrone"></p>
+<p>nfs 和 smb 不同，不能设置用账号密码访问，只能设置让某个 IP 访问。如果想让局域网的所有人都可以访问，假设路由器的 IP 是 <code>192.168.1.1</code>，那么这里可以填 <code>192.168.1.0/24</code>，指的是 IP 地址已 192.168.1 开头的用户都可以访问。</p>
+<p>设置好后，切换的 armbian ，用 ssh 连接设备，查看一下 贝壳云 nfs 的共享权限</p>
+<figure class="highlight ebnf"><table><tr><td class="code"><pre><span class="line"><span class="attribute">showmount -e beikeyun</span></span><br></pre></td></tr></table></figure>
+<p>这里的 <code>beikeyun</code> 也可以使用内网 IP</p>
+<p>确定 N1 拥有访问权限之后，便可以开始挂载了。此时我想把 贝壳云 上的 <code>/media/x</code> 挂载到 N1 的 <code>/media/x</code> 上，我需要先在 N1 上创建这个文件夹</p>
+<figure class="highlight arduino"><table><tr><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> /media/x</span><br></pre></td></tr></table></figure>
+<p>之后在 N1 上安装 nfs 客户端</p>
+<figure class="highlight armasm"><table><tr><td class="code"><pre><span class="line"><span class="symbol">sudo</span> apt install nfs-<span class="meta">common</span></span><br></pre></td></tr></table></figure>
+<p>之后挂载</p>
+<figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line">mount -t nfs <span class="string">beikeyun:</span><span class="regexp">/media/</span>x <span class="regexp">/media/</span>x</span><br></pre></td></tr></table></figure>
+<p>没有报错便是挂载成功。此时已经可以查看 10T 硬盘里面的内容</p>
+<figure class="highlight jboss-cli"><table><tr><td class="code"><pre><span class="line"><span class="keyword">ls</span> <span class="string">/media/x</span></span><br></pre></td></tr></table></figure>
+<p>完</p>
+
   </article>
   <aside class="table-content" id="site-toc">
   <div class="table-content-title">
@@ -196,7 +197,7 @@
     <span>目录</span>
   </div>
   <div class="table-content-main">
-    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装-docker-如果机器没有的话）"><span class="toc-text">安装 docker(如果机器没有的话）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#最快速启动"><span class="toc-text">最快速启动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#加密下载界面"><span class="toc-text">加密下载界面</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#后续补充"><span class="toc-text">后续补充</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用方法"><span class="toc-text">使用方法</span></a></li></ol>
   </div>
 </aside>
   
@@ -205,7 +206,7 @@
       
         <div>
           原文链接: 
-          <a href="" target="_blank">https://powersee.github.io/2019/09/docker-aria2/</a>
+          <a href="" target="_blank">https://powersee.github.io/2020/10/mount-nfs-in-linux/</a>
         </div>
       
       <div>
@@ -216,11 +217,7 @@
   
     <div class="passage-tags">
      
-      <a href="/tags/下载/"><i class="fa fa-tags"></i>下载</a>
-     
-      <a href="/tags/docker/"><i class="fa fa-tags"></i>docker</a>
-     
-      <a href="/tags/BT/"><i class="fa fa-tags"></i>BT</a>
+      <a href="/tags/Linux/"><i class="fa fa-tags"></i>Linux</a>
     
     </div>
   
@@ -294,10 +291,10 @@
 
 <div class="bottom-bar">
   <div class="bottom-bar-left">
-    <a href="/2019/09/MIUI-adb/" data-enable="true">
+    <a href="javascript:void(0);" data-enable="false">
       <i class="fa fa-arrow-left"></i>
     </a>
-    <a href="/2019/09/transmission-docker/" data-enable="true">
+    <a href="/2020/09/transfer-in-linux/" data-enable="true">
       <i class="fa fa-arrow-right"></i>
     </a>
   </div>
