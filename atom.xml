@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://powersee.github.io/"/>
-  <updated>2020-10-01T03:15:47.394Z</updated>
+  <updated>2020-10-04T03:26:21.282Z</updated>
   <id>https://powersee.github.io/</id>
   
   <author>
@@ -17,13 +17,37 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>记一次 vim 报错</title>
+    <link href="https://powersee.github.io/2020/10/vim-error/"/>
+    <id>https://powersee.github.io/2020/10/vim-error/</id>
+    <published>2020-10-02T12:22:54.000Z</published>
+    <updated>2020-10-04T03:26:21.282Z</updated>
+    
+    <content type="html"><![CDATA[<p>vim 是我在 Linux 上面最常用的编辑器，如果想要更好地使用它，需要对它进行一些设置。具体的方法是修改用户目录下的 <code>.vimrc</code> ，默认情况下需要自己创建这个文件。</p><p>在里面添加这些设置，下次打开 vim 就能看到效果。例如（ <code>&quot;</code> 是注释符号）</p><figure class="highlight vim"><table><tr><td class="code"><pre><span class="line"><span class="keyword">set</span> <span class="keyword">nu</span> <span class="comment">"显示行数</span></span><br><span class="line"><span class="keyword">set</span> showmatch <span class="comment">"显示匹配的括号([&#123;和&#125;])</span></span><br><span class="line"><span class="keyword">set</span> hlsearch <span class="comment">"高亮显示搜索的内容</span></span><br><span class="line"><span class="comment">"...</span></span><br></pre></td></tr></table></figure><p>但是我有很多台 Linux 设备，每一台都自己去写一遍配置就太累了吧。于是我想把这个文件放在 gitee 上（ GitHub 有时连接不太上），之后其它的机器，只需要把这个文件下载下来即可。当然我还想放一些其它的配置，所以我新建一个 dotfiles 仓库，在里面放一些配置文件。</p><p>我直接在 gitee 上面新建仓库，用 readme 初始化，然后新建文件，将 vim 配置复制粘贴进去。</p><p>此时我在新设备上，就不只是单纯下载 <code>.vimrc</code> 这个文件了，我把整个 dotfiles 仓库克隆的 <code>/home</code> 目录下。然后用软链接的方式，将用户目录下的 <code>.vimrc</code> 指向 <code>/home/dotfiles/.vimrc</code> </p><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ln -s /home/dotfiles/.vimrc ~/.vimrc</span><br></pre></td></tr></table></figure><p> 之后如果我这个仓库更新了，我直接在 <code>/home/dotfiles/</code> 这个目录下用 <code>git pull</code> 更新即可。</p><p>但是这时我发现用 vim 报错了，每次使用都会输出</p><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">Error detected while processing /root/.vimrc:</span><br><span class="line">line    3:</span><br><span class="line">E474: Invalid argument: encoding=utf-8^M</span><br><span class="line">line    8:</span><br><span class="line">E488: Trailing characters: number^M</span><br><span class="line">line    9:</span><br><span class="line">E488: Trailing characters: wildmenu^M</span><br><span class="line">line   10:</span><br><span class="line">E488: Trailing characters: autoread^M</span><br><span class="line">line   11:</span><br><span class="line">E488: Trailing characters: autoindent^M</span><br><span class="line">line   13:</span><br><span class="line">E474: Invalid argument: tabstop=4^M</span><br><span class="line">line   14:</span><br><span class="line">E539: Illegal character &lt;^M&gt;: mouse=a^M</span><br><span class="line">line   15:</span><br><span class="line">E492: Not an editor command: ^M</span><br><span class="line">line   18:</span><br><span class="line">E15: Invalid expression: has("autocmd")                                                          ^M</span><br><span class="line">line   22:</span><br><span class="line">E171: Missing :endif</span><br><span class="line">Press ENTER or type command to continue</span><br></pre></td></tr></table></figure><p>看来关键错误在于 ^M ，Google 一下，很快就发现问题所在了。因为用 gitee 创建的文件，使用的 <code>fileformat</code> 是 dos ，为了验证这个，我后来又在 gitee 创建一个 <code>.alias</code> 文件，拉取到 Linux 后，用 vim 打开这个文件，后看到底部显示</p><blockquote><p>“.alias” [noeol] [dos] 3L, 68C</p></blockquote><p>也可以使用 <code>set ff?</code> 命令来查看，在默认状态下，输入 <code>:</code>，再输入这条命令即可看到。</p><p>知道问题所在了，解决方法也很简单，用 vim 打开这个文件，将 <code>fileformat</code> 改为 <code>unix</code> 即可。</p><figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">:<span class="builtin-name">set</span> <span class="attribute">ff</span>=unix</span><br></pre></td></tr></table></figure><p>保存，退出。</p><p>此时 vim 就可以正常读取配置文件了。但是这么搞也不是办法啊，每台设备都去转换一下格式？那也够累的。于是我尝试在 GitHub 上创建文件看看，结果发现直接在 GitHub 网页上面创建的文件，<code>fileformat</code>  默认就是 <code>unix</code> ，看来还是切换到 GitHub 吧。</p><p>项目：<a href="https://github.com/powersee/dotfiles.git" target="_blank" rel="noopener">https://github.com/powersee/dotfiles.git</a></p><p><code>.alias</code>文件也可以像 <code>.vimrc</code> 那样软链接到用户目录下，也可以不用，在 <code>.zshrc</code> or <code>.bashrc</code> 中，添加</p><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">source /home/dotfiles/.alias</span><br></pre></td></tr></table></figure><p>即可。</p><p>这个的作用是自定义一些命令，少打些字。例如用 d 代替 docker，用 di 代替 docker images 。</p><p>完</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;vim 是我在 Linux 上面最常用的编辑器，如果想要更好地使用它，需要对它进行一些设置。具体的方法是修改用户目录下的 &lt;code&gt;.vimrc&lt;/code&gt; ，默认情况下需要自己创建这个文件。&lt;/p&gt;
+&lt;p&gt;在里面添加这些设置，下次打开 vim 就能看到效果。例如（ &lt;
+      
+    
+    </summary>
+    
+    
+      <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
+    
+  </entry>
+  
+  <entry>
     <title>在 Linux 上挂载 NFS</title>
     <link href="https://powersee.github.io/2020/10/mount-nfs-in-linux/"/>
     <id>https://powersee.github.io/2020/10/mount-nfs-in-linux/</id>
     <published>2020-10-01T02:22:03.000Z</published>
-    <updated>2020-10-01T03:15:47.394Z</updated>
+    <updated>2020-10-01T03:22:06.123Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>NFS 是 Network File System 的缩写。和 smb 相似，可以将服务器中的某个文件夹共享出来，让其它设备可以访问里面的内容。</p><p>我们知道 smb 共享可以挂载在 Windows 电脑上，当一块网络硬盘来使用。</p><p><img src="\img\2020\smb-mount.png" alt="smb-mount"></p><p>NFS 也同样可以，于是我想把 贝壳云 上面连接的 10T 硬盘，通过 NFS 共享，挂载在刷了 armbian 的 N1 上面，这样我两台设备都可以使用这块硬盘，提高利用效率。</p><h2 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h2><p>贝壳云上我刷的是小钢炮系统，里面可以直接开启 NFS ，需要先设置共享。</p><ul><li>export dir 想要共享的目录</li><li>hosts allow 允许访问的 IP 地址，这里我填 N1 的 IP 地址</li><li>nfs option 使用默认 <code>rw,sync,root_squash,all_squash,insecure,no_subtree_check</code></li></ul><p>nfs 和 smb 不同，不能设置用账号密码访问，只能设置让某个 IP 访问。如果想让局域网的所有人都可以访问，假设路由器的 IP 是 <code>192.168.1.1</code>，那么这里可以填 <code>192.168.1.0/24</code>，指的是 IP 地址已 192.168.1 开头的用户都可以访问。</p><p>设置好后，切换的 armbian ，用 ssh 连接设备，查看一下 贝壳云 nfs 的共享权限</p><figure class="highlight ebnf"><table><tr><td class="code"><pre><span class="line"><span class="attribute">showmount -e beikeyun</span></span><br></pre></td></tr></table></figure><p>这里的 <code>beikeyun</code> 也可以使用内网 IP</p><p>确定 N1 拥有访问权限之后，便可以开始挂载了。此时我想把 贝壳云 上的 <code>/media/x</code> 挂载到 N1 的 <code>/media/x</code> 上，我需要先在 N1 上创建这个文件夹</p><figure class="highlight arduino"><table><tr><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> /media/x</span><br></pre></td></tr></table></figure><p>之后在 N1 上安装 nfs 客户端</p><figure class="highlight armasm"><table><tr><td class="code"><pre><span class="line"><span class="symbol">sudo</span> apt install nfs-<span class="meta">common</span></span><br></pre></td></tr></table></figure><p>之后挂载</p><figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line">mount -t nfs <span class="string">beikeyun:</span><span class="regexp">/media/</span>x <span class="regexp">/media/</span>x</span><br></pre></td></tr></table></figure><p>没有报错便是挂载成功。此时已经可以查看 10T 硬盘里面的内容</p><figure class="highlight jboss-cli"><table><tr><td class="code"><pre><span class="line"><span class="keyword">ls</span> <span class="string">/media/x</span></span><br></pre></td></tr></table></figure><p>完</p>]]></content>
+    <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>NFS 是 Network File System 的缩写。和 smb 相似，可以将服务器中的某个文件夹共享出来，让其它设备可以访问里面的内容。</p><p>我们知道 smb 共享可以挂载在 Windows 电脑上，当一块网络硬盘来使用。</p><p><img src="\img\2020\smb-mount.png" alt="smb-mount"></p><p>NFS 也同样可以，于是我想把 贝壳云 上面连接的 10T 硬盘，通过 NFS 共享，挂载在刷了 armbian 的 N1 上面，这样我两台设备都可以使用这块硬盘，提高利用效率。</p><h2 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h2><p>贝壳云上我刷的是小钢炮系统，里面可以直接开启 NFS ，需要先设置共享。</p><ul><li>export dir 想要共享的目录</li><li>hosts allow 允许访问的 IP 地址，这里我填 N1 的 IP 地址</li><li>nfs option 使用默认 <code>rw,sync,root_squash,all_squash,insecure,no_subtree_check</code></li></ul><p>nfs 和 smb 不同，不能设置用账号密码访问，只能设置让某个 IP 访问。如果想让局域网的所有人都可以访问，假设路由器的 IP 是 <code>192.168.1.1</code>，那么这里可以填 <code>192.168.1.0/24</code>，指的是 IP 地址以 <code>192.168.1</code> 开头的用户都可以访问。</p><p>设置好后，切换的 armbian ，用 ssh 连接设备，查看一下 贝壳云 nfs 的共享权限</p><figure class="highlight ebnf"><table><tr><td class="code"><pre><span class="line"><span class="attribute">showmount -e beikeyun</span></span><br></pre></td></tr></table></figure><p>这里的 <code>beikeyun</code> 也可以使用内网 IP</p><p>确定 N1 拥有访问权限之后，便可以开始挂载了。此时我想把 贝壳云 上的 <code>/media/x</code> 挂载到 N1 的 <code>/media/x</code> 上，我需要先在 N1 上创建这个文件夹</p><figure class="highlight arduino"><table><tr><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> /media/x</span><br></pre></td></tr></table></figure><p>之后在 N1 上安装 nfs 客户端</p><figure class="highlight armasm"><table><tr><td class="code"><pre><span class="line"><span class="symbol">sudo</span> apt install nfs-<span class="meta">common</span></span><br></pre></td></tr></table></figure><p>之后挂载</p><figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line">mount -t nfs <span class="string">beikeyun:</span><span class="regexp">/media/</span>x <span class="regexp">/media/</span>x</span><br></pre></td></tr></table></figure><p>没有报错便是挂载成功。此时已经可以查看 10T 硬盘里面的内容</p><figure class="highlight jboss-cli"><table><tr><td class="code"><pre><span class="line"><span class="keyword">ls</span> <span class="string">/media/x</span></span><br></pre></td></tr></table></figure><p>完</p>]]></content>
     
     <summary type="html">
     
@@ -105,13 +129,13 @@
     </summary>
     
     
-      <category term="网络" scheme="https://powersee.github.io/tags/%E7%BD%91%E7%BB%9C/"/>
+      <category term="设备" scheme="https://powersee.github.io/tags/%E8%AE%BE%E5%A4%87/"/>
     
       <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
     
-      <category term="设备" scheme="https://powersee.github.io/tags/%E8%AE%BE%E5%A4%87/"/>
-    
       <category term="服务器" scheme="https://powersee.github.io/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+    
+      <category term="网络" scheme="https://powersee.github.io/tags/%E7%BD%91%E7%BB%9C/"/>
     
   </entry>
   
@@ -135,9 +159,9 @@
     </summary>
     
     
-      <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
-    
       <category term="设备" scheme="https://powersee.github.io/tags/%E8%AE%BE%E5%A4%87/"/>
+    
+      <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
     
       <category term="docker" scheme="https://powersee.github.io/tags/docker/"/>
     
@@ -189,9 +213,9 @@
     </summary>
     
     
-      <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
-    
       <category term="设备" scheme="https://powersee.github.io/tags/%E8%AE%BE%E5%A4%87/"/>
+    
+      <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
     
   </entry>
   
@@ -215,9 +239,9 @@
     </summary>
     
     
-      <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
-    
       <category term="设备" scheme="https://powersee.github.io/tags/%E8%AE%BE%E5%A4%87/"/>
+    
+      <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
     
       <category term="nas" scheme="https://powersee.github.io/tags/nas/"/>
     
@@ -244,9 +268,9 @@
     </summary>
     
     
-      <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
-    
       <category term="设备" scheme="https://powersee.github.io/tags/%E8%AE%BE%E5%A4%87/"/>
+    
+      <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
     
   </entry>
   
@@ -344,9 +368,9 @@
     </summary>
     
     
-      <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
-    
       <category term="设备" scheme="https://powersee.github.io/tags/%E8%AE%BE%E5%A4%87/"/>
+    
+      <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
     
   </entry>
   
@@ -394,9 +418,9 @@
     </summary>
     
     
-      <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
-    
       <category term="设备" scheme="https://powersee.github.io/tags/%E8%AE%BE%E5%A4%87/"/>
+    
+      <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
     
   </entry>
   
@@ -421,9 +445,9 @@
     </summary>
     
     
-      <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
-    
       <category term="设备" scheme="https://powersee.github.io/tags/%E8%AE%BE%E5%A4%87/"/>
+    
+      <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
     
       <category term="python" scheme="https://powersee.github.io/tags/python/"/>
     
@@ -448,9 +472,9 @@
     </summary>
     
     
-      <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
-    
       <category term="设备" scheme="https://powersee.github.io/tags/%E8%AE%BE%E5%A4%87/"/>
+    
+      <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
     
   </entry>
   
@@ -497,28 +521,6 @@
     
     </summary>
     
-    
-  </entry>
-  
-  <entry>
-    <title>进阶了解 hexo 博客</title>
-    <link href="https://powersee.github.io/2020/02/more-about-hexo/"/>
-    <id>https://powersee.github.io/2020/02/more-about-hexo/</id>
-    <published>2020-02-23T09:54:01.000Z</published>
-    <updated>2020-02-23T11:30:08.000Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>个人使用 hexo 搭建博客已经有一年多的时间了。但是说实在，对其了解并不多，我只知道用它，可以把我的 markdown 文档渲染成 html 文件，之后放到 GitHub 上就可以搭建博客。</p><a id="more"></a><p>一开始的使用是看别人的教程，网上一堆人写了用 hexo 来搭建免费博客的文章。其官网 <a href="https://hexo.io/zh-cn/" target="_blank" rel="noopener">https://hexo.io/zh-cn/</a> 上面也有教程，几条命令就可以在电脑上弄好一个博客。</p><p>之后便是将文章推送到 GitHub 上面，进行设置，使用 GitHub page 建立博客网站。在这时我了解到，我们还可以搭建在国内的网站上面，如 gitee ，coding 。可以让我们的访问速度更快。而且之前还了解到有位老哥有一个不错的方法，可以让国外的 ip 就访问 github 的博客，国内的 ip 就访问 gitee 或者 coding 的博客。好像是利用域名解析来达到目的的，具体我没有去尝试。</p><h3 id="备份"><a href="#备份" class="headerlink" title="备份"></a>备份</h3><p>不像　wordpress ，所有文件都是在服务器上。hexo 的博客源文件都是在我们自己的电脑上面的，如果我们的电脑出问题，如硬盘坏了，被偷了，那么我们的博客就没法更新和修改。因此我们需要自己来备份这些文件。</p><p>如果只是想备份文章而已，那么同步网盘如 onedrive 、坚果云 也足够的。当然你想同步整个博客文件夹也可以，不过我不建议这么做，因为里面的文件实在太多了，之前　git push　的时候看到，好像有几万个文件。而且，这样也太 low 了。</p><p>正确的备份方法应该是使用 git 来备份。</p><h3 id="备份前准备"><a href="#备份前准备" class="headerlink" title="备份前准备"></a>备份前准备</h3><p>我们得知道我们备份的目的，像我的话，我最主要的目的是备份文章，其次是博客主题，再来是博客的一些配置。<strong>目的明确</strong>之后，就来分析博客根目录下的文件。</p><p>需要备份的</p><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">source //文件夹放置着博客文章，最最重要的一个文件夹</span><br><span class="line">themes //放置着主题，我个人喜欢一起备份</span><br><span class="line">scaffolds //页面模板位置</span><br><span class="line">_config.yml</span><br><span class="line">package.json</span><br><span class="line">package-lock.json</span><br></pre></td></tr></table></figure><p>不需要备份的</p><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">.deploy_git   //里面的文件除了多一个 .git 其它和 public 里面一样</span><br><span class="line">node_modules  //在根目录下 npm i 就会读取 package.json 来安装模块，没必要备份</span><br><span class="line">public      // hexo 生成 html 页面后所放的地方，hexo g 就可以生成，没必要备份</span><br><span class="line">db.json       //执行 hexo s 启动本地服务器的时候就会自动生成，没必要备份</span><br></pre></td></tr></table></figure><p>了解这些之后，我们就可以只备份必要的文件。</p><h3 id="以前的备份方案"><a href="#以前的备份方案" class="headerlink" title="以前的备份方案"></a>以前的备份方案</h3><p>我之前是根据这篇文章　<a href="https://www.jianshu.com/p/beb8d611340a" target="_blank" rel="noopener">Hexo博客从一台电脑迁移到其他电脑</a>　将博客源文件备份到 GitHub 上面。这个方法是让渲染文件和博客源文件，都放在同一个仓库里面的不同分支。但我个人觉得到不如放两个仓库好。</p><h3 id="现在的备份方案"><a href="#现在的备份方案" class="headerlink" title="现在的备份方案"></a>现在的备份方案</h3><p>首先我们如果想备份主题的话，需要把主题文件夹里的 <code>.git</code> 给删除了，让它变成一个普通的文件夹。比如很多人使用的 <code>next</code> 主题，就进入 <code>themes/next</code> 里面将 .git 文件夹给删除了就行。</p><p>在博客根目录下 <code>git init</code> ,让其变成一个 git 仓库。将那些不需要备份的文件和文件夹添加到 <code>.gitignore</code> 中，我的里面有这些内容。</p><figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line">public</span><br><span class="line">db.json</span><br><span class="line">.deploy_git</span><br><span class="line">.DS_Store</span><br><span class="line">node_modules</span><br></pre></td></tr></table></figure><p>之后 <code>git add .</code> ，再 commit ，然后将其推送到远程仓库即可。之后换电脑，只需把这个仓库 clone 到电脑，进入仓库， <code>npm i</code> 一下，npm 就会根据两个 package 开头的文件，去帮我们安装相对应的模块，之后我们便可以看到 <code>node_modules</code> 文件夹又回来了。此时我们的博客便已搭建成功，可以继续写博客了。</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;个人使用 hexo 搭建博客已经有一年多的时间了。但是说实在，对其了解并不多，我只知道用它，可以把我的 markdown 文档渲染成 html 文件，之后放到 GitHub 上就可以搭建博客。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
-    
-      <category term="WordPress" scheme="https://powersee.github.io/tags/WordPress/"/>
     
   </entry>
   

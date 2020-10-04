@@ -176,7 +176,7 @@
 <li>hosts allow 允许访问的 IP 地址，这里我填 N1 的 IP 地址</li>
 <li>nfs option 使用默认 <code>rw,sync,root_squash,all_squash,insecure,no_subtree_check</code></li>
 </ul>
-<p>nfs 和 smb 不同，不能设置用账号密码访问，只能设置让某个 IP 访问。如果想让局域网的所有人都可以访问，假设路由器的 IP 是 <code>192.168.1.1</code>，那么这里可以填 <code>192.168.1.0/24</code>，指的是 IP 地址已 192.168.1 开头的用户都可以访问。</p>
+<p>nfs 和 smb 不同，不能设置用账号密码访问，只能设置让某个 IP 访问。如果想让局域网的所有人都可以访问，假设路由器的 IP 是 <code>192.168.1.1</code>，那么这里可以填 <code>192.168.1.0/24</code>，指的是 IP 地址以 <code>192.168.1</code> 开头的用户都可以访问。</p>
 <p>设置好后，切换的 armbian ，用 ssh 连接设备，查看一下 贝壳云 nfs 的共享权限</p>
 <figure class="highlight ebnf"><table><tr><td class="code"><pre><span class="line"><span class="attribute">showmount -e beikeyun</span></span><br></pre></td></tr></table></figure>
 <p>这里的 <code>beikeyun</code> 也可以使用内网 IP</p>
@@ -291,7 +291,7 @@
 
 <div class="bottom-bar">
   <div class="bottom-bar-left">
-    <a href="javascript:void(0);" data-enable="false">
+    <a href="/2020/10/vim-error/" data-enable="true">
       <i class="fa fa-arrow-left"></i>
     </a>
     <a href="/2020/09/transfer-in-linux/" data-enable="true">
