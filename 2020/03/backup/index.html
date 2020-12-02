@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html>
+  
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <meta name="author" content="Powersee">
+  
+  
+  <title>备份整个 Linux 系统 | Powersee的博客</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="Hexo, Theme-AD">
+  
+
+  
+  <meta name="description" content="Powersee blog">
+
+  
+    <link rel="alternate" href="atom.xml" title="Powersee的博客" type="application/atom+xml">
+  
+
+  
+    <script src="//cdn.jsdelivr.net/npm/leancloud-storage@3.11.1/dist/av-min.js" async></script>
+  
+
+  
+
+  
+
+  
+
+  <script>
+  // theme-ad's config script
+  // it can be used in every script
+  
+  window.AD_CONFIG = {
+    leancloud: {"appid":"VajpGhSOODMeqXP5XKmqfgpn-MdYXbMMI","appkey":"kqvc2gs5GSIeVUWnWiHySH9u","comment":false,"count":true},
+    welcome: {"enable":false,"interval":30},
+    start_time: "2018-05-20",
+    passwords: ["3f29e1b2b05f8371595dc761fed8e8b37544b38d56dfce81a551b46c82f2f56b", ],
+    is_post: true,
+    lock: false,
+    author: "Powersee",
+    share: {"weibo":true,"qq":true,"wechat":true},
+    mathjax: false,
+    page_type: "",
+    root: "/"
+  };
+</script>
+
+  <script src="/vendor/sha256.min.js"></script>
+<script src="/js/auth.js"></script>
+<script src="/js/index.js"></script>
+<script src="/vendor/qrcode.min.js"></script>
+
+  
+    <link rel="icon" href="/images/favicon.ico">
+    <link rel="apple-touch-icon" href="/images/touch-icon.png">
+  
+
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="/css/index.css">
+<link rel="stylesheet" href="/styles/components/highlight/highlight.css">
+
+  
+</head>
+  <body>
+    <header class="site-header">
+  <div class="site-header-brand">
+    
+      <span class="site-header-brand-title">
+        <a href="/">Powersee</a>
+      </span>
+    
+    
+  </div>
+  <div class="site-header-right">
+    <nav class="site-header-navigation">
+      
+        <a href="/" target="_self">首页</a>
+      
+        <a href="/archives/" target="_self">归档</a>
+      
+        <a href="/tags/" target="_self">标签</a>
+      
+        <a href="http://veger.ys168.com/" target="_blank">网盘</a>
+      
+        <a href="/atom.xml" target="_self">RSS</a>
+      
+    </nav>
+    <div class="site-header-btn">
+      
+        <a href="https://www.youtube.com/powersee" target="_blank" id="site-github">
+          <i class="fa fa-youtube-play"></i>
+        </a>
+      
+      <a href="javascript:void(0);" id="site-search">
+        <i class="fa fa-search"></i>
+      </a>
+      <a href="javascript:void(0);" id="site-nav-btn">
+        <i class="fa fa-ellipsis-v"></i>
+      </a>
+    </div>
+  </div>
+</header>
+<nav class="table-content" id="site-nav">
+  <div class="table-content-title">
+    <span>导航</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc">
+      
+        <li class="toc-item">
+          <a href="/" target="_self">
+            首页
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/archives/" target="_self">
+            归档
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/tags/" target="_self">
+            标签
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="http://veger.ys168.com/" target="_blank">
+            网盘
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/atom.xml" target="_self">
+            RSS
+          </a>
+        </li>
+      
+    </ol>
+  </div>
+</nav>
+<div id="site-process"></div>
+    <main>
+      
+  <div class="passage">
+  <div class="passage-meta">
+    <span>
+      <i class="fa fa-calendar"></i>2020-03-06
+    </span>
+    
+    
+      <span>
+        | <i class="fa fa-unlock-alt"></i>UNLOCK
+      </span>
+    
+  </div>
+  <h1 class="passage-title">
+    备份整个 Linux 系统
+  </h1>
+  
+  <article class="passage-article">
+    <p>近来经常折腾 N1 ，刷机频繁。然后我就想，我能否把现在用的这个系统，整个备份一下呢？就像 Windows 上的 ghost 一样。</p>
+<p>接着我就到 恩山 搜一下，果然也有人有过这个想法，并且发帖问了。但是下方的评论看起来好像挺难的。但我记得之前看过用 dd 这个命令就可以，所以我先来试试。</p>
+<p>首先要知道当前的机器上有哪些磁盘，用 <code>fdisk -l</code> 可以查出</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> fdisk -l</span></span><br><span class="line">Disk /dev/mmcblk0: 7.3 GiB, 7818182656 bytes, 15269888 sectors</span><br><span class="line">Units: sectors of 1 * 512 = 512 bytes</span><br><span class="line">Sector size (logical/physical): 512 bytes / 512 bytes</span><br><span class="line">I/O size (minimum/optimal): 512 bytes / 512 bytes</span><br><span class="line"></span><br><span class="line">Disk /dev/mmcblk0boot1: 4 MiB, 4194304 bytes, 8192 sectors</span><br><span class="line">Units: sectors of 1 * 512 = 512 bytes</span><br><span class="line">Sector size (logical/physical): 512 bytes / 512 bytes</span><br><span class="line">I/O size (minimum/optimal): 512 bytes / 512 bytes</span><br><span class="line"></span><br><span class="line">Disk /dev/mmcblk0boot0: 4 MiB, 4194304 bytes, 8192 sectors</span><br><span class="line">Units: sectors of 1 * 512 = 512 bytes</span><br><span class="line">Sector size (logical/physical): 512 bytes / 512 bytes</span><br><span class="line">I/O size (minimum/optimal): 512 bytes / 512 bytes</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Disk /dev/sda: 465.8 GiB, 500107862016 bytes, 976773168 sectors</span><br></pre></td></tr></table></figure>
+<p>可以看出， mmcb1k0 就是机器自身的硬盘，而 sda 则是我自己外接的移动硬盘。</p>
+<p>经过了解知道，dd 可以将当前整块磁盘的内容，完整地复制到其它的磁盘。命令如下：</p>
+<figure class="highlight crystal"><table><tr><td class="code"><pre><span class="line">dd <span class="keyword">if</span>=<span class="regexp">/dev/sda</span> <span class="keyword">of</span>=<span class="regexp">/dev/sdb</span></span><br></pre></td></tr></table></figure>
+<p>这样就是把 sda 这块盘的内容复制到 sdb 里</p>
+<p>但是平时从网上下载的固件主要是 img 格式的，这种怎么做呢？同样用 dd 就行：</p>
+<figure class="highlight crystal"><table><tr><td class="code"><pre><span class="line">dd <span class="keyword">if</span>=<span class="regexp">/dev/sda</span> <span class="keyword">of</span>=<span class="regexp">/media/one</span><span class="regexp">/backup.img</span></span><br></pre></td></tr></table></figure>
+<p>我在 N1 上用的命令是这个：</p>
+<figure class="highlight crystal"><table><tr><td class="code"><pre><span class="line">dd <span class="keyword">if</span>=<span class="regexp">/dev/mmcblk</span>0 <span class="keyword">of</span>=<span class="regexp">/media/one</span><span class="regexp">/back.img</span></span><br></pre></td></tr></table></figure>
+<p>等了好久好久，才复制完成，此时在我移动硬盘的根目录下，可以看到一个 back.img 文件。</p>
+<p>之前要恢复的话，用这个命令</p>
+<figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">dd</span> <span class="keyword">if</span>=/media/one/back<span class="selector-class">.img</span> of=/dev/mmcblk0</span><br></pre></td></tr></table></figure>
+<p>在 ubuntu 中将系统dd到 U盘</p>
+<figure class="highlight lsl"><table><tr><td class="code"><pre><span class="line">sudo dd if=/dev/sda of=/dev/sdb conv=noerror,sync</span><br><span class="line">^C14583513+<span class="number">0</span> records in</span><br><span class="line"><span class="number">14583513</span>+<span class="number">0</span> records out</span><br><span class="line"><span class="number">7466758656</span> bytes (<span class="number">7.5</span> GB, <span class="number">7.0</span> GiB) copied, <span class="number">7048.69</span> s, <span class="number">1.1</span> MB/s</span><br></pre></td></tr></table></figure>
+<p>写了两个小时还没好，要去睡觉了，只能 ctrl+c 取消，结果发现只剩 0.5 G还没写。。。</p>
+<hr>
+<p>时隔多日，我已经把 N1 刷成了 armbian 无桌面版，配置花了好多时间。所以应该备份一下系统，自己之后把系统搞坏了，也可以用来恢复</p>
+<p>于是我同样将系统备份到硬盘，7.3G 用了 40 分钟。</p>
+<figure class="highlight crystal"><table><tr><td class="code"><pre><span class="line"><span class="comment"># root @ powersee in ~ [18:40:49] </span></span><br><span class="line">$ dd <span class="keyword">if</span>=<span class="regexp">/dev/mmcblk</span>1 <span class="keyword">of</span>=<span class="regexp">/media/one</span><span class="regexp">/back.img</span></span><br><span class="line"><span class="regexp">15269888+0 records in</span></span><br><span class="line"><span class="regexp">15269888+0 records out</span></span><br><span class="line"><span class="regexp">7818182656 bytes (7.8 GB, 7.3 GiB) copied, 2434.71 s, 3.2 MB/s</span></span><br></pre></td></tr></table></figure>
+<p>之后我把这个 img 文件，复制到电脑，然后用工具将它写入 U盘，之后插到 emmc 里面同样是 armbian 的N1上，结果开机后进入的还是 emmc 里的系统。但是通过 fdisk -l 我发现，boot 分区是在U盘里的。也就是说，N1是从U盘读取启动文件，然后启动 emmc 里面的系统，不知道 emmc 里是其它系统时，是否就能从 U盘启动系统？以后了解了再来更新。</p>
+<p>然后觉得用 dd 命令有个大缺点，就是我系统磁盘是 7.3G，那么备份出来的 img 文件就是这么大，明明我系统只占 4G……</p>
+<hr>
+<p>最终方案，我发现对于备份 N1 系统，或许没那么麻烦，因为一开始系统是在U盘里的，所以我可以先对U盘里的系统进行修改，装 docker 、samba 、修改源……</p>
+<p>然后，我可以用 USB image tool ，把U盘中的系统备份到电脑。之后如果我把系统搞坏了，那我可以把系统恢复到U盘，再写入emmc。</p>
+
+  </article>
+  <aside class="table-content" id="site-toc">
+  <div class="table-content-title">
+    <i class="fa fa-arrow-right fa-lg" id="site-toc-hide-btn"></i>
+    <span>目录</span>
+  </div>
+  <div class="table-content-main">
+    
+  </div>
+</aside>
+  
+    <aside class="passage-copyright">
+      <div>本文作者: powersee</div>
+      
+        <div>
+          原文链接: 
+          <a href="" target="_blank">https://powersee.github.io/2020/03/backup/</a>
+        </div>
+      
+      <div>
+        版权声明: 本博客所有文章除特别声明外, 均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议. 转载请注明出处!
+      </div>
+    </aside>
+  
+  
+</div>
+
+    </main>
+    
+    <div class="site-footer-wrapper">
+  <footer class="site-footer">
+    
+    <div class="site-footer-info">
+      <i class="fa fa-clock-o"></i> 本站已稳定运行<span id="site-time"></span>
+    </div>
+    
+      <div class="site-footer-info">
+        <i class="fa fa-paw"></i> 本站自4月4日起，被访问的次数为：<span id="site-count"></span>
+      </div>
+    
+    
+      <div class="site-footer-info">
+        <i class="fa fa-at"></i> <a href="mailto:powersee@powersee.top" target="_blank">联系邮箱 ：powersee@powersee.top</a>
+      </div>
+    
+    <div class="site-footer-info">
+      <i class="fa fa-copyright"></i> 
+      2018-2020 <a href="https://github.com/dongyuanxin/theme-ad/" target="_blank">Theme-AD</a>.
+      Created by <a href="https://godbmw.com/" target="_blank">GodBMW</a>.
+      All rights reserved.
+    </div>
+  </footer>
+</div>
+    <div id="site-layer" style="display:none;">
+  <div class="site-layer-content">
+    <div class="site-layer-header">
+      <span class="site-layer-header-title" id="site-layer-title"></span>
+      <i class="fa fa-close" id="site-layer-close"></i>
+    </div>
+    <div class="site-layer-body" id="site-layer-container">
+      <div class="site-layer-input" id="site-layer-search" style="display: none;">
+        <div class="site-layer-input-choose">
+          <a href="javascript:void(0);" title="Change Search Engine">Google</a>
+        </div>
+        <input type="text">
+        <i class="fa fa-search"></i>
+      </div>
+      
+      <div id="site-layer-welcome" style="display:none;"></div>
+    </div>
+  </div>
+</div>
+    
+
+<div class="bottom-bar">
+  <div class="bottom-bar-left">
+    <a href="/2020/03/Mojave/" data-enable="true">
+      <i class="fa fa-arrow-left"></i>
+    </a>
+    <a href="/2020/02/more-about-hexo/" data-enable="true">
+      <i class="fa fa-arrow-right"></i>
+    </a>
+  </div>
+  <div class="bottom-bar-right">
+    <a href="javascript:void(0);" data-enable="true" id="site-toc-show-btn">
+      <i class="fa fa-bars"></i>
+    </a>
+    
+    <a href="javascript:void(0);" id="site-toggle-share-btn">
+      <i class="fa fa-share-alt"></i>
+    </a>
+    
+    <a href="javascript:void(0);" id="back-top-btn">
+      <i class="fa fa-chevron-up"></i>
+    </a>
+  </div>
+</div>
+    <div id="share-btn">
+  
+  
+  
+    <a id="share-btn-weibo" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-weibo"></i>
+    </a>
+  
+  
+    <a id="share-btn-qq" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-qq"></i>
+    </a>
+  
+  
+    <a id="share-btn-wechat" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-wechat"></i>
+    </a>
+  
+</div>
+    
+
+
+
+
+
+    
+  </body>
+</html>
