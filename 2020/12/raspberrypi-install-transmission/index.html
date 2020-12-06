@@ -6,12 +6,12 @@
   <meta name="author" content="Powersee">
   
   
-  <title>归档: 2020/11 | Powersee的博客</title>
+  <title>树莓派安装 transmission | Powersee的博客</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="Hexo, Theme-AD">
+    <meta name="keywords" content="Linux,设备,">
   
 
   
@@ -40,7 +40,7 @@
     welcome: {"enable":false,"interval":30},
     start_time: "2018-05-20",
     passwords: ["3f29e1b2b05f8371595dc761fed8e8b37544b38d56dfce81a551b46c82f2f56b", ],
-    is_post: false,
+    is_post: true,
     lock: false,
     author: "Powersee",
     share: {"weibo":true,"qq":true,"wechat":true},
@@ -148,24 +148,80 @@
 </nav>
 <div id="site-process"></div>
     <main>
-      <div class="timeline">
-  <h2 class="timeline-title">归档: 66篇</h2>
+      
+  <div class="passage">
+  <div class="passage-meta">
+    <span>
+      <i class="fa fa-calendar"></i>2020-12-06
+    </span>
+    
+    
+      <span>
+        | <i class="fa fa-unlock-alt"></i>UNLOCK
+      </span>
+    
+  </div>
+  <h1 class="passage-title">
+    树莓派安装 transmission
+  </h1>
   
+  <article class="passage-article">
+    <p>安装</p>
+<figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line">apt <span class="keyword">install</span> transmission-daemon</span><br></pre></td></tr></table></figure>
+<p>停止程序，修改配置</p>
+<figure class="highlight vim"><table><tr><td class="code"><pre><span class="line">service transmission-daemon <span class="keyword">stop</span></span><br><span class="line"><span class="keyword">vi</span> /etc/transmission-daemon/settings.json</span><br></pre></td></tr></table></figure>
+<p>使用 vi 打开这个配置文件后，按 <code>i</code> 键进入编辑模式</p>
+<figure class="highlight 1c"><table><tr><td class="code"><pre><span class="line"><span class="string">"download-dir"</span>: <span class="string">"/mnt/tr/downloads"</span>,</span><br><span class="line"><span class="string">"rpc-whitelist"</span>: <span class="string">"*"</span>,</span><br></pre></td></tr></table></figure>
+<p>修改这么两行，此时账号和密码没有修改，默认情况下都是 transmission</p>
+<p>修改完成按 <code>ESC</code> 键退出编辑模式，再按 <code>:wq</code> 保存退出。</p>
+<p>接着启动 transmission</p>
+<figure class="highlight crmsh"><table><tr><td class="code"><pre><span class="line">service transmission-daemon <span class="literal">start</span></span><br></pre></td></tr></table></figure>
+<p>此时在浏览器中输入 树莓派ip:9091 就可以访问 transmission 。</p>
+<p><img src="\img\2020\raspi-tr.png" alt></p>
+<p>此时直接下载种子，应该会报错提示没有写入权限。</p>
+<figure class="highlight perl"><table><tr><td class="code"><pre><span class="line"><span class="keyword">mkdir</span> /mnt/<span class="keyword">tr</span>/downloads</span><br><span class="line"><span class="keyword">chmod</span> <span class="number">777</span> /mnt/<span class="keyword">tr</span>/downloads</span><br></pre></td></tr></table></figure>
+<p>这样应该就可以正常下载了。下载完成后，如果想将下载文件夹通过 smb 共享出来，可以在 <code>/etc/samba/smb.conf</code> 中添加这一段</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="string">[download]</span></span><br><span class="line">   <span class="string">comment</span> <span class="string">=</span> <span class="string">Printer</span> <span class="string">Drivers</span></span><br><span class="line">   <span class="string">path</span> <span class="string">=</span> <span class="string">/mnt/tr/downloads</span></span><br><span class="line">   <span class="string">browseable</span> <span class="string">=</span> <span class="literal">yes</span></span><br><span class="line">   <span class="string">read</span> <span class="string">only</span> <span class="string">=</span> <span class="literal">yes</span></span><br><span class="line">   <span class="string">guest</span> <span class="string">ok</span> <span class="string">=</span> <span class="literal">yes</span></span><br></pre></td></tr></table></figure>
+<p>然后重启 smb</p>
+<figure class="highlight ebnf"><table><tr><td class="code"><pre><span class="line"><span class="attribute">smbd restart</span></span><br></pre></td></tr></table></figure>
+<p>此时应该就可以在 win10 的资源管理器中的 【网络】找到树莓派，直接点击应该就可以访问里面的内容。</p>
+<p>我使用的内存卡的闪迪的，32G ，class 10，实测 smb 读取速度在 40MB/s 左右。如果打算长期下载的话，建议还是接一个 usb 硬盘比较好。</p>
+
+  </article>
+  <aside class="table-content" id="site-toc">
+  <div class="table-content-title">
+    <i class="fa fa-arrow-right fa-lg" id="site-toc-hide-btn"></i>
+    <span>目录</span>
+  </div>
+  <div class="table-content-main">
     
-      <h3 class="timeline-subtitle">2020</h3>
-    
-    <div class="timeline-item">
-      <time>2020-11-26</time>
-      <a target="_self" href="/2020/11/bky-wjy-eth-100/">贝壳云、我家云以太网口自动从千兆变为百兆</a>
-    </div>
+  </div>
+</aside>
   
+    <aside class="passage-copyright">
+      <div>本文作者: powersee</div>
+      
+        <div>
+          原文链接: 
+          <a href="" target="_blank">https://powersee.github.io/2020/12/raspberrypi-install-transmission/</a>
+        </div>
+      
+      <div>
+        版权声明: 本博客所有文章除特别声明外, 均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议. 转载请注明出处!
+      </div>
+    </aside>
+  
+  
+    <div class="passage-tags">
+     
+      <a href="/tags/Linux/"><i class="fa fa-tags"></i>Linux</a>
+     
+      <a href="/tags/设备/"><i class="fa fa-tags"></i>设备</a>
     
-    <div class="timeline-item">
-      <time>2020-11-20</time>
-      <a target="_self" href="/2020/11/wankeyun-flash/">沦为废铁的玩客云还能拿来干什么？</a>
     </div>
   
 </div>
+
     </main>
     
     <div class="site-footer-wrapper">
@@ -218,12 +274,12 @@
     <a href="javascript:void(0);" data-enable="false">
       <i class="fa fa-arrow-left"></i>
     </a>
-    <a href="javascript:void(0);" data-enable="false">
+    <a href="/2020/11/bky-wjy-eth-100/" data-enable="true">
       <i class="fa fa-arrow-right"></i>
     </a>
   </div>
   <div class="bottom-bar-right">
-    <a href="javascript:void(0);" data-enable="false" id="site-toc-show-btn">
+    <a href="javascript:void(0);" data-enable="true" id="site-toc-show-btn">
       <i class="fa fa-bars"></i>
     </a>
     

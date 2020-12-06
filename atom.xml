@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://powersee.github.io/"/>
-  <updated>2020-11-26T05:37:23.264Z</updated>
+  <updated>2020-12-06T09:25:14.982Z</updated>
   <id>https://powersee.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>树莓派安装 transmission</title>
+    <link href="https://powersee.github.io/2020/12/raspberrypi-install-transmission/"/>
+    <id>https://powersee.github.io/2020/12/raspberrypi-install-transmission/</id>
+    <published>2020-12-06T08:27:34.000Z</published>
+    <updated>2020-12-06T09:25:14.982Z</updated>
+    
+    <content type="html"><![CDATA[<p>安装</p><figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line">apt <span class="keyword">install</span> transmission-daemon</span><br></pre></td></tr></table></figure><p>停止程序，修改配置</p><figure class="highlight vim"><table><tr><td class="code"><pre><span class="line">service transmission-daemon <span class="keyword">stop</span></span><br><span class="line"><span class="keyword">vi</span> /etc/transmission-daemon/settings.json</span><br></pre></td></tr></table></figure><p>使用 vi 打开这个配置文件后，按 <code>i</code> 键进入编辑模式</p><figure class="highlight 1c"><table><tr><td class="code"><pre><span class="line"><span class="string">"download-dir"</span>: <span class="string">"/mnt/tr/downloads"</span>,</span><br><span class="line"><span class="string">"rpc-whitelist"</span>: <span class="string">"*"</span>,</span><br></pre></td></tr></table></figure><p>修改这么两行，此时账号和密码没有修改，默认情况下都是 transmission</p><p>修改完成按 <code>ESC</code> 键退出编辑模式，再按 <code>:wq</code> 保存退出。</p><p>接着启动 transmission</p><figure class="highlight crmsh"><table><tr><td class="code"><pre><span class="line">service transmission-daemon <span class="literal">start</span></span><br></pre></td></tr></table></figure><p>此时在浏览器中输入 树莓派ip:9091 就可以访问 transmission 。</p><p><img src="\img\2020\raspi-tr.png" alt></p><p>此时直接下载种子，应该会报错提示没有写入权限。</p><figure class="highlight perl"><table><tr><td class="code"><pre><span class="line"><span class="keyword">mkdir</span> /mnt/<span class="keyword">tr</span>/downloads</span><br><span class="line"><span class="keyword">chmod</span> <span class="number">777</span> /mnt/<span class="keyword">tr</span>/downloads</span><br></pre></td></tr></table></figure><p>这样应该就可以正常下载了。下载完成后，如果想将下载文件夹通过 smb 共享出来，可以在 <code>/etc/samba/smb.conf</code> 中添加这一段</p><figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="string">[download]</span></span><br><span class="line">   <span class="string">comment</span> <span class="string">=</span> <span class="string">Printer</span> <span class="string">Drivers</span></span><br><span class="line">   <span class="string">path</span> <span class="string">=</span> <span class="string">/mnt/tr/downloads</span></span><br><span class="line">   <span class="string">browseable</span> <span class="string">=</span> <span class="literal">yes</span></span><br><span class="line">   <span class="string">read</span> <span class="string">only</span> <span class="string">=</span> <span class="literal">yes</span></span><br><span class="line">   <span class="string">guest</span> <span class="string">ok</span> <span class="string">=</span> <span class="literal">yes</span></span><br></pre></td></tr></table></figure><p>然后重启 smb</p><figure class="highlight ebnf"><table><tr><td class="code"><pre><span class="line"><span class="attribute">smbd restart</span></span><br></pre></td></tr></table></figure><p>此时应该就可以在 win10 的资源管理器中的 【网络】找到树莓派，直接点击应该就可以访问里面的内容。</p><p>我使用的内存卡的闪迪的，32G ，class 10，实测 smb 读取速度在 40MB/s 左右。如果打算长期下载的话，建议还是接一个 usb 硬盘比较好。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;安装&lt;/p&gt;
+&lt;figure class=&quot;highlight cmake&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;apt &lt;span class=&quot;keyword&quot;&gt;install&lt;/span&gt; trans
+      
+    
+    </summary>
+    
+    
+      <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
+    
+      <category term="设备" scheme="https://powersee.github.io/tags/%E8%AE%BE%E5%A4%87/"/>
+    
+  </entry>
   
   <entry>
     <title>贝壳云、我家云以太网口自动从千兆变为百兆</title>
@@ -36,9 +62,9 @@
     </summary>
     
     
-      <category term="设备" scheme="https://powersee.github.io/tags/%E8%AE%BE%E5%A4%87/"/>
-    
       <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
+    
+      <category term="设备" scheme="https://powersee.github.io/tags/%E8%AE%BE%E5%A4%87/"/>
     
   </entry>
   
@@ -62,9 +88,9 @@
     </summary>
     
     
-      <category term="设备" scheme="https://powersee.github.io/tags/%E8%AE%BE%E5%A4%87/"/>
-    
       <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
+    
+      <category term="设备" scheme="https://powersee.github.io/tags/%E8%AE%BE%E5%A4%87/"/>
     
   </entry>
   
@@ -181,13 +207,13 @@
     </summary>
     
     
+      <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
+    
       <category term="网络" scheme="https://powersee.github.io/tags/%E7%BD%91%E7%BB%9C/"/>
     
       <category term="服务器" scheme="https://powersee.github.io/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
     
       <category term="设备" scheme="https://powersee.github.io/tags/%E8%AE%BE%E5%A4%87/"/>
-    
-      <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
     
   </entry>
   
@@ -211,9 +237,9 @@
     </summary>
     
     
-      <category term="设备" scheme="https://powersee.github.io/tags/%E8%AE%BE%E5%A4%87/"/>
-    
       <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
+    
+      <category term="设备" scheme="https://powersee.github.io/tags/%E8%AE%BE%E5%A4%87/"/>
     
       <category term="docker" scheme="https://powersee.github.io/tags/docker/"/>
     
@@ -265,9 +291,9 @@
     </summary>
     
     
-      <category term="设备" scheme="https://powersee.github.io/tags/%E8%AE%BE%E5%A4%87/"/>
-    
       <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
+    
+      <category term="设备" scheme="https://powersee.github.io/tags/%E8%AE%BE%E5%A4%87/"/>
     
   </entry>
   
@@ -291,9 +317,9 @@
     </summary>
     
     
-      <category term="设备" scheme="https://powersee.github.io/tags/%E8%AE%BE%E5%A4%87/"/>
-    
       <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
+    
+      <category term="设备" scheme="https://powersee.github.io/tags/%E8%AE%BE%E5%A4%87/"/>
     
       <category term="nas" scheme="https://powersee.github.io/tags/nas/"/>
     
@@ -420,9 +446,9 @@
     </summary>
     
     
-      <category term="设备" scheme="https://powersee.github.io/tags/%E8%AE%BE%E5%A4%87/"/>
-    
       <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
+    
+      <category term="设备" scheme="https://powersee.github.io/tags/%E8%AE%BE%E5%A4%87/"/>
     
   </entry>
   
@@ -470,9 +496,9 @@
     </summary>
     
     
-      <category term="设备" scheme="https://powersee.github.io/tags/%E8%AE%BE%E5%A4%87/"/>
-    
       <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
+    
+      <category term="设备" scheme="https://powersee.github.io/tags/%E8%AE%BE%E5%A4%87/"/>
     
   </entry>
   
@@ -497,36 +523,11 @@
     </summary>
     
     
-      <category term="设备" scheme="https://powersee.github.io/tags/%E8%AE%BE%E5%A4%87/"/>
-    
       <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
+    
+      <category term="设备" scheme="https://powersee.github.io/tags/%E8%AE%BE%E5%A4%87/"/>
     
       <category term="python" scheme="https://powersee.github.io/tags/python/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>我家云相关</title>
-    <link href="https://powersee.github.io/2020/03/wojiayun/"/>
-    <id>https://powersee.github.io/2020/03/wojiayun/</id>
-    <published>2020-03-13T08:20:35.000Z</published>
-    <updated>2020-11-20T10:32:15.474Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>我家云，又名掉盘云，众多矿渣中的一款。其配置还算不错，但由于有一个严重的缺点——掉盘，即机器内的硬盘时不时地，就自动断开连接，导致获得【掉盘云】这个荣称。也因此而难以获得垃圾佬们的芳心，二手价格长期维持在百元以下。</p><p>不过现今有大佬开发了比较好用的固件，据说很多人解决了掉盘的问题，因此价格开始逐渐上升了。</p><p>恩山固件发布贴：<a href="https://www.right.com.cn/forum/thread-976714-1-1.html" target="_blank" rel="noopener">粒子云，我家云omv自用备份稳定性佳</a></p><p>固件作者：Ride_Wind，<a href="https://www.right.com.cn/forum/space-uid-155217.html" target="_blank" rel="noopener">恩山链接</a></p><p>博客：<a href="https://blog.windtech.cf/" target="_blank" rel="noopener">https://blog.windtech.cf/</a></p><h2 id="刷机相关"><a href="#刷机相关" class="headerlink" title="刷机相关"></a>刷机相关</h2><blockquote><p>这里放置一个刷机所需工具和固件的备份：<br><a href="https://pan.baidu.com/s/1YTlrbDDN9p11CayfaD6vIQ" target="_blank" rel="noopener">https://pan.baidu.com/s/1YTlrbDDN9p11CayfaD6vIQ</a></p></blockquote><p>【webpad】大佬的刷机教程 <a href="https://www.right.com.cn/forum/thread-341574-1-1.html" target="_blank" rel="noopener">联想粒子矿云/我家云 线刷OMV（Open Media Vault），图文教程</a></p><p>推荐文章教程：来自 smzdm 的【阿文菌】 <a href="https://post.smzdm.com/p/az50epz5/" target="_blank" rel="noopener">我家云 保姆级教程：完美OMV固件</a></p><p>第一次刷机如果只显示【发现一个 loader 设备】，可以点击高级功能，里面可以点【进入 maskrom】</p><p><img src="/img/2020/高级功能.png" alt="高级功能"></p><p>不过我刷机的时候并不知道这个，我是把机器拆开，然后找一根很短的电线，短接主板后面的两个点。</p><p><img src="/img/2020/短接.jpg" alt="短接"></p><p>一手按住，一手通电，机器一启动就自动进入 maskrom 了，然后便可以愉快地刷机，这种方法也是终极的救砖方法。</p><h2 id="docker相关"><a href="#docker相关" class="headerlink" title="docker相关"></a>docker相关</h2><p>乘风大佬的固件，本身就修改好 docker 的镜像源了，因此我们可以直接拉取镜像。</p><h3 id="portainer"><a href="#portainer" class="headerlink" title="portainer"></a>portainer</h3><figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line">docker volume create portainer_data</span><br><span class="line">docker run -d -p <span class="number">9000</span>:<span class="number">9000</span> -v <span class="regexp">/var/</span>run<span class="regexp">/docker.sock:/</span>var<span class="regexp">/run/</span>docker.sock -v <span class="string">portainer_data:</span><span class="regexp">/data --restart always portainer/</span><span class="string">portainer:</span>linux-arm</span><br></pre></td></tr></table></figure><h3 id="qbittorrent"><a href="#qbittorrent" class="headerlink" title="qbittorrent"></a>qbittorrent</h3><p>自带的 qb 是 4.1.7 ，它好像有个问题，没法通过链接的方式来下载种子。所以我想把它停了，改用 docker 来创建一个最新版的 qb 。</p><p>那么我需要先把自带的 qb 的开机自起取消，这个比较容易，改个名字它就不会启动了。</p><figure class="highlight armasm"><table><tr><td class="code"><pre><span class="line"><span class="symbol">mv</span> /<span class="meta">opt</span>/<span class="keyword">bin/qbittorrent-nox </span>/<span class="meta">opt</span>/<span class="keyword">bin/1qbittorrent-nox</span></span><br></pre></td></tr></table></figure><p>qb最重要的两个文件夹 <code>.config</code> 和 <code>.local</code> ，自带的 qb 是将其放在 <code>/root</code> 里，如果你使用 docker 版的 qb 后，想保留之前的种子信息，下方的 -v 参数自己修改一下。我就不保留了。</p><figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line"><span class="attribute">IMAGE_NAME</span>=80x86/qbittorrent:4.2.1-arm64</span><br><span class="line"><span class="comment">#这里我原本的默认下载路径是 /sharedfolders/wjy/ 你应该改成自己的</span></span><br><span class="line"><span class="attribute">DOWNLOAD_PATH</span>=/sharedfolders/wjy/</span><br><span class="line"><span class="attribute">QBT_AUTH_SERVER_ADDR</span>=<span class="string">"127.0.0.1"</span></span><br><span class="line"></span><br><span class="line">docker <span class="builtin-name">run</span> -d --name qbittorrent \</span><br><span class="line">        -e <span class="attribute">WEB_PORT</span>=8080 \</span><br><span class="line">        -e <span class="attribute">BT_PORT</span>=8998 \</span><br><span class="line">        -e <span class="attribute">QBT_AUTH_SERVER_ADDR</span>=<span class="variable">$QBT_AUTH_SERVER_ADDR</span> \</span><br><span class="line">        --restart unless-stopped \</span><br><span class="line">        --network host \</span><br><span class="line">        -v /var/lib/qbittorrent/.config/qBittorrent:<span class="built_in">/config </span>\</span><br><span class="line">        -v /var/lib/qbittorrent/.local/share/data/qBittorrent:/data \</span><br><span class="line">        -v <span class="string">"<span class="variable">$DOWNLOAD_PATH</span>"</span>:/downloads \</span><br><span class="line">        -v <span class="string">"<span class="variable">$DOWNLOAD_PATH</span>"</span>:<span class="string">"<span class="variable">$DOWNLOAD_PATH</span>"</span> \</span><br><span class="line">        --mount <span class="attribute">type</span>=tmpfs,destination=/tmp \</span><br><span class="line">        <span class="variable">$&#123;IMAGE_NAME&#125;</span></span><br></pre></td></tr></table></figure><p>之后可能会出现文件夹权限问题，将会导致 qb 无法启动，给予 777 权限</p><figure class="highlight crystal"><table><tr><td class="code"><pre><span class="line">chmod -R <span class="number">777</span> /var/<span class="class"><span class="keyword">lib</span>/<span class="title">qbittorrent</span>/</span></span><br></pre></td></tr></table></figure><h2 id="导航相关"><a href="#导航相关" class="headerlink" title="导航相关"></a>导航相关</h2><p>在web导航页面添加或者删除图标，修改 /opt/wwwroot/navi/index.php</p><h2 id="杂七杂八"><a href="#杂七杂八" class="headerlink" title="杂七杂八"></a>杂七杂八</h2><h3 id="查看-CPU-温度"><a href="#查看-CPU-温度" class="headerlink" title="查看 CPU 温度"></a>查看 CPU 温度</h3><figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line">cpu=<span class="variable">$(</span>&lt;<span class="regexp">/sys/class</span><span class="regexp">/thermal/thermal</span>_zone<span class="number">0</span>/temp)</span><br><span class="line">echo <span class="string">"$((cpu/1000)) c"</span></span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;介绍&quot;&gt;&lt;a href=&quot;#介绍&quot; class=&quot;headerlink&quot; title=&quot;介绍&quot;&gt;&lt;/a&gt;介绍&lt;/h2&gt;&lt;p&gt;我家云，又名掉盘云，众多矿渣中的一款。其配置还算不错，但由于有一个严重的缺点——掉盘，即机器内的硬盘时不时地，就自动断开连接，导致获得【掉盘
-      
-    
-    </summary>
-    
-    
-      <category term="设备" scheme="https://powersee.github.io/tags/%E8%AE%BE%E5%A4%87/"/>
-    
-      <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
     
   </entry>
   
