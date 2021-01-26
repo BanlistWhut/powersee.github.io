@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://powersee.github.io/"/>
-  <updated>2021-01-26T01:59:04.293Z</updated>
+  <updated>2021-01-26T14:39:50.340Z</updated>
   <id>https://powersee.github.io/</id>
   
   <author>
@@ -21,18 +21,18 @@
     <link href="https://powersee.github.io/2021/01/wankeyun-server/"/>
     <id>https://powersee.github.io/2021/01/wankeyun-server/</id>
     <published>2021-01-26T00:46:22.000Z</published>
-    <updated>2021-01-26T01:59:04.293Z</updated>
+    <updated>2021-01-26T14:39:50.340Z</updated>
     
-    <content type="html"><![CDATA[<p>2021-01-25</p><p><img src="\img\2021\玩客云导航.jpg" alt="玩客云导航"></p><p>固件和刷机工具下载链接</p><p>链接：<a href="https://pan.baidu.com/s/1BNwv61YDj3b4r3IjmJjheA" target="_blank" rel="noopener">https://pan.baidu.com/s/1BNwv61YDj3b4r3IjmJjheA</a><br>提取码：6666 </p><p>访问导航：直接在浏览器输入 onecloud/ 或者输入玩客云的 ip 地址。</p><hr><p>文件管理器：账号密码都是 admin</p><p>portainer : 账号 admin 密码 powersee</p><p>transmission : 账号密码都是 admin</p><p>qbittorrent : 账号 admin 密码 adminadmin</p><p>ssh ：账号 root 密码 powersee233</p><hr><p>qiandao 这个容器并没有设置开机启动，如果想启动它，可以在 portainer 中启动，或者通过 ssh 使用</p><figure class="highlight crmsh"><table><tr><td class="code"><pre><span class="line">docker <span class="literal">start</span> qiandao</span><br></pre></td></tr></table></figure><p>来启动。</p><hr><p>系统装有 python3 和 pip3，同时我还安装了一个命令行的文件管理器 ranger，在终端输入 <code>ranger</code> 就可以打开这样的界面。</p><p><img src="\img\2021\ranger.jpg" alt="ranger"></p><p>按 q 退出</p><h3 id="参考链接："><a href="#参考链接：" class="headerlink" title="参考链接："></a>参考链接：</h3><p>1、<a href="https://www.right.com.cn/forum/thread-4057492-1-1.html" target="_blank" rel="noopener">https://www.right.com.cn/forum/thread-4057492-1-1.html</a></p><p>2、<a href="https://github.com/AragonSnow/qiandao" target="_blank" rel="noopener">https://github.com/AragonSnow/qiandao</a></p><p>。。。</p>]]></content>
+    <content type="html"><![CDATA[<h3 id="总结一下玩客云的优劣"><a href="#总结一下玩客云的优劣" class="headerlink" title="总结一下玩客云的优劣"></a>总结一下玩客云的优劣</h3><p>优点</p><ul><li>便宜</li><li>省电，之前测试过功耗只有 1.5 w 左右</li><li>静音，没有风扇，自然不会有噪音</li></ul><p>缺点</p><ul><li>性能较弱</li><li>cpu 是 32 位的，能用的 docker 镜像有限</li><li>usb 2.0 速度慢</li></ul><p>由于这次视频的播放量还可以，很多没有关注我的观众在评论区里留言，说 N1 、树莓派这些比玩客云强。我当然知道这些比玩客云强啊，因为大多数矿渣设备我都有买，有兴趣的朋友可以去翻翻我以前的视频。</p><p>其实不用看参数也能知道 N1 、树莓派 这些比玩客云强，看价格就行呗。N1 现在应该要一百多，树莓派得两百多。所以没什么可比性嘛。</p><hr><h3 id="固件相关"><a href="#固件相关" class="headerlink" title="固件相关"></a>固件相关</h3><p>2021-01-25</p><p><img src="\img\2021\玩客云导航.jpg" alt="玩客云导航"></p><p>固件和刷机工具下载链接</p><p>链接：<a href="https://pan.baidu.com/s/1BNwv61YDj3b4r3IjmJjheA" target="_blank" rel="noopener">https://pan.baidu.com/s/1BNwv61YDj3b4r3IjmJjheA</a><br>提取码：6666 </p><p>访问导航：直接在浏览器输入 onecloud/ 或者输入玩客云的 ip 地址。</p><hr><p>文件管理器：账号密码都是 admin</p><p>portainer : 账号 admin 密码 powersee</p><p>transmission : 账号密码都是 admin</p><p>qbittorrent : 账号 admin 密码 adminadmin</p><p>ssh ：账号 root 密码 powersee233</p><hr><p>qiandao 这个容器并没有设置开机启动，如果想启动它，可以在 portainer 中启动，或者通过 ssh 使用</p><figure class="highlight crmsh"><table><tr><td class="code"><pre><span class="line">docker <span class="literal">start</span> qiandao</span><br></pre></td></tr></table></figure><p>来启动。</p><hr><p>系统装有 python3 和 pip3，同时我还安装了一个命令行的文件管理器 ranger，在终端输入 <code>ranger</code> 就可以打开这样的界面。</p><p><img src="\img\2021\ranger.jpg" alt="ranger"></p><p>按 q 退出</p><h3 id="参考链接："><a href="#参考链接：" class="headerlink" title="参考链接："></a>参考链接：</h3><p>1、<a href="https://www.right.com.cn/forum/thread-4057492-1-1.html" target="_blank" rel="noopener">https://www.right.com.cn/forum/thread-4057492-1-1.html</a></p><p>2、<a href="https://github.com/AragonSnow/qiandao" target="_blank" rel="noopener">https://github.com/AragonSnow/qiandao</a></p><p>3、<a href="https://github.com/bituplink/OneHtmlNav" target="_blank" rel="noopener">https://github.com/bituplink/OneHtmlNav</a></p><p>。。。</p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;p&gt;2021-01-25&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;\img\2021\玩客云导航.jpg&quot; alt=&quot;玩客云导航&quot;&gt;&lt;/p&gt;
-&lt;p&gt;固件和刷机工具下载链接&lt;/p&gt;
-&lt;p&gt;链接：&lt;a href=&quot;https://pan.baidu.com/s/1BNwv61YDj3b4
+        &lt;h3 id=&quot;总结一下玩客云的优劣&quot;&gt;&lt;a href=&quot;#总结一下玩客云的优劣&quot; class=&quot;headerlink&quot; title=&quot;总结一下玩客云的优劣&quot;&gt;&lt;/a&gt;总结一下玩客云的优劣&lt;/h3&gt;&lt;p&gt;优点&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;便宜&lt;/li&gt;
+&lt;li&gt;省电，之前测试过功耗
       
     
     </summary>
