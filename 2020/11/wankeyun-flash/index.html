@@ -11,7 +11,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="设备,Linux,">
+    <meta name="keywords" content="Linux,设备,">
   
 
   
@@ -184,8 +184,6 @@
 <figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="attribute">docker</span> <span class="literal">info</span></span><br></pre></td></tr></table></figure>
 <p>我在玩客云上面尝试了这些 docker 镜像。</p>
 <h3 id="1、博客——typecho"><a href="#1、博客——typecho" class="headerlink" title="1、博客——typecho"></a>1、博客——typecho</h3><p>typecho 是一款国产的 php 博客系统，开源免费，占用资源少，我个人挺喜欢的。不过之前灯大制作的 typecho 镜像不能用在玩客云上，我重新找了一个。</p>
-<p>首先拉取 docker 镜像</p>
-<figure class="highlight armasm"><table><tr><td class="code"><pre><span class="line"><span class="symbol">docker</span> pull yangxuan8282/typecho:php-<span class="meta">arm</span></span><br></pre></td></tr></table></figure>
 <p>建议自己建立一个文件夹，用来存放 typecho 的相关文件，方便管理以及以后迁移。我建立在 /root/tyepcho</p>
 <figure class="highlight arduino"><table><tr><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> /root/tyepcho</span><br></pre></td></tr></table></figure>
 <p>然后便可以建立容器了</p>
@@ -206,6 +204,14 @@
 <p><a href="https://microsoftedge.microsoft.com/addons/detail/aria2-for-edge/jjfgljkjddpcpfapejfkelkbjbehagbh?hl=zh-CN" target="_blank" rel="noopener">https://microsoftedge.microsoft.com/addons/detail/aria2-for-edge/jjfgljkjddpcpfapejfkelkbjbehagbh?hl=zh-CN</a></p>
 <p>使用这个插件，可以让平时用浏览器下载的文件，发送到 aria2 下载，很 idm 很像，都是多线程下载工具，很多时候可以让下载速度快一些。</p>
 <p>但是 idm 只能在 windows 上面使用，而 aira2 大多数平台都可以安装，这样有一个好处，就是假如我的 aria2 是安装在 LInux 服务器上的，例如 N1 、我家云、贝壳云、玩客云 这样的设备上面，那么当我下载速度非常慢的资源，例如没有开会员的百度网盘文件，或者城通网盘文件。我可以将下载发送到 Linux 服务器后，电脑就可以关机了，让任务在 Linux 服务器上面慢慢下载就行。</p>
+<h3 id="3、verysync"><a href="#3、verysync" class="headerlink" title="3、verysync"></a>3、verysync</h3><p>这是一个同步工具，这里使用 docker 来安装</p>
+<figure class="highlight haml"><table><tr><td class="code"><pre><span class="line">back_path=/mnt/verysync</span><br><span class="line">docker run -d \</span><br><span class="line">-<span class="ruby">-restart=<span class="keyword">unless</span>-stopped \</span></span><br><span class="line"><span class="ruby">--name verysync \</span></span><br><span class="line"><span class="ruby">-v $back_path<span class="symbol">:/data</span> \</span></span><br><span class="line"><span class="ruby">-p <span class="number">8886</span><span class="symbol">:</span><span class="number">8886</span> \</span></span><br><span class="line"><span class="ruby">unwenliu/<span class="symbol">verysync:</span>armv7</span></span><br></pre></td></tr></table></figure>
+<p>请将里面的 <code>/mnt/verysync</code> 修改为你自己的</p>
+<h3 id="4、transmission"><a href="#4、transmission" class="headerlink" title="4、transmission"></a>4、transmission</h3><p>这是一个轻量级的 BT 下载工具，有些路由器里面也有内置它，可见其轻量</p>
+<figure class="highlight haml"><table><tr><td class="code"><pre><span class="line">docker run \</span><br><span class="line">    -<span class="ruby">d \</span></span><br><span class="line"><span class="ruby">    --name transmission \</span></span><br><span class="line"><span class="ruby">    -p <span class="number">9091</span><span class="symbol">:</span><span class="number">9091</span> \</span></span><br><span class="line"><span class="ruby">    -p <span class="number">51413</span><span class="symbol">:</span><span class="number">51413</span> \</span></span><br><span class="line"><span class="ruby">    -v /mnt/<span class="symbol">tr_data:</span>/data \</span></span><br><span class="line"><span class="ruby">    -e USERNAME=admin \</span></span><br><span class="line"><span class="ruby">    -e PASSWORD=admin \</span></span><br><span class="line"><span class="ruby">    gists/transmission</span></span><br></pre></td></tr></table></figure>
+<p>这里我装了 3.0 版，如果想装 2.94 ，可以将最后一行后面添加标签 <code>:2.94</code> ，变成</p>
+<figure class="highlight haml"><table><tr><td class="code"><pre><span class="line">docker run \</span><br><span class="line">    -<span class="ruby">d \</span></span><br><span class="line"><span class="ruby">    --name transmission \</span></span><br><span class="line"><span class="ruby">    -p <span class="number">9091</span><span class="symbol">:</span><span class="number">9091</span> \</span></span><br><span class="line"><span class="ruby">    -p <span class="number">51413</span><span class="symbol">:</span><span class="number">51413</span> \</span></span><br><span class="line"><span class="ruby">    -v /mnt/<span class="symbol">tr_data:</span>/data \</span></span><br><span class="line"><span class="ruby">    -e USERNAME=admin \</span></span><br><span class="line"><span class="ruby">    -e PASSWORD=admin \</span></span><br><span class="line"><span class="ruby">    gists/<span class="symbol">transmission:</span><span class="number">2.94</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="5、qbittorrent"><a href="#5、qbittorrent" class="headerlink" title="5、qbittorrent"></a>5、qbittorrent</h3><figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">docker <span class="builtin-name">run</span> -d \</span><br><span class="line">  <span class="attribute">--name</span>=qbittorrent \</span><br><span class="line">  -e <span class="attribute">PUID</span>=1000 \</span><br><span class="line">  -e <span class="attribute">PGID</span>=1000 \</span><br><span class="line">  -e <span class="attribute">TZ</span>=Aisa/Shanghai \</span><br><span class="line">  -e <span class="attribute">WEBUI_PORT</span>=8080 \</span><br><span class="line">  --network host \</span><br><span class="line">  -v /opt/docker/qb/config:<span class="built_in">/config </span>\</span><br><span class="line">  -v /mnt/qb_downloads:/downloads \</span><br><span class="line">  --restart unless-stopped \</span><br><span class="line">  ghcr.io/linuxserver/qbittorrent</span><br></pre></td></tr></table></figure>
 <h2 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h2><p>后来我还在上面安装了 nginx 和 php ，可以搭建一些简单的网站。</p>
 <figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line">apt <span class="keyword">install</span> nginx php-fpm</span><br></pre></td></tr></table></figure>
 <p>想让 nginx 可以解析 php 网页，需要修改 <code>/etc/nginx/sites-enabled/default</code> 这个配置文件。</p>
@@ -218,7 +224,7 @@
     <span>目录</span>
   </div>
   <div class="table-content-main">
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#刷机"><span class="toc-text">刷机</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#用途"><span class="toc-text">用途</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1、博客——typecho"><span class="toc-text">1、博客——typecho</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2、aria2"><span class="toc-text">2、aria2</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#其它"><span class="toc-text">其它</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#刷机"><span class="toc-text">刷机</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#用途"><span class="toc-text">用途</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1、博客——typecho"><span class="toc-text">1、博客——typecho</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2、aria2"><span class="toc-text">2、aria2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3、verysync"><span class="toc-text">3、verysync</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4、transmission"><span class="toc-text">4、transmission</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5、qbittorrent"><span class="toc-text">5、qbittorrent</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#其它"><span class="toc-text">其它</span></a></li></ol>
   </div>
 </aside>
   
@@ -238,9 +244,9 @@
   
     <div class="passage-tags">
      
-      <a href="/tags/设备/"><i class="fa fa-tags"></i>设备</a>
-     
       <a href="/tags/Linux/"><i class="fa fa-tags"></i>Linux</a>
+     
+      <a href="/tags/设备/"><i class="fa fa-tags"></i>设备</a>
     
     </div>
   

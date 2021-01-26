@@ -11,7 +11,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="设备,Linux,">
+    <meta name="keywords" content="Linux,设备,">
   
 
   
@@ -242,7 +242,7 @@
 <p>在 armbian 上装了个导航。</p>
 <p>将导航下载后，改名，如 1.zip</p>
 <p>然后传到 N1 里面，<code>apt install zip</code> ，装一个 zip ，然后就可以解压这个压缩包。不过最好先把这个压缩包，移动到 /opt 中。也可以一开始就传到 /opt 中。</p>
-<figure class="highlight jboss-cli"><table><tr><td class="code"><pre><span class="line"><span class="keyword">cd</span> <span class="string">/opt</span></span><br><span class="line">unzip 1.zip <span class="comment">#会解压出来两个文件</span></span><br><span class="line"><span class="string">./install_navi.sh</span>	<span class="comment">#执行里面的安装脚本</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight jboss-cli"><table><tr><td class="code"><pre><span class="line"><span class="keyword">cd</span> <span class="string">/opt</span></span><br><span class="line">unzip 1.zip <span class="comment">#会解压出来两个文件</span></span><br><span class="line">chmod +x install_navi.sh <span class="comment">#赋予脚本执行权限</span></span><br><span class="line"><span class="string">./install_navi.sh</span>	<span class="comment">#执行里面的安装脚本</span></span><br></pre></td></tr></table></figure>
 <p>一分多钟就可以安装完，然后在浏览器输入 N1 的 ip 就可以看到导航了。导航网页的位置在：/opt/wwwroot/navi/ ，可以自己修改里面的 index.php 。像我就自己修改了一些内容。</p>
 <p><img src="/img/2020/修改后的导航.jpg" alt="修改后的导航"></p>
 <h2 id="7、Nginx-开启-ipv6"><a href="#7、Nginx-开启-ipv6" class="headerlink" title="7、Nginx 开启 ipv6"></a>7、Nginx 开启 ipv6</h2><p>之后我将机器的 ipv6 地址绑定域名后，发现无法访问导航页面。而其它的端口是可以访问的，那难道是 nginx 的问题？查了一下，果然是因为 Nginx 没有开启 ipv6 支持导致的。开启方法如下：</p>
@@ -317,9 +317,9 @@
   
     <div class="passage-tags">
      
-      <a href="/tags/设备/"><i class="fa fa-tags"></i>设备</a>
-     
       <a href="/tags/Linux/"><i class="fa fa-tags"></i>Linux</a>
+     
+      <a href="/tags/设备/"><i class="fa fa-tags"></i>设备</a>
     
     </div>
   
