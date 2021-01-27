@@ -1819,14 +1819,39 @@
 <p>qiandao 这个容器并没有设置开机启动，如果想启动它，可以在 portainer 中启动，或者通过 ssh 使用</p>
 <figure class="highlight crmsh"><table><tr><td class="code"><pre><span class="line">docker <span class="literal">start</span> qiandao</span><br></pre></td></tr></table></figure>
 <p>来启动。</p>
+<p>这个自动签到平台我以前也有做过视频，有兴趣可以去翻翻看。</p>
+<hr>
+<h3 id="关于-SD-卡"><a href="#关于-SD-卡" class="headerlink" title="关于 SD 卡"></a>关于 SD 卡</h3><p>挂载 SD 卡有一点需要注意，有些卡套可能会有问题。插上去后，可以读取到 disk ，但是读取不到 part ，所以没法挂载。质量好的卡套，应该是可以显示 disk 和 part 的，如下图所示。</p>
+<p><img src="\img\2021\挂载 sd 卡.png" alt="挂载 sd 卡"></p>
 <hr>
 <p>系统装有 python3 和 pip3，同时我还安装了一个命令行的文件管理器 ranger，在终端输入 <code>ranger</code> 就可以打开这样的界面。</p>
 <p><img src="\img\2021\ranger.jpg" alt="ranger"></p>
 <p>按 q 退出</p>
-<h3 id="参考链接："><a href="#参考链接：" class="headerlink" title="参考链接："></a>参考链接：</h3><p>1、<a href="https://www.right.com.cn/forum/thread-4057492-1-1.html" target="_blank" rel="noopener">https://www.right.com.cn/forum/thread-4057492-1-1.html</a></p>
-<p>2、<a href="https://github.com/AragonSnow/qiandao" target="_blank" rel="noopener">https://github.com/AragonSnow/qiandao</a></p>
-<p>3、<a href="https://github.com/bituplink/OneHtmlNav" target="_blank" rel="noopener">https://github.com/bituplink/OneHtmlNav</a></p>
-<p>。。。</p>
+<hr>
+<h3 id="如何判断有没有刷成功"><a href="#如何判断有没有刷成功" class="headerlink" title="如何判断有没有刷成功"></a>如何判断有没有刷成功</h3><p>其实可以用通过玩客云的 hdmi 来判断，你可以把玩客云连接电视或者显示器。</p>
+<p>当你刷好底层包之后，不插U盘，画面会显示这个几秒</p>
+<p><img src="\img\2021\玩客云mxq.png" alt="玩客云mxq"></p>
+<p>然后就没信号几秒，再显示这个画面几秒，再没信号……会这样一直重复。</p>
+<p>如果你插上U盘，并且玩客云成功进入 U 盘里的系统，画面就会停留在上面这个图片这里，不会变化了。所以你可以通过这种方法来判断有没有成功进入 U 盘系统。</p>
+<h3 id="参考链接："><a href="#参考链接：" class="headerlink" title="参考链接："></a>参考链接：</h3><ol>
+<li><p><a href="https://www.right.com.cn/forum/thread-4057492-1-1.html" target="_blank" rel="noopener">https://www.right.com.cn/forum/thread-4057492-1-1.html</a></p>
+</li>
+<li><p><a href="https://github.com/AragonSnow/qiandao" target="_blank" rel="noopener">https://github.com/AragonSnow/qiandao</a></p>
+</li>
+<li><p><a href="https://github.com/bituplink/OneHtmlNav" target="_blank" rel="noopener">https://github.com/bituplink/OneHtmlNav</a></p>
+</li>
+<li><p><a href="https://www.right.com.cn/forum/thread-4058499-1-1.html" target="_blank" rel="noopener">https://www.right.com.cn/forum/thread-4058499-1-1.html</a></p>
+</li>
+<li><a href="https://www.right.com.cn/FORUM/thread-4066518-1-1.html" target="_blank" rel="noopener">https://www.right.com.cn/FORUM/thread-4066518-1-1.html</a></li>
+</ol>
+<h3 id="下期内容"><a href="#下期内容" class="headerlink" title="下期内容"></a>下期内容</h3><p>下一个版本会添加的内容</p>
+<p>1、网页终端</p>
+<p><img src="\img\2021\wky-ttyd.png" alt="wky-ttyd"></p>
+<p>2、portainer 中文化</p>
+<p><img src="\img\2021\portainer汉化.png" alt="portainer汉化"></p>
+<p>3、添加控制 led 功能</p>
+<p>默认情况下，开机后会一直亮蓝灯。其实没什么用，我打算把这灯利用起来，所以设置了开机进入系统后，灯光会自动关闭。然后这灯就可以跑脚本的时候用。例如用 python 脚本来控制它，让它亮绿灯之类的。以后再说吧。</p>
+<p><img src="\img\2021\wky-green.jpg" alt="wky-green"></p>
 ]]></content>
       <tags>
         <tag>Linux</tag>
