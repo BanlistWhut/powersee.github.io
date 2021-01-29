@@ -167,7 +167,12 @@
   
   <article class="passage-article">
     <h2 id="1、先去看灯大的这个文章"><a href="#1、先去看灯大的这个文章" class="headerlink" title="1、先去看灯大的这个文章"></a>1、先去看灯大的这个文章</h2><p><a href="https://gitee.com/8ox86/phicomm-n1-issue/wikis/entware%20guide?sort_id=1368793" target="_blank" rel="noopener">https://gitee.com/8ox86/phicomm-n1-issue/wikis/entware%20guide?sort_id=1368793</a></p>
-<p>让我们可以用 opkg2 来安装其它应用</p>
+<ol>
+<li>编辑 /etc/opkg/entware.conf<br>取消行首的 # 符号</li>
+<li>opkg2 update</li>
+<li>查找包 opkg2 find xxxx</li>
+<li>opkg2 install xxxxx</li>
+</ol>
 <h2 id="2、安装-zsh-与配置集"><a href="#2、安装-zsh-与配置集" class="headerlink" title="2、安装 zsh 与配置集"></a>2、安装 zsh 与配置集</h2><p>于是我就安装了 zsh 以及 oh my zsh 为的就是用这个自动补全插件 zsh-autosuggestions</p>
 <figure class="highlight cmake"><table><tr><td class="code"><pre><span class="line">opkg2 <span class="keyword">install</span> zsh</span><br></pre></td></tr></table></figure>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sh -c <span class="string">"<span class="variable">$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)</span>"</span></span><br></pre></td></tr></table></figure>
