@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://powersee.github.io/"/>
-  <updated>2021-02-02T11:34:26.922Z</updated>
+  <updated>2021-02-14T04:05:56.916Z</updated>
   <id>https://powersee.github.io/</id>
   
   <author>
@@ -15,6 +15,22 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>about-zhangyuxingqiu</title>
+    <link href="https://powersee.github.io/2021/02/about-zhangyuxingqiu/"/>
+    <id>https://powersee.github.io/2021/02/about-zhangyuxingqiu/</id>
+    <published>2021-02-14T04:05:56.000Z</published>
+    <updated>2021-02-14T04:05:56.916Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+      <category term="随笔" scheme="https://powersee.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
   
   <entry>
     <title>玩客云第二版固件说明</title>
@@ -50,15 +66,15 @@
     <link href="https://powersee.github.io/2021/01/wankeyun-server/"/>
     <id>https://powersee.github.io/2021/01/wankeyun-server/</id>
     <published>2021-01-26T00:46:22.000Z</published>
-    <updated>2021-02-08T07:11:04.019Z</updated>
+    <updated>2021-02-16T04:14:14.485Z</updated>
     
-    <content type="html"><![CDATA[<h3 id="为什么我的主板和你不一样？"><a href="#为什么我的主板和你不一样？" class="headerlink" title="为什么我的主板和你不一样？"></a>为什么我的主板和你不一样？</h3><p>有些小伙伴看了视频，非常激动地跑去买玩客云，买来拆开后却发现，怎么和视频里的不一样呢？难道是被坑了？</p><p>其实不用慌，这是因为玩客云有分两版，我视频里展示的是老版，它的短接点是在主板的背面。</p><p><img src="\img\2020\玩客云短接.png" alt="玩客云短接"></p><p>另外还有一款新版，短接点是在正面。</p><p><img src="\img\2021\玩客云新版短接点.jpg" alt="玩客云新版短接点"></p><p><img src="\img\2021\玩客云新版短接点45.jpg" alt="玩客云新版短接点45"></p><p>刷机方式一样的。</p><h3 id="总结一下玩客云的优劣"><a href="#总结一下玩客云的优劣" class="headerlink" title="总结一下玩客云的优劣"></a>总结一下玩客云的优劣</h3><p>优点</p><ul><li>便宜</li><li>省电，之前测试过功耗只有 1.5 w 左右</li><li>静音，没有风扇，自然不会有噪音</li></ul><p>缺点</p><ul><li>性能较弱</li><li>cpu 是 32 位的，能用的 docker 镜像有限</li><li>usb 2.0 速度慢</li></ul><p>由于这次视频的播放量还可以，很多没有关注我的观众在评论区里留言，说 N1 、树莓派这些比玩客云强。我当然知道这些比玩客云强啊，因为大多数矿渣设备我都有买，有兴趣的朋友可以去翻翻我以前的视频。</p><p>其实不用看参数也能知道 N1 、树莓派 这些比玩客云强，看价格就行呗。N1 现在应该要一百多，树莓派得两百多。所以没什么可比性嘛。</p><hr><h3 id="固件相关"><a href="#固件相关" class="headerlink" title="固件相关"></a>固件相关</h3><p>2021-01-25</p><p><img src="\img\2021\玩客云导航.jpg" alt="玩客云导航"></p><p>固件和刷机工具下载链接</p><p>链接：<a href="https://pan.baidu.com/s/1BNwv61YDj3b4r3IjmJjheA" target="_blank" rel="noopener">https://pan.baidu.com/s/1BNwv61YDj3b4r3IjmJjheA</a><br>提取码：6666 </p><p>访问导航：直接在浏览器输入 onecloud/ 或者输入玩客云的 ip 地址。</p><hr><p>文件管理器：账号密码都是 admin</p><p>portainer : 账号 admin 密码 powersee</p><p>transmission : 账号密码都是 admin</p><p>qbittorrent : 账号 admin 密码 adminadmin</p><p>ssh ：账号 root 密码 powersee233</p><hr><p>qiandao 这个容器并没有设置开机启动，如果想启动它，可以在 portainer 中启动，或者通过 ssh 使用</p><figure class="highlight crmsh"><table><tr><td class="code"><pre><span class="line">docker <span class="literal">start</span> qiandao</span><br></pre></td></tr></table></figure><p>来启动。</p><p>这个自动签到平台我以前也有做过视频，有兴趣可以去翻翻看。</p><hr><h3 id="关于-SD-卡"><a href="#关于-SD-卡" class="headerlink" title="关于 SD 卡"></a>关于 SD 卡</h3><p>挂载 SD 卡有一点需要注意，有些卡套可能会有问题。插上去后，可以读取到 disk ，但是读取不到 part ，所以没法挂载。质量好的卡套，应该是可以显示 disk 和 part 的，如下图所示。</p><p><img src="\img\2021\挂载 sd 卡.png" alt="挂载 sd 卡"></p><hr><p>系统装有 python3 和 pip3，同时我还安装了一个命令行的文件管理器 ranger，在终端输入 <code>ranger</code> 就可以打开这样的界面。</p><p><img src="\img\2021\ranger.jpg" alt="ranger"></p><p>按 q 退出</p><hr><h3 id="如何判断有没有刷成功"><a href="#如何判断有没有刷成功" class="headerlink" title="如何判断有没有刷成功"></a>如何判断有没有刷成功</h3><p>其实可以用通过玩客云的 hdmi 来判断，你可以把玩客云连接电视或者显示器。</p><p>当你刷好底层包之后，不插U盘，画面会显示这个几秒</p><p><img src="\img\2021\玩客云mxq.png" alt="玩客云mxq"></p><p>然后就没信号几秒，再显示这个画面几秒，再没信号……会这样一直重复。</p><p>如果你插上U盘，并且玩客云成功进入 U 盘里的系统，画面就会停留在上面这个图片这里，不会变化了。所以你可以通过这种方法来判断有没有成功进入 U 盘系统。</p><hr><h3 id="一直线刷失败？"><a href="#一直线刷失败？" class="headerlink" title="一直线刷失败？"></a>一直线刷失败？</h3><p>症状是什么呢？无法刷入 snail 底层包，也无法刷入 emmc 直刷包，线刷最后永远报错。这里有一张网友线刷失败的图片。</p><p><img src="\img\2021\wky-fail1.png" alt="wky-fail1"></p><p>里面的结果这一列，有好多个 5004。然后最近我收了一台有问题的玩客云，下午线刷，发现也是一堆 5004 的报错。所以我估计，可能报 5004 的，应该就是 emmc 有坏块，毕竟症状一样。</p><p>到目前为止，我见识过 4 台设备这样，我自己手上就有一台。唯有一个底层包可以刷，是一个 700多K的 img 包，我将它上传到了网盘。<a href="http://veger.ys168.com/" target="_blank" rel="noopener">http://veger.ys168.com/</a> </p><p><img src="\img\2021\wky-pan1.png" alt="wky-pan1"></p><p>使用这个底层包，可以线刷进去。</p><p><img src="\img\2021\wky-线刷成功.png" alt="wky-线刷成功"></p><p>刷这个 700 多k 的底层包，开机是亮绿灯。由于 emmc 损坏，因此系统只能装在 U 盘里面使用。</p><h3 id="参考链接："><a href="#参考链接：" class="headerlink" title="参考链接："></a>参考链接：</h3><ol><li><p><a href="https://www.right.com.cn/forum/thread-4057492-1-1.html" target="_blank" rel="noopener">https://www.right.com.cn/forum/thread-4057492-1-1.html</a></p></li><li><p><a href="https://github.com/AragonSnow/qiandao" target="_blank" rel="noopener">https://github.com/AragonSnow/qiandao</a></p></li><li><p><a href="https://github.com/bituplink/OneHtmlNav" target="_blank" rel="noopener">https://github.com/bituplink/OneHtmlNav</a></p></li><li><p><a href="https://www.right.com.cn/forum/thread-4058499-1-1.html" target="_blank" rel="noopener">https://www.right.com.cn/forum/thread-4058499-1-1.html</a></p></li><li><a href="https://www.right.com.cn/FORUM/thread-4066518-1-1.html" target="_blank" rel="noopener">https://www.right.com.cn/FORUM/thread-4066518-1-1.html</a></li></ol><h3 id="下期内容"><a href="#下期内容" class="headerlink" title="下期内容"></a>下期内容</h3><p>下一个版本会添加的内容</p><p>1、网页终端</p><p><img src="\img\2021\wky-ttyd.png" alt="wky-ttyd"></p><p>2、portainer 中文化</p><p><img src="\img\2021\portainer汉化.png" alt="portainer汉化"></p><p>3、添加控制 led 功能</p><p>默认情况下，开机后会一直亮蓝灯。其实没什么用，我打算把这灯利用起来，所以设置了开机进入系统后，灯光会自动关闭。然后这灯就可以跑脚本的时候用。例如用 python 脚本来控制它，让它亮绿灯之类的。以后再说吧。</p><p><img src="\img\2021\wky-green.jpg" alt="wky-green"></p><p>4、aria2</p>]]></content>
+    <content type="html"><![CDATA[<h3 id="玩客云乱七八糟的坑"><a href="#玩客云乱七八糟的坑" class="headerlink" title="玩客云乱七八糟的坑"></a>玩客云乱七八糟的坑</h3><p>搞了一个腾讯文档，懒得复制过来了，已经设置了任何人都可以访问，可以在里面看看有没有适合自己的解决方案。</p><p><a href="https://docs.qq.com/doc/DWkhNSmRuQld0UEd0" target="_blank" rel="noopener">https://docs.qq.com/doc/DWkhNSmRuQld0UEd0</a></p><h3 id="为什么我的主板和你不一样？"><a href="#为什么我的主板和你不一样？" class="headerlink" title="为什么我的主板和你不一样？"></a>为什么我的主板和你不一样？</h3><p>有些小伙伴看了视频，非常激动地跑去买玩客云，买来拆开后却发现，怎么和视频里的不一样呢？难道是被坑了？</p><p>其实不用慌，这是因为玩客云有分两版，我视频里展示的是老版，它的短接点是在主板的背面。</p><p><img src="\img\2020\玩客云短接.png" alt="玩客云短接"></p><p>另外还有一款新版，短接点是在正面。</p><p><img src="\img\2021\玩客云新版短接点.jpg" alt="玩客云新版短接点"></p><p><img src="\img\2021\玩客云新版短接点45.jpg" alt="玩客云新版短接点45"></p><p>刷机方式一样的。</p><h3 id="为什么没有进入-U-盘中的系统？"><a href="#为什么没有进入-U-盘中的系统？" class="headerlink" title="为什么没有进入 U 盘中的系统？"></a>为什么没有进入 U 盘中的系统？</h3><p>如果你发现 led 灯每隔几秒就闪一下，那可能是你 U 盘没有插在靠近网口的 USB 口。</p><p><img src="\img\2021\wky-usb-1613448634572.png" alt="wky-usb"></p><p>如果这样还不行，你可以尝试换一个 U 盘，如果有内存卡加读卡器的话，也可以试试。</p><h3 id="总结一下玩客云的优劣"><a href="#总结一下玩客云的优劣" class="headerlink" title="总结一下玩客云的优劣"></a>总结一下玩客云的优劣</h3><p>优点</p><ul><li>便宜</li><li>省电，之前测试过功耗只有 1.5 w 左右</li><li>静音，没有风扇，自然不会有噪音</li></ul><p>缺点</p><ul><li>性能较弱</li><li>cpu 是 32 位的，能用的 docker 镜像有限</li><li>usb 2.0 速度慢</li></ul><p>由于这次视频的播放量还可以，很多没有关注我的观众在评论区里留言，说 N1 、树莓派这些比玩客云强。我当然知道这些比玩客云强啊，因为大多数矿渣设备我都有买，有兴趣的朋友可以去翻翻我以前的视频。</p><p>其实不用看参数也能知道 N1 、树莓派 这些比玩客云强，看价格就行呗。N1 现在应该要一百多，树莓派得两百多。所以没什么可比性嘛。</p><hr><h3 id="固件相关"><a href="#固件相关" class="headerlink" title="固件相关"></a>固件相关</h3><p>2021-01-25</p><p><img src="\img\2021\玩客云导航.jpg" alt="玩客云导航"></p><p>固件和刷机工具下载链接</p><p>链接：<a href="https://pan.baidu.com/s/1BNwv61YDj3b4r3IjmJjheA" target="_blank" rel="noopener">https://pan.baidu.com/s/1BNwv61YDj3b4r3IjmJjheA</a><br>提取码：6666 </p><p>访问导航：直接在浏览器输入 onecloud/ 或者输入玩客云的 ip 地址。</p><hr><p>文件管理器：账号密码都是 admin</p><p>portainer : 账号 admin 密码 powersee</p><p>transmission : 账号密码都是 admin</p><p>qbittorrent : 账号 admin 密码 adminadmin</p><p>ssh ：账号 root 密码 powersee233</p><hr><p>qiandao 这个容器并没有设置开机启动，如果想启动它，可以在 portainer 中启动，或者通过 ssh 使用</p><figure class="highlight crmsh"><table><tr><td class="code"><pre><span class="line">docker <span class="literal">start</span> qiandao</span><br></pre></td></tr></table></figure><p>来启动。</p><p>这个自动签到平台我以前也有做过视频，有兴趣可以去翻翻看。</p><hr><h3 id="关于-SD-卡"><a href="#关于-SD-卡" class="headerlink" title="关于 SD 卡"></a>关于 SD 卡</h3><p>挂载 SD 卡有一点需要注意，有些卡套可能会有问题。插上去后，可以读取到 disk ，但是读取不到 part ，所以没法挂载。质量好的卡套，应该是可以显示 disk 和 part 的，如下图所示。</p><p><img src="\img\2021\挂载 sd 卡.png" alt="挂载 sd 卡"></p><hr><p>系统装有 python3 和 pip3，同时我还安装了一个命令行的文件管理器 ranger，在终端输入 <code>ranger</code> 就可以打开这样的界面。</p><p><img src="\img\2021\ranger.jpg" alt="ranger"></p><p>按 q 退出</p><hr><h3 id="如何判断有没有刷成功"><a href="#如何判断有没有刷成功" class="headerlink" title="如何判断有没有刷成功"></a>如何判断有没有刷成功</h3><p>其实可以用通过玩客云的 hdmi 来判断，你可以把玩客云连接电视或者显示器。</p><p>当你刷好底层包之后，不插U盘，画面会显示这个几秒</p><p><img src="\img\2021\玩客云mxq.png" alt="玩客云mxq"></p><p>然后就没信号几秒，再显示这个画面几秒，再没信号……会这样一直重复。</p><p>如果你插上U盘，并且玩客云成功进入 U 盘里的系统，画面就会停留在上面这个图片这里，不会变化了。所以你可以通过这种方法来判断有没有成功进入 U 盘系统。</p><hr><h3 id="一直线刷失败？"><a href="#一直线刷失败？" class="headerlink" title="一直线刷失败？"></a>一直线刷失败？</h3><p>症状是什么呢？无法刷入 snail 底层包，也无法刷入 emmc 直刷包，线刷最后永远报错。这里有一张网友线刷失败的图片。</p><p><img src="\img\2021\wky-fail1.png" alt="wky-fail1"></p><p>里面的结果这一列，有好多个 5004。然后最近我收了一台有问题的玩客云，下午线刷，发现也是一堆 5004 的报错。所以我估计，可能报 5004 的，应该就是 emmc 有坏块，毕竟症状一样。</p><p>到目前为止，我见识过 4 台设备这样，我自己手上就有一台。唯有一个底层包可以刷，是一个 700多K的 img 包，我将它上传到了网盘。<a href="http://veger.ys168.com/" target="_blank" rel="noopener">http://veger.ys168.com/</a> </p><p><img src="\img\2021\wky-pan1.png" alt="wky-pan1"></p><p>使用这个底层包，可以线刷进去。</p><p><img src="\img\2021\wky-线刷成功.png" alt="wky-线刷成功"></p><p>刷这个 700 多k 的底层包，开机是亮绿灯。由于 emmc 损坏，因此系统只能装在 U 盘里面使用。</p><h3 id="参考链接："><a href="#参考链接：" class="headerlink" title="参考链接："></a>参考链接：</h3><ol><li><p><a href="https://www.right.com.cn/forum/thread-4057492-1-1.html" target="_blank" rel="noopener">https://www.right.com.cn/forum/thread-4057492-1-1.html</a></p></li><li><p><a href="https://github.com/AragonSnow/qiandao" target="_blank" rel="noopener">https://github.com/AragonSnow/qiandao</a></p></li><li><p><a href="https://github.com/bituplink/OneHtmlNav" target="_blank" rel="noopener">https://github.com/bituplink/OneHtmlNav</a></p></li><li><p><a href="https://www.right.com.cn/forum/thread-4058499-1-1.html" target="_blank" rel="noopener">https://www.right.com.cn/forum/thread-4058499-1-1.html</a></p></li><li><a href="https://www.right.com.cn/FORUM/thread-4066518-1-1.html" target="_blank" rel="noopener">https://www.right.com.cn/FORUM/thread-4066518-1-1.html</a></li></ol><h3 id="下期内容"><a href="#下期内容" class="headerlink" title="下期内容"></a>下期内容</h3><p>下一个版本会添加的内容</p><p>1、网页终端</p><p><img src="\img\2021\wky-ttyd.png" alt="wky-ttyd"></p><p>2、portainer 中文化</p><p><img src="\img\2021\portainer汉化.png" alt="portainer汉化"></p><p>3、添加控制 led 功能</p><p>默认情况下，开机后会一直亮蓝灯。其实没什么用，我打算把这灯利用起来，所以设置了开机进入系统后，灯光会自动关闭。然后这灯就可以跑脚本的时候用。例如用 python 脚本来控制它，让它亮绿灯之类的。以后再说吧。</p><p><img src="\img\2021\wky-green.jpg" alt="wky-green"></p><p>4、aria2</p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;h3 id=&quot;为什么我的主板和你不一样？&quot;&gt;&lt;a href=&quot;#为什么我的主板和你不一样？&quot; class=&quot;headerlink&quot; title=&quot;为什么我的主板和你不一样？&quot;&gt;&lt;/a&gt;为什么我的主板和你不一样？&lt;/h3&gt;&lt;p&gt;有些小伙伴看了视频，非常激动地跑去买玩客云，买来拆开
+        &lt;h3 id=&quot;玩客云乱七八糟的坑&quot;&gt;&lt;a href=&quot;#玩客云乱七八糟的坑&quot; class=&quot;headerlink&quot; title=&quot;玩客云乱七八糟的坑&quot;&gt;&lt;/a&gt;玩客云乱七八糟的坑&lt;/h3&gt;&lt;p&gt;搞了一个腾讯文档，懒得复制过来了，已经设置了任何人都可以访问，可以在里面看看有没有适
       
     
     </summary>
@@ -508,30 +524,6 @@
       <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
     
       <category term="docker" scheme="https://powersee.github.io/tags/docker/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>最强 shell 非 zsh 莫属</title>
-    <link href="https://powersee.github.io/2020/03/zsh-note/"/>
-    <id>https://powersee.github.io/2020/03/zsh-note/</id>
-    <published>2020-03-31T09:51:20.000Z</published>
-    <updated>2020-11-20T10:32:15.475Z</updated>
-    
-    <content type="html"><![CDATA[<p>个人比较喜欢 zsh ，特别是自动补全的插件 zsh-autosuggestions ，感觉用了就回不去了。再也无法忍受用以前那些 shell 的各种不便。因此我尽量在常用的设备上安装 zsh ，比如电脑，虚拟机，家里的一堆矿渣设备，国内外的云服务器上。</p><p>由于每次的操作都基本一样，所以我之前都是将步骤写在笔记中，用到时就复制粘贴即可。现在将内容整理到博客中，方便有时没法打开笔记，可以通过访问博客来查看。</p><p>不同的发行版有不同的包管理工具，安装过程却都差不多，apt install zsh 像这样直接安装即可。</p><hr><p>下载 oh my zsh</p><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"</span><br></pre></td></tr></table></figure><p>可恶的墙，哎，下载不了的使用这个吧</p><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sh -c "$(curl -fsSL https://gitee.com/powersee/ohmyzsh/raw/master/tools/install.sh)"</span><br></pre></td></tr></table></figure><p>下载 zsh-autosuggestions 这个插件</p><figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">git clone git:<span class="regexp">//gi</span>thub.com<span class="regexp">/zsh-users/</span>zsh-autosuggestions <span class="variable">$ZSH_CUSTOM</span><span class="regexp">/plugins/</span>zsh-autosuggestions</span><br></pre></td></tr></table></figure><p>不行的话用这行</p><figure class="highlight awk"><table><tr><td class="code"><pre><span class="line">git clone https:<span class="regexp">//gi</span>tee.com<span class="regexp">/powersee/</span>zsh-autosuggestions.git <span class="variable">$ZSH_CUSTOM</span><span class="regexp">/plugins/</span>zsh-autosuggestions</span><br></pre></td></tr></table></figure><p>编辑 .zshrc 启用插件</p><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">vim ~/.zshrc</span><br></pre></td></tr></table></figure><p>将 zsh-autosuggestions 添加到插件里，加在 git 后面即可，可以用空格，也可以换行。</p><p>然后由于有时连接的设备太多，不太容易分清楚哪一台，所以我喜欢用 <code>ys</code> 这个主题。一般修改第 11 行。</p><p>然后对于常用命令，可以用 alias 来自定义，比如找个空白处，写上</p><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">alias</span> d=<span class="string">"docker"</span></span><br></pre></td></tr></table></figure><p>然后重新读取一下配置文件</p><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">source ~/.zshrc</span><br></pre></td></tr></table></figure><p>此时输入 <code>d info</code> 就等于 输入 <code>docker info</code></p><p>如果后期配置文件搞得乱七八糟，或者误删了，可以使用这个来恢复成默认</p><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;个人比较喜欢 zsh ，特别是自动补全的插件 zsh-autosuggestions ，感觉用了就回不去了。再也无法忍受用以前那些 shell 的各种不便。因此我尽量在常用的设备上安装 zsh ，比如电脑，虚拟机，家里的一堆矿渣设备，国内外的云服务器上。&lt;/p&gt;
-&lt;p&gt;由于
-      
-    
-    </summary>
-    
-    
-      <category term="Linux" scheme="https://powersee.github.io/tags/Linux/"/>
     
   </entry>
   
